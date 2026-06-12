@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"book-coffee-shop/internal/config"
+	"book-coffee-shop/internal/database"
 	"book-coffee-shop/internal/handler"
 	"book-coffee-shop/internal/infrastructure"
 	"book-coffee-shop/internal/usecase"
@@ -17,6 +18,10 @@ import (
 
 func main() {
 	pgCfg := config.DefaultPostgresConfig()
+
+	if err := database.EnsureDatabaseExists(pgCfg); err != nil {
+		log.Fatalf("failed to ensure database exists: %v", err)
+	}
 
 	db, err := sql.Open("postgres", pgCfg.DSN())
 	if err != nil {
@@ -74,9 +79,31 @@ func main() {
 	clientUC := usecase.NewClientUseCase(clientRepo)
 	clientH := handler.NewClientHandler(clientUC)
 
+	companyRepo := infrastructure.NewPostgresCompanyRepository(db)
+	companyUC := usecase.NewCompanyUseCase(companyRepo)
+	companyH := handler.NewCompanyHandler(companyUC)
+
+	mainAddressRepo := infrastructure.NewPostgresMainAddressRepository(db)
+	mainAddressUC := usecase.NewMainAddressUseCase(mainAddressRepo)
+	mainAddressH := handler.NewMainAddressHandler(mainAddressUC)
+
+	taxInformationRepo := infrastructure.NewPostgresTaxInformationRepository(db)
+	taxInformationUC := usecase.NewTaxInformationUseCase(taxInformationRepo)
+	taxInformationH := handler.NewTaxInformationHandler(taxInformationUC)
+
+	economicActivityRepo := infrastructure.NewPostgresEconomicActivityRepository(db)
+	economicActivityUC := usecase.NewEconomicActivityUseCase(economicActivityRepo)
+	economicActivityH := handler.NewEconomicActivityHandler(economicActivityUC)
+
 	orderRepo := infrastructure.NewPostgresOrderRepository(db)
 	orderUC := usecase.NewOrderUseCase(orderRepo)
 	orderH := handler.NewOrderHandler(orderUC)
+
+	userRepo := infrastructure.NewPostgresUserRepository(db)
+	tokenService := infrastructure.NewJWTTokenService(config.JWTSecret())
+	passwordHasher := infrastructure.NewBcryptPasswordHasher()
+	authUC := usecase.NewAuthUseCase(userRepo, passwordHasher, tokenService)
+	authH := handler.NewAuthHandler(authUC)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/authors", authorH.Handle)
@@ -99,8 +126,19 @@ func main() {
 	mux.HandleFunc("/monthly-summaries/", msH.Handle)
 	mux.HandleFunc("/clients", clientH.Handle)
 	mux.HandleFunc("/clients/", clientH.Handle)
+	mux.HandleFunc("/companies", companyH.Handle)
+	mux.HandleFunc("/companies/", companyH.Handle)
+	mux.HandleFunc("/main-addresses", mainAddressH.Handle)
+	mux.HandleFunc("/main-addresses/", mainAddressH.Handle)
+	mux.HandleFunc("/tax-information", taxInformationH.Handle)
+	mux.HandleFunc("/tax-information/", taxInformationH.Handle)
+	mux.HandleFunc("/economic-activities", economicActivityH.Handle)
+	mux.HandleFunc("/economic-activities/", economicActivityH.Handle)
 	mux.HandleFunc("/orders", orderH.Handle)
 	mux.HandleFunc("/orders/", orderH.Handle)
+	mux.HandleFunc("/auth/register", authH.Register)
+	mux.HandleFunc("/auth/login", authH.Login)
+	mux.HandleFunc("/users", authH.ListUsers)
 
 	addr := ":8080"
 	if p := os.Getenv("PORT"); p != "" {
@@ -195,6 +233,61 @@ func runMigrations(db *sql.DB) error {
 			address   TEXT NOT NULL,
 			created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 			updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
+		`CREATE TABLE IF NOT EXISTS companies (
+			id                 VARCHAR(50) PRIMARY KEY,
+			nit                VARCHAR(50) NOT NULL UNIQUE,
+			social_reason      VARCHAR(255) NOT NULL,
+			business_name      VARCHAR(255) NOT NULL,
+			type_person        VARCHAR(100) NOT NULL,
+			company_type       VARCHAR(100) NOT NULL,
+			status             VARCHAR(50) NOT NULL,
+			constitution_date  DATE NOT NULL,
+			created_at         TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			updated_at         TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
+		`CREATE TABLE IF NOT EXISTS main_addresses (
+			id          VARCHAR(50) PRIMARY KEY,
+			user_id     VARCHAR(50) NOT NULL,
+			company_id  VARCHAR(50) NOT NULL,
+			country     VARCHAR(255) NOT NULL,
+			department  VARCHAR(255) NOT NULL,
+			address     TEXT NOT NULL,
+			postcode    VARCHAR(50) NOT NULL,
+			created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
+		`CREATE TABLE IF NOT EXISTS economic_activities (
+			id          VARCHAR(50) PRIMARY KEY,
+			user_id     VARCHAR(50) NOT NULL,
+			company_id  VARCHAR(50) NOT NULL,
+			code        VARCHAR(100) NOT NULL,
+			description TEXT NOT NULL,
+			created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
+		`CREATE TABLE IF NOT EXISTS tax_information (
+			id                    VARCHAR(50) PRIMARY KEY,
+			user_id               VARCHAR(50) NOT NULL,
+			business_id           VARCHAR(50) NOT NULL,
+			tax_regime            VARCHAR(100) NOT NULL,
+			vat_responsible       BOOLEAN NOT NULL DEFAULT FALSE,
+			withholding_taxpayer  BOOLEAN NOT NULL DEFAULT FALSE,
+			large_taxpayer        BOOLEAN NOT NULL DEFAULT FALSE,
+			created_at            TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			updated_at            TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
+		`CREATE TABLE IF NOT EXISTS users (
+			id            VARCHAR(50) PRIMARY KEY,
+			name_full     VARCHAR(255) NOT NULL,
+			phone         VARCHAR(50) NOT NULL,
+			id_number     VARCHAR(50) NOT NULL,
+			date_of_birth DATE NOT NULL,
+			email         VARCHAR(255) NOT NULL UNIQUE,
+			password_hash VARCHAR(255) NOT NULL,
+			auth_token    TEXT,
+			created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
 		)`,
 		`CREATE TABLE IF NOT EXISTS orders (
 			id             VARCHAR(50) PRIMARY KEY,

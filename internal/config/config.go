@@ -1,6 +1,9 @@
 package config
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 type PostgresConfig struct {
 	Host     string
@@ -25,4 +28,11 @@ func (c PostgresConfig) DSN() string {
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		c.Host, c.Port, c.User, c.Password, c.DBName,
 	)
+}
+
+func JWTSecret() string {
+	if secret := os.Getenv("JWT_SECRET"); secret != "" {
+		return secret
+	}
+	return "book-coffee-shop-dev-secret"
 }
