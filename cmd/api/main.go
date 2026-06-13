@@ -1,19 +1,19 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-
 	"book-coffee-shop/internal/config"
 	"book-coffee-shop/internal/database"
 	"book-coffee-shop/internal/handler"
 	"book-coffee-shop/internal/infrastructure"
+	"book-coffee-shop/internal/middleware"
 	"book-coffee-shop/internal/usecase"
+	"database/sql"
+	"fmt"
+	"log"
+	"net/http"
 
 	_ "github.com/lib/pq"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -140,12 +140,17 @@ func main() {
 	mux.HandleFunc("/auth/login", authH.Login)
 	mux.HandleFunc("/users", authH.ListUsers)
 
-	addr := ":8080"
-	if p := os.Getenv("PORT"); p != "" {
-		addr = ":" + p
-	}
-	fmt.Printf("Book Coffee Shop API running on %s\n", addr)
-	log.Fatal(http.ListenAndServe(addr, mux))
+	//! Configuracion de CORS
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:5173"},                   // Dominios permitidos)
+		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}, // Métodos permitidos
+		AllowedHeaders: []string{"Content-Type", "Authorization"},
+		Debug:          true, // Muestra logs en consola para ayudarte a depurar
+	})
+
+	handler := middleware.RecoveryMiddleware(c.Handler(mux))
+	log.Println("Server listening at http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", handler))
 }
 
 func runMigrations(db *sql.DB) error {

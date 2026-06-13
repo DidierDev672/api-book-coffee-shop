@@ -11,6 +11,16 @@ type User struct {
 	Email        string    `json:"email"`
 	PasswordHash string    `json:"-"`
 	AuthToken    string    `json:"-"`
+	Roles        []string  `json:"roles"`
 	CreatedAt    time.Time `json:"createdAt"`
 	UpdatedAt    time.Time `json:"updatedAt"`
+}
+
+func (u *User) HasPermission(permission string) bool {
+	for _, role := range u.Roles {
+		if role == permission || role == "admin" {
+			return true
+		}
+	}
+	return false
 }

@@ -5,7 +5,9 @@ import (
 	"net/http"
 	"strings"
 
+	"book-coffee-shop/internal/domain"
 	"book-coffee-shop/internal/usecase"
+	"book-coffee-shop/internal/utils"
 )
 
 type AuthHandler struct {
@@ -38,10 +40,20 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	token := extractBearerToken(r)
-	u, err := h.uc.Register(token, req.NameFull, req.Phone, req.IDNumber, req.DateOfBirth, req.Email, req.Password)
+
+	var u *domain.User
+	err := utils.TryExecute(r.Context(), func() error {
+		if err := utils.ValidateRegisterFields(req.NameFull, req.Phone, req.IDNumber, req.DateOfBirth, req.Email, req.Password); err != nil {
+			return err
+		}
+		var ucErr error
+		u, ucErr = h.uc.Register(token, req.NameFull, req.Phone, req.IDNumber, req.DateOfBirth, req.Email, req.Password)
+		return ucErr
+	})
+
 	if err != nil {
 		status := http.StatusBadRequest
-		if strings.Contains(err.Error(), "token") || strings.Contains(err.Error(), "authorization") {
+		if strings.Contains(err.Error(), "token") || strings.Contains(err.Error(), "authorization") || strings.Contains(err.Error(), "context cancelled") {
 			status = http.StatusUnauthorized
 		}
 		writeError(w, err.Error(), status)
@@ -105,13 +117,16 @@ func (h *AuthHandler) ListUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 func extractBearerToken(r *http.Request) string {
-	header := r.Header.Get("Authorization")
+	header := strings.TrimSpace(r.Header.Get("Authorization"))
 	if header == "" {
 		return ""
 	}
-	const prefix = "Bearer "
-	if !strings.HasPrefix(header, prefix) {
+	parts := strings.Fields(header)
+	if len(parts) == 1 {
+		return parts[0]
+	}
+	if len(parts) != 2 || !strings.EqualFold(parts[0], "Bearer") {
 		return ""
 	}
-	return strings.TrimSpace(strings.TrimPrefix(header, prefix))
+	return strings.TrimSpace(parts[1])
 }

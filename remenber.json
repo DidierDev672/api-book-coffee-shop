@@ -1,0 +1,37 @@
+{
+  "preferencias": [
+    "Código limpio y organizado siguiendo clean architecture (domain → usecase → infrastructure → handler)",
+    "Documentación técnica en español con tono profesional",
+    "Uso de JWT con Bearer tokens para autenticación",
+    "Validación de datos con go-playground/validator",
+    "Middleware para autenticación, autorización (roles/permisos) y validación de payload",
+    "Formato JSON para comunicación API",
+    "Código Go sin comentarios redundantes",
+    "Patrón CRUD uniforme con dispatcher Handle() en cada recurso"
+  ],
+  "perfil": {
+    "lenguaje_principal": "Go",
+    "framework_http": "net/http estándar (ServeMux)",
+    "base_de_datos": "PostgreSQL con lib/pq",
+    "autenticacion": "JWT HS256, expiración 24h, bcrypt para passwords",
+    "validacion": "go-playground/validator v10",
+    "cors": "github.com/rs/cors",
+    "proyecto": "Atreides — API REST para cafetería-librería (book-coffee-shop)",
+    "estructura": "cmd/api/, internal/{config,database,domain,handler,handlers,infrastructure,middleware,models,repository,usecase,utils}/",
+    "entorno": "Windows, Go 1.26.3",
+    "ruta_proyecto": "D:\\Go\\api-book-coffee-shop",
+    "documentacion": "API.md generada en la raíz del proyecto"
+  },
+  "contexto_actual": "El proyecto compila sin errores. Se completaron: (1) corrección de errores de compilación (undefined: TokenService, Logger, BadStmt, utils, next; middleware type mismatch), (2) implementación de middleware de autenticación JWT con soporte primera vez/segunda vez, (3) middleware ValidatePayload con go-playground/validator, (4) wrapper de autorización RequireRoles/RequirePermission con ExtractBearerToken y GetUserFromContext en middleware, (5) handlers/auth_handler.go refactorizado usando los nuevos middlewares, (6) método GetProfile añadido a AuthUseCase, (7) documentación completa de la API en API.md (18 endpoints documentados). El auth middleware está implementado pero no cableado en main.go.",
+  "restricciones": [
+    "PasswordHash y AuthToken nunca se exponen en respuestas JSON (json:\"-\")",
+    "Primer registro de usuario no requiere token; los siguientes sí",
+    "Campos password: mínimo 8 caracteres",
+    "id_number debe ser solo dígitos",
+    "date_of_birth debe estar en formato YYYY-MM-DD",
+    "Email debe tener formato válido",
+    "CORS restringido a http://localhost:5173",
+    "Los handlers en internal/handler/ usan writeError/writeJSON locales (no los de utils/response.go)",
+    "go 1.26.3 — sintaxis y características modernas de Go disponibles"
+  ]
+}

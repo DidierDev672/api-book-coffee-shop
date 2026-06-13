@@ -17,12 +17,13 @@ type AuthUseCase interface {
 	Register(token, nameFull, phone, idNumber, dateOfBirth, email, password string) (*domain.User, error)
 	Login(token, email, password string) (*domain.User, string, error)
 	GetAll() ([]*domain.User, error)
+	GetProfile(id string) (*domain.User, error)
 }
 
 type authUseCase struct {
-	repo     repository.UserRepository
-	hasher   repository.PasswordHasher
-	tokens   repository.TokenService
+	repo   repository.UserRepository
+	hasher repository.PasswordHasher
+	tokens repository.TokenService
 }
 
 func NewAuthUseCase(
@@ -36,16 +37,6 @@ func NewAuthUseCase(
 func (uc *authUseCase) Register(token, nameFull, phone, idNumber, dateOfBirth, email, password string) (*domain.User, error) {
 	if err := validateRegisterFields(nameFull, phone, idNumber, dateOfBirth, email, password); err != nil {
 		return nil, err
-	}
-
-	count, err := uc.repo.Count()
-	if err != nil {
-		return nil, err
-	}
-	if count > 0 {
-		if err := uc.verifyToken(token); err != nil {
-			return nil, err
-		}
 	}
 
 	email = strings.ToLower(strings.TrimSpace(email))
@@ -77,7 +68,7 @@ func (uc *authUseCase) Register(token, nameFull, phone, idNumber, dateOfBirth, e
 	return u, nil
 }
 
-func (uc *authUseCase) Login(token, email, password string) (*domain.User, string, error) {
+func (uc *authUseCase) Login(_ string, email, password string) (*domain.User, string, error) {
 	email = strings.ToLower(strings.TrimSpace(email))
 	if email == "" {
 		return nil, "", errors.New("email cannot be empty")
@@ -95,35 +86,22 @@ func (uc *authUseCase) Login(token, email, password string) (*domain.User, strin
 		return nil, "", errors.New("invalid email or password")
 	}
 
-	if u.AuthToken == "" {
-		newToken, err := uc.tokens.Generate(u.ID)
-		if err != nil {
-			return nil, "", errors.New("failed to generate token")
-		}
-		if err := uc.repo.UpdateAuthToken(u.ID, newToken); err != nil {
-			return nil, "", err
-		}
-		return u, newToken, nil
+	newToken, err := uc.tokens.Generate(u.ID)
+	if err != nil {
+		return nil, "", errors.New("failed to generate token")
 	}
-
-	if err := uc.verifyToken(token); err != nil {
+	if err := uc.repo.UpdateAuthToken(u.ID, newToken); err != nil {
 		return nil, "", err
 	}
-
-	tokenUserID, _ := uc.tokens.Validate(token)
-	if tokenUserID != u.ID {
-		return nil, "", errors.New("token does not belong to this user")
-	}
-
-	if u.AuthToken != token {
-		return nil, "", errors.New("invalid or expired token")
-	}
-
-	return u, token, nil
+	return u, newToken, nil
 }
 
 func (uc *authUseCase) GetAll() ([]*domain.User, error) {
 	return uc.repo.GetAll()
+}
+
+func (uc *authUseCase) GetProfile(id string) (*domain.User, error) {
+	return uc.repo.GetByID(id)
 }
 
 func (uc *authUseCase) verifyToken(token string) error {
