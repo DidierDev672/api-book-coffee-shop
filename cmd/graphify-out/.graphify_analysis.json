@@ -1,0 +1,50 @@
+{
+  "communities": {
+    "0": [
+      "api_main",
+      "api_main_main"
+    ],
+    "1": [
+      "api_main_runmigrations",
+      "db"
+    ]
+  },
+  "cohesion": {
+    "0": 1.0,
+    "1": 1.0
+  },
+  "gods": [
+    {
+      "id": "api_main_runmigrations",
+      "label": "runMigrations()",
+      "degree": 3
+    },
+    {
+      "id": "api_main_main",
+      "label": "main()",
+      "degree": 2
+    },
+    {
+      "id": "db",
+      "label": "DB",
+      "degree": 1
+    }
+  ],
+  "surprises": [
+    {
+      "source": "main()",
+      "target": "runMigrations()",
+      "source_files": [
+        "api/main.go",
+        "api/main.go"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 0 \u2192 community 1"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

@@ -23,6 +23,15 @@ func (h *OrderHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	path := strings.TrimPrefix(r.URL.Path, "/orders")
 	id := strings.TrimPrefix(path, "/")
 
+	if id != "" && strings.HasSuffix(id, "/approve") {
+		if r.Method == http.MethodPatch {
+			h.approve(w, r, strings.TrimSuffix(id, "/approve"))
+			return
+		}
+		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
 	switch r.Method {
 	case http.MethodGet:
 		if id != "" {
@@ -51,22 +60,23 @@ func (h *OrderHandler) Handle(w http.ResponseWriter, r *http.Request) {
 
 func (h *OrderHandler) create(w http.ResponseWriter, r *http.Request) {
 	var req struct {
-		OrderNumeric  string              `json:"order_numeric"`
-		Date          string              `json:"date"`
-		Hour          string              `json:"hour"`
-		AttendedBy    string              `json:"attended_by"`
-		ClientID      string              `json:"client_id"`
-		Details       []domain.OrderDetail `json:"details"`
-		PaymentMethod string              `json:"payment_method"`
-		Status        string              `json:"status"`
-		Observations  string              `json:"observations"`
+		OrderNumeric     string                  `json:"order_numeric"`
+		OrderType        string                  `json:"order_type"`
+		Date             string                  `json:"date"`
+		CompanyID        string                  `json:"company_id"`
+		UserID           string                  `json:"user_id"`
+		RequestedBy      string                  `json:"requested_by"`
+		Details          []domain.OrderDetail    `json:"details"`
+		FinancialSummary domain.FinancialSummary `json:"financial_summary"`
+		Status           string                  `json:"status"`
+		ReasonForOrder   string                  `json:"reason_for_order"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		writeError(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	order, err := h.uc.Create(req.OrderNumeric, req.Date, req.Hour, req.AttendedBy, req.ClientID, req.Details, req.PaymentMethod, req.Status, req.Observations)
+	order, err := h.uc.Create(req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -95,22 +105,23 @@ func (h *OrderHandler) getAll(w http.ResponseWriter, r *http.Request) {
 
 func (h *OrderHandler) update(w http.ResponseWriter, r *http.Request, id string) {
 	var req struct {
-		OrderNumeric  string              `json:"order_numeric"`
-		Date          string              `json:"date"`
-		Hour          string              `json:"hour"`
-		AttendedBy    string              `json:"attended_by"`
-		ClientID      string              `json:"client_id"`
-		Details       []domain.OrderDetail `json:"details"`
-		PaymentMethod string              `json:"payment_method"`
-		Status        string              `json:"status"`
-		Observations  string              `json:"observations"`
+		OrderNumeric     string                  `json:"order_numeric"`
+		OrderType        string                  `json:"order_type"`
+		Date             string                  `json:"date"`
+		CompanyID        string                  `json:"company_id"`
+		UserID           string                  `json:"user_id"`
+		RequestedBy      string                  `json:"requested_by"`
+		Details          []domain.OrderDetail    `json:"details"`
+		FinancialSummary domain.FinancialSummary `json:"financial_summary"`
+		Status           string                  `json:"status"`
+		ReasonForOrder   string                  `json:"reason_for_order"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		writeError(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	order, err := h.uc.Update(id, req.OrderNumeric, req.Date, req.Hour, req.AttendedBy, req.ClientID, req.Details, req.PaymentMethod, req.Status, req.Observations)
+	order, err := h.uc.Update(id, req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -124,4 +135,13 @@ func (h *OrderHandler) delete(w http.ResponseWriter, r *http.Request, id string)
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)
+}
+
+func (h *OrderHandler) approve(w http.ResponseWriter, r *http.Request, id string) {
+	order, err := h.uc.Approve(id)
+	if err != nil {
+		writeError(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	writeJSON(w, order, http.StatusOK)
 }

@@ -18,28 +18,30 @@ func NewPostgresProductRepository(db *sql.DB) *PostgresProductRepository {
 }
 
 func (r *PostgresProductRepository) Create(p *domain.Product) error {
-	query := `INSERT INTO products (id, product_code, categories, unit, minimum_stock, created_at, updated_at)
-	          VALUES ($1, $2, $3, $4, $5, $6, $7)`
+	query := `INSERT INTO products (id, company_id, supplier_id, name, product_code, categories, unit, quantity, minimum_stock, winery_id, created_at, updated_at)
+	          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`
 
 	_, err := r.db.Exec(query,
-		p.ID, p.ProductCode,
+		p.ID, p.CompanyID, p.SupplierID, p.Name, p.ProductCode,
 		pq.Array(p.Categories),
-		p.Unit, p.MinimumStock,
+		p.Unit, p.Quantity, p.MinimumStock,
+		p.WineryID,
 		p.CreatedAt, p.UpdatedAt,
 	)
 	return err
 }
 
 func (r *PostgresProductRepository) GetByID(id string) (*domain.Product, error) {
-	query := `SELECT id, product_code, categories, unit, minimum_stock, created_at, updated_at
+	query := `SELECT id, company_id, supplier_id, name, product_code, categories, unit, quantity, minimum_stock, winery_id, created_at, updated_at
 	          FROM products WHERE id = $1`
 
 	p := &domain.Product{}
 	var categories []string
 	err := r.db.QueryRow(query, id).Scan(
-		&p.ID, &p.ProductCode,
+		&p.ID, &p.CompanyID, &p.SupplierID, &p.Name, &p.ProductCode,
 		pq.Array(&categories),
-		&p.Unit, &p.MinimumStock,
+		&p.Unit, &p.Quantity, &p.MinimumStock,
+		&p.WineryID,
 		&p.CreatedAt, &p.UpdatedAt,
 	)
 	if errors.Is(err, sql.ErrNoRows) {
@@ -53,7 +55,7 @@ func (r *PostgresProductRepository) GetByID(id string) (*domain.Product, error) 
 }
 
 func (r *PostgresProductRepository) GetAll() ([]*domain.Product, error) {
-	query := `SELECT id, product_code, categories, unit, minimum_stock, created_at, updated_at
+	query := `SELECT id, company_id, supplier_id, name, product_code, categories, unit, quantity, minimum_stock, winery_id, created_at, updated_at
 	          FROM products ORDER BY created_at DESC`
 
 	rows, err := r.db.Query(query)
@@ -67,9 +69,39 @@ func (r *PostgresProductRepository) GetAll() ([]*domain.Product, error) {
 		p := &domain.Product{}
 		var categories []string
 		if err := rows.Scan(
-			&p.ID, &p.ProductCode,
+			&p.ID, &p.CompanyID, &p.SupplierID, &p.Name, &p.ProductCode,
 			pq.Array(&categories),
-			&p.Unit, &p.MinimumStock,
+			&p.Unit, &p.Quantity, &p.MinimumStock,
+			&p.WineryID,
+			&p.CreatedAt, &p.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		p.Categories = categories
+		products = append(products, p)
+	}
+	return products, rows.Err()
+}
+
+func (r *PostgresProductRepository) GetByCompanyID(companyID string) ([]*domain.Product, error) {
+	query := `SELECT id, company_id, supplier_id, name, product_code, categories, unit, quantity, minimum_stock, winery_id, created_at, updated_at
+	          FROM products WHERE company_id = $1 ORDER BY created_at DESC`
+
+	rows, err := r.db.Query(query, companyID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var products []*domain.Product
+	for rows.Next() {
+		p := &domain.Product{}
+		var categories []string
+		if err := rows.Scan(
+			&p.ID, &p.CompanyID, &p.SupplierID, &p.Name, &p.ProductCode,
+			pq.Array(&categories),
+			&p.Unit, &p.Quantity, &p.MinimumStock,
+			&p.WineryID,
 			&p.CreatedAt, &p.UpdatedAt,
 		); err != nil {
 			return nil, err
@@ -82,12 +114,13 @@ func (r *PostgresProductRepository) GetAll() ([]*domain.Product, error) {
 
 func (r *PostgresProductRepository) Update(p *domain.Product) error {
 	query := `UPDATE products
-	          SET product_code = $1, categories = $2, unit = $3, minimum_stock = $4, updated_at = $5
-	          WHERE id = $6`
+	          SET supplier_id = $1, name = $2, product_code = $3, categories = $4, unit = $5, quantity = $6, minimum_stock = $7, winery_id = $8, updated_at = $9
+	          WHERE id = $10`
 
 	result, err := r.db.Exec(query,
-		p.ProductCode, pq.Array(p.Categories),
-		p.Unit, p.MinimumStock,
+		p.SupplierID, p.Name, p.ProductCode, pq.Array(p.Categories),
+		p.Unit, p.Quantity, p.MinimumStock,
+		p.WineryID,
 		p.UpdatedAt, p.ID,
 	)
 	if err != nil {

@@ -14,10 +14,11 @@ import (
 var emailPattern = regexp.MustCompile(`^[^\s@]+@[^\s@]+\.[^\s@]+$`)
 
 type AuthUseCase interface {
-	Register(token, nameFull, phone, idNumber, dateOfBirth, email, password string) (*domain.User, error)
+	Register(token, nameFull, phone, idNumber, dateOfBirth, email, password string) (*domain.User, string, error)
 	Login(token, email, password string) (*domain.User, string, error)
 	GetAll() ([]*domain.User, error)
 	GetProfile(id string) (*domain.User, error)
+	UpdateUser(id, nameFull, phone, idNumber, dateOfBirth, email string) (*domain.User, error)
 }
 
 type authUseCase struct {
@@ -34,19 +35,19 @@ func NewAuthUseCase(
 	return &authUseCase{repo: repo, hasher: hasher, tokens: tokens}
 }
 
-func (uc *authUseCase) Register(token, nameFull, phone, idNumber, dateOfBirth, email, password string) (*domain.User, error) {
+func (uc *authUseCase) Register(token, nameFull, phone, idNumber, dateOfBirth, email, password string) (*domain.User, string, error) {
 	if err := validateRegisterFields(nameFull, phone, idNumber, dateOfBirth, email, password); err != nil {
-		return nil, err
+		return nil, "", err
 	}
 
 	email = strings.ToLower(strings.TrimSpace(email))
 	if _, err := uc.repo.GetByEmail(email); err == nil {
-		return nil, errors.New("email already registered")
+		return nil, "", errors.New("email already registered")
 	}
 
 	hash, err := uc.hasher.Hash(password)
 	if err != nil {
-		return nil, errors.New("failed to process password")
+		return nil, "", errors.New("failed to process password")
 	}
 
 	now := time.Now()
@@ -63,9 +64,18 @@ func (uc *authUseCase) Register(token, nameFull, phone, idNumber, dateOfBirth, e
 	}
 
 	if err := uc.repo.Create(u); err != nil {
-		return nil, err
+		return nil, "", err
 	}
-	return u, nil
+
+	authToken, err := uc.tokens.Generate(u.ID)
+	if err != nil {
+		return nil, "", errors.New("failed to generate token")
+	}
+	if err := uc.repo.UpdateAuthToken(u.ID, authToken); err != nil {
+		return nil, "", err
+	}
+
+	return u, authToken, nil
 }
 
 func (uc *authUseCase) Login(_ string, email, password string) (*domain.User, string, error) {
@@ -102,6 +112,40 @@ func (uc *authUseCase) GetAll() ([]*domain.User, error) {
 
 func (uc *authUseCase) GetProfile(id string) (*domain.User, error) {
 	return uc.repo.GetByID(id)
+}
+
+func (uc *authUseCase) UpdateUser(id, nameFull, phone, idNumber, dateOfBirth, email string) (*domain.User, error) {
+	if id == "" {
+		return nil, errors.New("id cannot be empty")
+	}
+	if strings.TrimSpace(nameFull) == "" {
+		return nil, errors.New("name_full cannot be empty")
+	}
+	if strings.TrimSpace(email) == "" {
+		return nil, errors.New("email cannot be empty")
+	}
+	if !emailPattern.MatchString(strings.TrimSpace(email)) {
+		return nil, errors.New("email format is invalid")
+	}
+
+	email = strings.ToLower(strings.TrimSpace(email))
+
+	u, err := uc.repo.GetByID(id)
+	if err != nil {
+		return nil, err
+	}
+
+	u.NameFull = strings.TrimSpace(nameFull)
+	u.Phone = strings.TrimSpace(phone)
+	u.IDNumber = strings.TrimSpace(idNumber)
+	u.DateOfBirth = dateOfBirth
+	u.Email = email
+	u.UpdatedAt = time.Now()
+
+	if err := uc.repo.Update(u); err != nil {
+		return nil, err
+	}
+	return u, nil
 }
 
 func (uc *authUseCase) verifyToken(token string) error {

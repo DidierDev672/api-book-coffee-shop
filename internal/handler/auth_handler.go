@@ -42,12 +42,13 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 	token := extractBearerToken(r)
 
 	var u *domain.User
+	var authToken string
 	err := utils.TryExecute(r.Context(), func() error {
 		if err := utils.ValidateRegisterFields(req.NameFull, req.Phone, req.IDNumber, req.DateOfBirth, req.Email, req.Password); err != nil {
 			return err
 		}
 		var ucErr error
-		u, ucErr = h.uc.Register(token, req.NameFull, req.Phone, req.IDNumber, req.DateOfBirth, req.Email, req.Password)
+		u, authToken, ucErr = h.uc.Register(token, req.NameFull, req.Phone, req.IDNumber, req.DateOfBirth, req.Email, req.Password)
 		return ucErr
 	})
 
@@ -60,7 +61,10 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	writeJSON(w, u, http.StatusCreated)
+	writeJSON(w, map[string]any{
+		"token": authToken,
+		"user":  u,
+	}, http.StatusCreated)
 }
 
 func (h *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
@@ -114,6 +118,49 @@ func (h *AuthHandler) ListUsers(w http.ResponseWriter, r *http.Request) {
 	}
 
 	writeJSON(w, users, http.StatusOK)
+}
+
+func (h *AuthHandler) HandleUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	path := strings.TrimPrefix(r.URL.Path, "/users")
+	path = strings.TrimPrefix(path, "/")
+	id := strings.TrimSpace(path)
+
+	if id == "" {
+		writeError(w, "id is required", http.StatusBadRequest)
+		return
+	}
+
+	switch r.Method {
+	case http.MethodGet:
+		u, err := h.uc.GetProfile(id)
+		if err != nil {
+			writeError(w, err.Error(), http.StatusNotFound)
+			return
+		}
+		writeJSON(w, u, http.StatusOK)
+	case http.MethodPut:
+		var req struct {
+			NameFull    string `json:"name_full"`
+			Phone       string `json:"phone"`
+			IDNumber    string `json:"id_number"`
+			DateOfBirth string `json:"date_of_birth"`
+			Email       string `json:"email"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+			writeError(w, "invalid request body", http.StatusBadRequest)
+			return
+		}
+		u, err := h.uc.UpdateUser(id, req.NameFull, req.Phone, req.IDNumber, req.DateOfBirth, req.Email)
+		if err != nil {
+			writeError(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		writeJSON(w, u, http.StatusOK)
+	default:
+		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
+	}
 }
 
 func extractBearerToken(r *http.Request) string {

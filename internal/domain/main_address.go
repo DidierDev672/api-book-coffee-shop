@@ -8,6 +8,7 @@ type MainAddress struct {
 	CompanyID  string    `json:"company_id"`
 	Country    string    `json:"country"`
 	Department string    `json:"department"`
+	Municipio  string    `json:"municipio"`
 	Address    string    `json:"address"`
 	Postcode   string    `json:"postcode"`
 	CreatedAt  time.Time `json:"createdAt"`

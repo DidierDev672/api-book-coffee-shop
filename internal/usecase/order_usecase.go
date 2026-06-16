@@ -9,15 +9,16 @@ import (
 	"book-coffee-shop/internal/repository"
 )
 
-var validPaymentMethods = []string{"cash", "transfer", "debit-card", "credit-card"}
-var validStatuses = []string{"received", "in-preparation", "ready-for-delivery", "delivered", "cancelled"}
+var validOrderTypes = []string{"PURCHASE", "REPLENISHMENT", "PRODUCTION", "TRANSFER"}
+var validStatuses = []string{"DRAFT", "PENDING", "APPROVED", "REJECTED", "COMPLETED"}
 
 type OrderUseCase interface {
-	Create(orderNumeric, date, hour, attendedBy, clientID string, details []domain.OrderDetail, paymentMethod, status, observations string) (*domain.Order, error)
+	Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error)
 	GetByID(id string) (*domain.Order, error)
 	GetAll() ([]*domain.Order, error)
-	Update(id, orderNumeric, date, hour, attendedBy, clientID string, details []domain.OrderDetail, paymentMethod, status, observations string) (*domain.Order, error)
+	Update(id, orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error)
 	Delete(id string) error
+	Approve(id string) (*domain.Order, error)
 }
 
 type orderUseCase struct {
@@ -28,24 +29,25 @@ func NewOrderUseCase(repo repository.OrderRepository) OrderUseCase {
 	return &orderUseCase{repo: repo}
 }
 
-func (uc *orderUseCase) Create(orderNumeric, date, hour, attendedBy, clientID string, details []domain.OrderDetail, paymentMethod, status, observations string) (*domain.Order, error) {
-	if err := validateOrderFields(orderNumeric, date, hour, attendedBy, clientID, details, paymentMethod, status); err != nil {
+func (uc *orderUseCase) Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error) {
+	if err := validateOrderFields(orderNumeric, orderType, date, companyID, userID, details, status); err != nil {
 		return nil, err
 	}
 
 	order := &domain.Order{
-		ID:            generateID(),
-		OrderNumeric:  orderNumeric,
-		Date:          date,
-		Hour:          hour,
-		AttendedBy:    attendedBy,
-		ClientID:      clientID,
-		Details:       details,
-		PaymentMethod: paymentMethod,
-		Status:        status,
-		Observations:  observations,
-		CreatedAt:     time.Now(),
-		UpdatedAt:     time.Now(),
+		ID:               generateID(),
+		OrderNumeric:     orderNumeric,
+		OrderType:        orderType,
+		Date:             date,
+		CompanyID:        companyID,
+		UserID:           userID,
+		RequestedBy:      requestedBy,
+		Details:          details,
+		FinancialSummary: financialSummary,
+		Status:           status,
+		ReasonForOrder:   reasonForOrder,
+		CreatedAt:        time.Now(),
+		UpdatedAt:        time.Now(),
 	}
 
 	if err := uc.repo.Create(order); err != nil {
@@ -65,11 +67,11 @@ func (uc *orderUseCase) GetAll() ([]*domain.Order, error) {
 	return uc.repo.GetAll()
 }
 
-func (uc *orderUseCase) Update(id, orderNumeric, date, hour, attendedBy, clientID string, details []domain.OrderDetail, paymentMethod, status, observations string) (*domain.Order, error) {
+func (uc *orderUseCase) Update(id, orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
-	if err := validateOrderFields(orderNumeric, date, hour, attendedBy, clientID, details, paymentMethod, status); err != nil {
+	if err := validateOrderFields(orderNumeric, orderType, date, companyID, userID, details, status); err != nil {
 		return nil, err
 	}
 
@@ -79,14 +81,15 @@ func (uc *orderUseCase) Update(id, orderNumeric, date, hour, attendedBy, clientI
 	}
 
 	order.OrderNumeric = orderNumeric
+	order.OrderType = orderType
 	order.Date = date
-	order.Hour = hour
-	order.AttendedBy = attendedBy
-	order.ClientID = clientID
+	order.CompanyID = companyID
+	order.UserID = userID
+	order.RequestedBy = requestedBy
 	order.Details = details
-	order.PaymentMethod = paymentMethod
+	order.FinancialSummary = financialSummary
 	order.Status = status
-	order.Observations = observations
+	order.ReasonForOrder = reasonForOrder
 	order.UpdatedAt = time.Now()
 
 	if err := uc.repo.Update(order); err != nil {
@@ -102,51 +105,76 @@ func (uc *orderUseCase) Delete(id string) error {
 	return uc.repo.Delete(id)
 }
 
-func validateOrderFields(orderNumeric, date, hour, attendedBy, clientID string, details []domain.OrderDetail, paymentMethod, status string) error {
+func (uc *orderUseCase) Approve(id string) (*domain.Order, error) {
+	if id == "" {
+		return nil, errors.New("id cannot be empty")
+	}
+
+	order, err := uc.repo.GetByID(id)
+	if err != nil {
+		return nil, err
+	}
+
+	switch order.Status {
+	case "DRAFT":
+		order.Status = "APPROVED"
+	case "PENDING":
+		order.Status = "APPROVED"
+	default:
+		return nil, errors.New("only DRAFT or PENDING orders can be approved")
+	}
+
+	order.UpdatedAt = time.Now()
+	if err := uc.repo.Update(order); err != nil {
+		return nil, err
+	}
+	return order, nil
+}
+
+func validateOrderFields(orderNumeric, orderType, date, companyID, userID string, details []domain.OrderDetail, status string) error {
 	if orderNumeric == "" {
 		return errors.New("order_numeric cannot be empty")
+	}
+	if orderType == "" {
+		return errors.New("order_type cannot be empty")
+	}
+	if !slices.Contains(validOrderTypes, orderType) {
+		return errors.New("order_type must be one of: PURCHASE, REPLENISHMENT, PRODUCTION, TRANSFER")
 	}
 	if date == "" {
 		return errors.New("date cannot be empty")
 	}
-	if hour == "" {
-		return errors.New("hour cannot be empty")
+	if companyID == "" {
+		return errors.New("company_id cannot be empty")
 	}
-	if attendedBy == "" {
-		return errors.New("attended_by cannot be empty")
-	}
-	if clientID == "" {
-		return errors.New("client_id cannot be empty")
+	if userID == "" {
+		return errors.New("user_id cannot be empty")
 	}
 	if len(details) == 0 {
 		return errors.New("details cannot be empty")
 	}
-	for i, d := range details {
+	for _, d := range details {
 		if d.Code == "" {
 			return errors.New("details code cannot be empty")
 		}
 		if d.Product == "" {
 			return errors.New("details product cannot be empty")
 		}
-		if d.Quantity <= 0 {
-			return errors.New("details quantity must be greater than 0")
+		if d.Unit == "" {
+			return errors.New("details unit cannot be empty")
 		}
-		if d.UnitPrice <= 0 {
-			return errors.New("details unit_price must be greater than 0")
+		if d.QuantityRequested <= 0 {
+			return errors.New("details quantity_requested must be greater than 0")
 		}
-		_ = i
-	}
-	if paymentMethod == "" {
-		return errors.New("payment_method cannot be empty")
-	}
-	if !slices.Contains(validPaymentMethods, paymentMethod) {
-		return errors.New("payment_method must be one of: cash, transfer, debit-card, credit-card")
+		if d.EstimatedCost <= 0 {
+			return errors.New("details estimated_cost must be greater than 0")
+		}
 	}
 	if status == "" {
 		return errors.New("status cannot be empty")
 	}
 	if !slices.Contains(validStatuses, status) {
-		return errors.New("status must be one of: received, in-preparation, ready-for-delivery, delivered, cancelled")
+		return errors.New("status must be one of: DRAFT, PENDING, APPROVED, REJECTED, COMPLETED")
 	}
 	return nil
 }

@@ -71,6 +71,19 @@ func (r *PostgresUserRepository) GetAll() ([]*domain.User, error) {
 	return users, rows.Err()
 }
 
+func (r *PostgresUserRepository) Update(u *domain.User) error {
+	query := `UPDATE users SET name_full = $1, phone = $2, id_number = $3, date_of_birth = $4, email = $5, updated_at = $6 WHERE id = $7`
+	result, err := r.db.Exec(query, u.NameFull, u.Phone, u.IDNumber, u.DateOfBirth, u.Email, u.UpdatedAt, u.ID)
+	if err != nil {
+		return err
+	}
+	rows, _ := result.RowsAffected()
+	if rows == 0 {
+		return errors.New("user not found")
+	}
+	return nil
+}
+
 func (r *PostgresUserRepository) UpdateAuthToken(id, token string) error {
 	query := `UPDATE users SET auth_token = $1, updated_at = NOW() WHERE id = $2`
 	result, err := r.db.Exec(query, token, id)

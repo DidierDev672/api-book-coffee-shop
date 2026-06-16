@@ -9,10 +9,10 @@ import (
 )
 
 type MainAddressUseCase interface {
-	Create(userID, companyID, country, department, address, postcode string) (*domain.MainAddress, error)
+	Create(userID, companyID, country, department, municipio, address, postcode string) (*domain.MainAddress, error)
 	GetByID(id string) (*domain.MainAddress, error)
 	GetAll() ([]*domain.MainAddress, error)
-	Update(id, userID, companyID, country, department, address, postcode string) (*domain.MainAddress, error)
+	Update(id, userID, companyID, country, department, municipio, address, postcode string) (*domain.MainAddress, error)
 	Delete(id string) error
 }
 
@@ -24,7 +24,7 @@ func NewMainAddressUseCase(repo repository.MainAddressRepository) MainAddressUse
 	return &mainAddressUseCase{repo: repo}
 }
 
-func (uc *mainAddressUseCase) Create(userID, companyID, country, department, address, postcode string) (*domain.MainAddress, error) {
+func (uc *mainAddressUseCase) Create(userID, companyID, country, department, municipio, address, postcode string) (*domain.MainAddress, error) {
 	if err := validateMainAddressFields(userID, companyID, country, department, address, postcode); err != nil {
 		return nil, err
 	}
@@ -35,6 +35,7 @@ func (uc *mainAddressUseCase) Create(userID, companyID, country, department, add
 		CompanyID:  companyID,
 		Country:    country,
 		Department: department,
+		Municipio:  municipio,
 		Address:    address,
 		Postcode:   postcode,
 		CreatedAt:  time.Now(),
@@ -58,7 +59,7 @@ func (uc *mainAddressUseCase) GetAll() ([]*domain.MainAddress, error) {
 	return uc.repo.GetAll()
 }
 
-func (uc *mainAddressUseCase) Update(id, userID, companyID, country, department, address, postcode string) (*domain.MainAddress, error) {
+func (uc *mainAddressUseCase) Update(id, userID, companyID, country, department, municipio, address, postcode string) (*domain.MainAddress, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
@@ -75,6 +76,7 @@ func (uc *mainAddressUseCase) Update(id, userID, companyID, country, department,
 	a.CompanyID = companyID
 	a.Country = country
 	a.Department = department
+	a.Municipio = municipio
 	a.Address = address
 	a.Postcode = postcode
 	a.UpdatedAt = time.Now()

@@ -53,6 +53,7 @@ type mainAddressRequest struct {
 	CompanyID  string `json:"company_id"`
 	Country    string `json:"country"`
 	Department string `json:"department"`
+	Municipio  string `json:"municipio"`
 	Address    string `json:"address"`
 	Postcode   string `json:"postcode"`
 }
@@ -65,7 +66,7 @@ func (h *MainAddressHandler) create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	a, err := h.uc.Create(
-		req.UserID, req.CompanyID, req.Country, req.Department, req.Address, req.Postcode,
+		req.UserID, req.CompanyID, req.Country, req.Department, req.Municipio, req.Address, req.Postcode,
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
@@ -101,7 +102,7 @@ func (h *MainAddressHandler) update(w http.ResponseWriter, r *http.Request, id s
 	}
 
 	a, err := h.uc.Update(
-		id, req.UserID, req.CompanyID, req.Country, req.Department, req.Address, req.Postcode,
+		id, req.UserID, req.CompanyID, req.Country, req.Department, req.Municipio, req.Address, req.Postcode,
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)

@@ -9,10 +9,11 @@ import (
 )
 
 type CompanyUseCase interface {
-	Create(nit, socialReason, businessName, typePerson, companyType, status, constitutionDate string) (*domain.Company, error)
+	Create(userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error)
 	GetByID(id string) (*domain.Company, error)
+	GetByUserID(userID string) ([]*domain.Company, error)
 	GetAll() ([]*domain.Company, error)
-	Update(id, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate string) (*domain.Company, error)
+	Update(id, userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error)
 	Delete(id string) error
 }
 
@@ -24,7 +25,7 @@ func NewCompanyUseCase(repo repository.CompanyRepository) CompanyUseCase {
 	return &companyUseCase{repo: repo}
 }
 
-func (uc *companyUseCase) Create(nit, socialReason, businessName, typePerson, companyType, status, constitutionDate string) (*domain.Company, error) {
+func (uc *companyUseCase) Create(userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error) {
 	if err := validateCompanyFields(nit, socialReason, businessName, typePerson, companyType, status, constitutionDate); err != nil {
 		return nil, err
 	}
@@ -35,6 +36,7 @@ func (uc *companyUseCase) Create(nit, socialReason, businessName, typePerson, co
 
 	c := &domain.Company{
 		ID:               generateID(),
+		UserID:           userID,
 		NIT:              nit,
 		SocialReason:     socialReason,
 		BusinessName:     businessName,
@@ -42,6 +44,9 @@ func (uc *companyUseCase) Create(nit, socialReason, businessName, typePerson, co
 		CompanyType:      companyType,
 		Status:           status,
 		ConstitutionDate: constitutionDate,
+		Email:            email,
+		Phone:            phone,
+		Cellphone:        cellphone,
 		CreatedAt:        time.Now(),
 		UpdatedAt:        time.Now(),
 	}
@@ -50,6 +55,13 @@ func (uc *companyUseCase) Create(nit, socialReason, businessName, typePerson, co
 		return nil, err
 	}
 	return c, nil
+}
+
+func (uc *companyUseCase) GetByUserID(userID string) ([]*domain.Company, error) {
+	if userID == "" {
+		return nil, errors.New("user_id cannot be empty")
+	}
+	return uc.repo.GetByUserID(userID)
 }
 
 func (uc *companyUseCase) GetByID(id string) (*domain.Company, error) {
@@ -63,7 +75,7 @@ func (uc *companyUseCase) GetAll() ([]*domain.Company, error) {
 	return uc.repo.GetAll()
 }
 
-func (uc *companyUseCase) Update(id, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate string) (*domain.Company, error) {
+func (uc *companyUseCase) Update(id, userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
@@ -80,6 +92,7 @@ func (uc *companyUseCase) Update(id, nit, socialReason, businessName, typePerson
 		return nil, errors.New("a company with this nit already exists")
 	}
 
+	c.UserID = userID
 	c.NIT = nit
 	c.SocialReason = socialReason
 	c.BusinessName = businessName
@@ -87,6 +100,9 @@ func (uc *companyUseCase) Update(id, nit, socialReason, businessName, typePerson
 	c.CompanyType = companyType
 	c.Status = status
 	c.ConstitutionDate = constitutionDate
+	c.Email = email
+	c.Phone = phone
+	c.Cellphone = cellphone
 	c.UpdatedAt = time.Now()
 
 	if err := uc.repo.Update(c); err != nil {

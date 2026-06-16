@@ -1,0 +1,4 @@
+*.md
+.git/
+remenber.json
+API.md

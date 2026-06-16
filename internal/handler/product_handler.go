@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 
+	"book-coffee-shop/internal/domain"
 	"book-coffee-shop/internal/usecase"
 )
 
@@ -50,17 +51,22 @@ func (h *ProductHandler) Handle(w http.ResponseWriter, r *http.Request) {
 
 func (h *ProductHandler) create(w http.ResponseWriter, r *http.Request) {
 	var req struct {
+		CompanyID    string   `json:"company_id"`
+		SupplierID   string   `json:"supplier_id"`
+		Name         string   `json:"name"`
 		ProductCode  string   `json:"product_code"`
 		Categories   []string `json:"categories"`
 		Unit         string   `json:"unit"`
+		Quantity     float64  `json:"quantity"`
 		MinimumStock float64  `json:"minimum_stock"`
+		WineryID     string   `json:"winery_id"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		writeError(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	p, err := h.uc.Create(req.ProductCode, req.Categories, req.Unit, req.MinimumStock)
+	p, err := h.uc.Create(req.CompanyID, req.SupplierID, req.Name, req.ProductCode, req.Categories, req.Unit, req.Quantity, req.MinimumStock, req.WineryID)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -79,7 +85,14 @@ func (h *ProductHandler) getByID(w http.ResponseWriter, r *http.Request, id stri
 }
 
 func (h *ProductHandler) getAll(w http.ResponseWriter, r *http.Request) {
-	products, err := h.uc.GetAll()
+	companyID := r.URL.Query().Get("company_id")
+	var products []*domain.Product
+	var err error
+	if companyID != "" {
+		products, err = h.uc.GetByCompanyID(companyID)
+	} else {
+		products, err = h.uc.GetAll()
+	}
 	if err != nil {
 		writeError(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -89,21 +102,26 @@ func (h *ProductHandler) getAll(w http.ResponseWriter, r *http.Request) {
 
 func (h *ProductHandler) update(w http.ResponseWriter, r *http.Request, id string) {
 	var req struct {
+		SupplierID   string   `json:"supplier_id"`
+		Name         string   `json:"name"`
 		ProductCode  string   `json:"product_code"`
 		Categories   []string `json:"categories"`
 		Unit         string   `json:"unit"`
+		Quantity     float64  `json:"quantity"`
 		MinimumStock float64  `json:"minimum_stock"`
+		WineryID     string   `json:"winery_id"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		writeError(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	p, err := h.uc.Update(id, req.ProductCode, req.Categories, req.Unit, req.MinimumStock)
+	p, err := h.uc.Update(id, req.SupplierID, req.Name, req.ProductCode, req.Categories, req.Unit, req.Quantity, req.MinimumStock, req.WineryID)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
 	writeJSON(w, p, http.StatusOK)
 }
 

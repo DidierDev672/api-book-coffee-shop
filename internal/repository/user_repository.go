@@ -8,6 +8,7 @@ type UserRepository interface {
 	GetByEmail(email string) (*domain.User, error)
 	GetByAuthToken(token string) (*domain.User, error)
 	GetAll() ([]*domain.User, error)
+	Update(u *domain.User) error
 	UpdateAuthToken(id, token string) error
 	Count() (int, error)
 }

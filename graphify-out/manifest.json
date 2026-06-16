@@ -1,0 +1,492 @@
+{
+  "cmd/api/main.go": {
+    "mtime": 1781394264.9896202,
+    "ast_hash": "97c0a476b691013145cea64bb0a1abe4",
+    "semantic_hash": ""
+  },
+  "internal/config/config.go": {
+    "mtime": 1781196248.4824853,
+    "ast_hash": "8ab3503352791e87b81b96f17b581bac",
+    "semantic_hash": "8ab3503352791e87b81b96f17b581bac"
+  },
+  "internal/database/migrations/001_create_authors.sql": {
+    "mtime": 1780979790.9307413,
+    "ast_hash": "1c1e2bf2fd81cab6d1fd6e1342ae9545",
+    "semantic_hash": "1c1e2bf2fd81cab6d1fd6e1342ae9545"
+  },
+  "internal/database/postgres.go": {
+    "mtime": 1781218733.520967,
+    "ast_hash": "9f692b182867cb4b9c8fb1d3508e79cf",
+    "semantic_hash": "9f692b182867cb4b9c8fb1d3508e79cf"
+  },
+  "internal/domain/author.go": {
+    "mtime": 1780979790.9307413,
+    "ast_hash": "50c777b0dec3f37c44ed23fef43102db",
+    "semantic_hash": "50c777b0dec3f37c44ed23fef43102db"
+  },
+  "internal/domain/book.go": {
+    "mtime": 1780979790.9307413,
+    "ast_hash": "9ae0ab62ac5e22dd94ba99330ee0bd90",
+    "semantic_hash": "9ae0ab62ac5e22dd94ba99330ee0bd90"
+  },
+  "internal/domain/client.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "6ca01fbcc3fb7001cb1ff03bd8132ae5",
+    "semantic_hash": "6ca01fbcc3fb7001cb1ff03bd8132ae5"
+  },
+  "internal/domain/company.go": {
+    "mtime": 1781387093.7144005,
+    "ast_hash": "cb6f0be5512bc4107a4f9db6694ff2e6",
+    "semantic_hash": "cb6f0be5512bc4107a4f9db6694ff2e6"
+  },
+  "internal/domain/economic_activity.go": {
+    "mtime": 1781234503.320219,
+    "ast_hash": "e9c42dd0374f48dce002a8667884a686",
+    "semantic_hash": "e9c42dd0374f48dce002a8667884a686"
+  },
+  "internal/domain/establishment.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "6a6dd82f51fbf62062a8fba125d4dde8",
+    "semantic_hash": "6a6dd82f51fbf62062a8fba125d4dde8"
+  },
+  "internal/domain/main_address.go": {
+    "mtime": 1781219899.5768511,
+    "ast_hash": "92b682661c8d61205753dbb9de262aa5",
+    "semantic_hash": "92b682661c8d61205753dbb9de262aa5"
+  },
+  "internal/domain/monthly_summary.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "f42d8cfefe57d1b1a1b0da9a2e77795d",
+    "semantic_hash": "f42d8cfefe57d1b1a1b0da9a2e77795d"
+  },
+  "internal/domain/movement.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "0cd145986967e2c42b02b6505f6d7d4b",
+    "semantic_hash": "0cd145986967e2c42b02b6505f6d7d4b"
+  },
+  "internal/domain/movement_type.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "35922b148f39a1753ba4308dd8a0b794",
+    "semantic_hash": "35922b148f39a1753ba4308dd8a0b794"
+  },
+  "internal/domain/note.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "01c4c89bfab6d873d67881d40a241d8f",
+    "semantic_hash": "01c4c89bfab6d873d67881d40a241d8f"
+  },
+  "internal/domain/order.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "48e909064c3b0d5e1fd6cd740fc85069",
+    "semantic_hash": "48e909064c3b0d5e1fd6cd740fc85069"
+  },
+  "internal/domain/product.go": {
+    "mtime": 1781394236.328422,
+    "ast_hash": "1b6ef09e6e6702ffdbaed8f126c1eebb",
+    "semantic_hash": ""
+  },
+  "internal/domain/tax_information.go": {
+    "mtime": 1781233935.7257874,
+    "ast_hash": "4a65161b2e8107be89bd82d522db5a2f",
+    "semantic_hash": "4a65161b2e8107be89bd82d522db5a2f"
+  },
+  "internal/domain/topic.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "b1ba92d52c505e6f1b572df28f193c84",
+    "semantic_hash": "b1ba92d52c505e6f1b572df28f193c84"
+  },
+  "internal/domain/user.go": {
+    "mtime": 1781381051.133918,
+    "ast_hash": "35be76d52b2f13646c1653612eff889d",
+    "semantic_hash": "35be76d52b2f13646c1653612eff889d"
+  },
+  "internal/handler/auth_handler.go": {
+    "mtime": 1781392131.4951544,
+    "ast_hash": "b500684ff333d6769a6a029ee71b2cc9",
+    "semantic_hash": "b500684ff333d6769a6a029ee71b2cc9"
+  },
+  "internal/handler/author_handler.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "fb4f484ce66ee99ae247df4290da90ec",
+    "semantic_hash": "fb4f484ce66ee99ae247df4290da90ec"
+  },
+  "internal/handler/book_handler.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "1c62fb0601ec81daef37b8c5cf02275f",
+    "semantic_hash": "1c62fb0601ec81daef37b8c5cf02275f"
+  },
+  "internal/handler/client_handler.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "82cf83617ecd29783faa671c48cdb8d9",
+    "semantic_hash": "82cf83617ecd29783faa671c48cdb8d9"
+  },
+  "internal/handler/company_handler.go": {
+    "mtime": 1781387160.5811448,
+    "ast_hash": "46d572fc2245867460b6b80b323eb231",
+    "semantic_hash": "46d572fc2245867460b6b80b323eb231"
+  },
+  "internal/handler/economic_activity_handler.go": {
+    "mtime": 1781234511.2411249,
+    "ast_hash": "e14639c9d05f931d88ab2f9fb200d388",
+    "semantic_hash": "e14639c9d05f931d88ab2f9fb200d388"
+  },
+  "internal/handler/establishment_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "ec9ad0dc9f7f7b8849ac6999307ac642",
+    "semantic_hash": "ec9ad0dc9f7f7b8849ac6999307ac642"
+  },
+  "internal/handler/main_address_handler.go": {
+    "mtime": 1781234976.8375928,
+    "ast_hash": "e3890091eca6155ff01194420956446e",
+    "semantic_hash": "e3890091eca6155ff01194420956446e"
+  },
+  "internal/handler/monthly_summary_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "3f4e45c2aada112c6073ba2be964607b",
+    "semantic_hash": "3f4e45c2aada112c6073ba2be964607b"
+  },
+  "internal/handler/movement_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "fcea4c11ad34910465e0d0dc17e42b7e",
+    "semantic_hash": "fcea4c11ad34910465e0d0dc17e42b7e"
+  },
+  "internal/handler/movement_type_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "bbf2c0605c9f4c2de920480cea9117b3",
+    "semantic_hash": "bbf2c0605c9f4c2de920480cea9117b3"
+  },
+  "internal/handler/note_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "30757aab69a90be97aeda60f0e0a3877",
+    "semantic_hash": "30757aab69a90be97aeda60f0e0a3877"
+  },
+  "internal/handler/order_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "9e4b2f659a6e5ab1e1b5701ebcf90f22",
+    "semantic_hash": "9e4b2f659a6e5ab1e1b5701ebcf90f22"
+  },
+  "internal/handler/product_handler.go": {
+    "mtime": 1781394247.6807702,
+    "ast_hash": "612d374125199bfc91c0034cce0258c6",
+    "semantic_hash": ""
+  },
+  "internal/handler/tax_information_handler.go": {
+    "mtime": 1781233942.6780753,
+    "ast_hash": "69283599cb60fe87d857e650d391baf2",
+    "semantic_hash": "69283599cb60fe87d857e650d391baf2"
+  },
+  "internal/handler/topic_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "f510320ddbd1a7cf5a3b6e7b1f7aba18",
+    "semantic_hash": "f510320ddbd1a7cf5a3b6e7b1f7aba18"
+  },
+  "internal/handlers/auth_handler.go": {
+    "mtime": 1781381567.389424,
+    "ast_hash": "a62da8240543fc58f7760a4d0055fabe",
+    "semantic_hash": "a62da8240543fc58f7760a4d0055fabe"
+  },
+  "internal/infrastructure/bcrypt_password_hasher.go": {
+    "mtime": 1781010822.3637574,
+    "ast_hash": "709f402c25fcf44b2ab2204d9df9e5ab",
+    "semantic_hash": "709f402c25fcf44b2ab2204d9df9e5ab"
+  },
+  "internal/infrastructure/jwt_token_service.go": {
+    "mtime": 1781010822.1255856,
+    "ast_hash": "a961d9ba634b74300a2666221ea866d7",
+    "semantic_hash": "a961d9ba634b74300a2666221ea866d7"
+  },
+  "internal/infrastructure/memory_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "95a73c816868f1ad1138defa5fd72222",
+    "semantic_hash": "95a73c816868f1ad1138defa5fd72222"
+  },
+  "internal/infrastructure/postgres_book_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "69a47391dc5a3bfa338d71d721e71b0c",
+    "semantic_hash": "69a47391dc5a3bfa338d71d721e71b0c"
+  },
+  "internal/infrastructure/postgres_client_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "ef7bedb7b09d5bc9b43a4052d8acf788",
+    "semantic_hash": "ef7bedb7b09d5bc9b43a4052d8acf788"
+  },
+  "internal/infrastructure/postgres_company_repository.go": {
+    "mtime": 1781387124.2272274,
+    "ast_hash": "adf780c42362e89e176c3f8e5368b01b",
+    "semantic_hash": "adf780c42362e89e176c3f8e5368b01b"
+  },
+  "internal/infrastructure/postgres_economic_activity_repository.go": {
+    "mtime": 1781234506.329137,
+    "ast_hash": "240aa069a6754ca180cf3f1eb6e52a52",
+    "semantic_hash": "240aa069a6754ca180cf3f1eb6e52a52"
+  },
+  "internal/infrastructure/postgres_establishment_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "1fed756ec47baa0e9347f974743f2e4b",
+    "semantic_hash": "1fed756ec47baa0e9347f974743f2e4b"
+  },
+  "internal/infrastructure/postgres_main_address_repository.go": {
+    "mtime": 1781219901.697184,
+    "ast_hash": "4bf24c3af38a32fcc9c7aed322abedb1",
+    "semantic_hash": "4bf24c3af38a32fcc9c7aed322abedb1"
+  },
+  "internal/infrastructure/postgres_monthly_summary_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "990c7a21cc8eacf271439a8674161ae2",
+    "semantic_hash": "990c7a21cc8eacf271439a8674161ae2"
+  },
+  "internal/infrastructure/postgres_movement_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "c6255ee0f616280793f374a313078084",
+    "semantic_hash": "c6255ee0f616280793f374a313078084"
+  },
+  "internal/infrastructure/postgres_movement_type_repository.go": {
+    "mtime": 1780979790.9440222,
+    "ast_hash": "a182be278db3f812d949a91e90b20af7",
+    "semantic_hash": "a182be278db3f812d949a91e90b20af7"
+  },
+  "internal/infrastructure/postgres_note_repository.go": {
+    "mtime": 1780979790.9440222,
+    "ast_hash": "0cac1c7bb8eae5a346cbf2aca3a00bcc",
+    "semantic_hash": "0cac1c7bb8eae5a346cbf2aca3a00bcc"
+  },
+  "internal/infrastructure/postgres_order_repository.go": {
+    "mtime": 1780979790.9445302,
+    "ast_hash": "749ec00005e7251cb23e32c00af7a4de",
+    "semantic_hash": "749ec00005e7251cb23e32c00af7a4de"
+  },
+  "internal/infrastructure/postgres_product_repository.go": {
+    "mtime": 1781394261.550712,
+    "ast_hash": "1b27439f71cd9218f2f236599308cc85",
+    "semantic_hash": ""
+  },
+  "internal/infrastructure/postgres_repository.go": {
+    "mtime": 1780979790.9445302,
+    "ast_hash": "5d34d4a5b2f15c81dbce4818fecfc6ba",
+    "semantic_hash": "5d34d4a5b2f15c81dbce4818fecfc6ba"
+  },
+  "internal/infrastructure/postgres_tax_information_repository.go": {
+    "mtime": 1781233938.5773113,
+    "ast_hash": "b9809403024147490d66e05b1341eff5",
+    "semantic_hash": "b9809403024147490d66e05b1341eff5"
+  },
+  "internal/infrastructure/postgres_topic_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "d55e1fb5ce1ffaf5854531144a948ab7",
+    "semantic_hash": "d55e1fb5ce1ffaf5854531144a948ab7"
+  },
+  "internal/infrastructure/postgres_user_repository.go": {
+    "mtime": 1781392119.5472164,
+    "ast_hash": "66444e52dffc45108af132595e20585a",
+    "semantic_hash": "66444e52dffc45108af132595e20585a"
+  },
+  "internal/middleware/RecoveryMiddleware.go": {
+    "mtime": 1781377992.5722303,
+    "ast_hash": "567faefc9ad5cf65e686a38d5638ea56",
+    "semantic_hash": "567faefc9ad5cf65e686a38d5638ea56"
+  },
+  "internal/middleware/authorization.go": {
+    "mtime": 1781381561.0496395,
+    "ast_hash": "fab3a9a907d3e6a7467f910ddde613a8",
+    "semantic_hash": "fab3a9a907d3e6a7467f910ddde613a8"
+  },
+  "internal/middleware/validation.go": {
+    "mtime": 1781381534.5546749,
+    "ast_hash": "d6c7ec81e9140827a2d499004a9ca16f",
+    "semantic_hash": "d6c7ec81e9140827a2d499004a9ca16f"
+  },
+  "internal/models/requests.go": {
+    "mtime": 1781379380.014548,
+    "ast_hash": "86d76aed8e6c1d3e371ceab36d8de9f2",
+    "semantic_hash": "86d76aed8e6c1d3e371ceab36d8de9f2"
+  },
+  "internal/repository/author_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "41542768658d2a0afdfcb51102b31f3e",
+    "semantic_hash": "41542768658d2a0afdfcb51102b31f3e"
+  },
+  "internal/repository/book_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "78b491f97e83e24271108fa74657f649",
+    "semantic_hash": "78b491f97e83e24271108fa74657f649"
+  },
+  "internal/repository/client_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "83ac3aeefe98b50cbc1f979293ba7024",
+    "semantic_hash": "83ac3aeefe98b50cbc1f979293ba7024"
+  },
+  "internal/repository/company_repository.go": {
+    "mtime": 1781387097.447662,
+    "ast_hash": "d22210439fb03faf57fa84429c8d692d",
+    "semantic_hash": "d22210439fb03faf57fa84429c8d692d"
+  },
+  "internal/repository/economic_activity_repository.go": {
+    "mtime": 1781234503.357751,
+    "ast_hash": "f0cd45ce5aea1fe4e53b75b3580b0952",
+    "semantic_hash": "f0cd45ce5aea1fe4e53b75b3580b0952"
+  },
+  "internal/repository/establishment_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "266f8af170c9fae5a1a44cf09a1c6e34",
+    "semantic_hash": "266f8af170c9fae5a1a44cf09a1c6e34"
+  },
+  "internal/repository/main_address_repository.go": {
+    "mtime": 1781219899.8562562,
+    "ast_hash": "302525c4351ceefcbb76872b414c9003",
+    "semantic_hash": "302525c4351ceefcbb76872b414c9003"
+  },
+  "internal/repository/monthly_summary_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "0e4ab9c79549a54795b26d402df741e4",
+    "semantic_hash": "0e4ab9c79549a54795b26d402df741e4"
+  },
+  "internal/repository/movement_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "98cbd55342c5bce6d2f3f4d9058dd96a",
+    "semantic_hash": "98cbd55342c5bce6d2f3f4d9058dd96a"
+  },
+  "internal/repository/movement_type_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "9a33e0617848604debe0e65556784b4a",
+    "semantic_hash": "9a33e0617848604debe0e65556784b4a"
+  },
+  "internal/repository/note_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "24cdb48f920c7d522ffebb6280900c7b",
+    "semantic_hash": "24cdb48f920c7d522ffebb6280900c7b"
+  },
+  "internal/repository/order_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "029d7ce5b46abafd3d6ae1aeda5cabf7",
+    "semantic_hash": "029d7ce5b46abafd3d6ae1aeda5cabf7"
+  },
+  "internal/repository/product_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "cf550a5f1edc060e479df683a84af370",
+    "semantic_hash": "cf550a5f1edc060e479df683a84af370"
+  },
+  "internal/repository/tax_information_repository.go": {
+    "mtime": 1781233935.7373102,
+    "ast_hash": "4171b787d0b2e93b3c79b7c6da201e37",
+    "semantic_hash": "4171b787d0b2e93b3c79b7c6da201e37"
+  },
+  "internal/repository/topic_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "1780c0a4036f78bc095d4eb31e26cd31",
+    "semantic_hash": "1780c0a4036f78bc095d4eb31e26cd31"
+  },
+  "internal/repository/user_repository.go": {
+    "mtime": 1781392116.2860608,
+    "ast_hash": "b845c1cf8278b93bfea81c6f14e0827c",
+    "semantic_hash": "b845c1cf8278b93bfea81c6f14e0827c"
+  },
+  "internal/usecase/auth_usecase.go": {
+    "mtime": 1781392127.0441954,
+    "ast_hash": "989777177c731df596267703b3da53a2",
+    "semantic_hash": "989777177c731df596267703b3da53a2"
+  },
+  "internal/usecase/author_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "0e5eeae1333658c975e267fc0b3fdc9f",
+    "semantic_hash": "0e5eeae1333658c975e267fc0b3fdc9f"
+  },
+  "internal/usecase/book_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "51974ca509501df3efa4857e943b0fb0",
+    "semantic_hash": "51974ca509501df3efa4857e943b0fb0"
+  },
+  "internal/usecase/client_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "352521bca6573df6bba3d136ce118bbc",
+    "semantic_hash": "352521bca6573df6bba3d136ce118bbc"
+  },
+  "internal/usecase/company_usecase.go": {
+    "mtime": 1781387140.3768082,
+    "ast_hash": "8a9ce1336cdbf76d6f7f525de8a2fb00",
+    "semantic_hash": "8a9ce1336cdbf76d6f7f525de8a2fb00"
+  },
+  "internal/usecase/economic_activity_usecase.go": {
+    "mtime": 1781234508.8125193,
+    "ast_hash": "1acb194f963e63b645424fcf0640a7fb",
+    "semantic_hash": "1acb194f963e63b645424fcf0640a7fb"
+  },
+  "internal/usecase/establishment_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "8d8ffb42b042d9a700b5de798c951639",
+    "semantic_hash": "8d8ffb42b042d9a700b5de798c951639"
+  },
+  "internal/usecase/main_address_usecase.go": {
+    "mtime": 1781219903.5457082,
+    "ast_hash": "ef3508b103618904b81f7a8094ef0c0d",
+    "semantic_hash": "ef3508b103618904b81f7a8094ef0c0d"
+  },
+  "internal/usecase/monthly_summary_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "2a466f6e0450f75b97fd9fae3495a7db",
+    "semantic_hash": "2a466f6e0450f75b97fd9fae3495a7db"
+  },
+  "internal/usecase/movement_type_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "fa7b7b39e3485875747dadb9473f4c99",
+    "semantic_hash": "fa7b7b39e3485875747dadb9473f4c99"
+  },
+  "internal/usecase/movement_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "c79940acf0d96cc222b9f7bcc2960ad9",
+    "semantic_hash": "c79940acf0d96cc222b9f7bcc2960ad9"
+  },
+  "internal/usecase/note_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "cc95b376c838208f4bda3a9da8ec5f18",
+    "semantic_hash": "cc95b376c838208f4bda3a9da8ec5f18"
+  },
+  "internal/usecase/order_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "871c30e546fe8dbe1a22ad43d0644617",
+    "semantic_hash": "871c30e546fe8dbe1a22ad43d0644617"
+  },
+  "internal/usecase/product_usecase.go": {
+    "mtime": 1781394243.583065,
+    "ast_hash": "1323c3e95ac9de18669b0baa1009e883",
+    "semantic_hash": ""
+  },
+  "internal/usecase/tax_information_usecase.go": {
+    "mtime": 1781233940.324123,
+    "ast_hash": "91368f0e00485b7ad18bfe8cf7c4f0eb",
+    "semantic_hash": "91368f0e00485b7ad18bfe8cf7c4f0eb"
+  },
+  "internal/usecase/topic_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "56d02636dc9a8704a7c80c440ed2d2c2",
+    "semantic_hash": "56d02636dc9a8704a7c80c440ed2d2c2"
+  },
+  "internal/utils/TryExecut.go": {
+    "mtime": 1781376563.3827767,
+    "ast_hash": "ae1e657fae8bf42a73c6d220a8645597",
+    "semantic_hash": "ae1e657fae8bf42a73c6d220a8645597"
+  },
+  "internal/utils/context.go": {
+    "mtime": 1781381071.6946437,
+    "ast_hash": "440d7fa7b205e717483642e5424bdb63",
+    "semantic_hash": "440d7fa7b205e717483642e5424bdb63"
+  },
+  "internal/utils/errors.go": {
+    "mtime": 1781381290.4213483,
+    "ast_hash": "9b5ad261cf67527759d0308ffd95abb1",
+    "semantic_hash": "9b5ad261cf67527759d0308ffd95abb1"
+  },
+  "internal/utils/response.go": {
+    "mtime": 1781381234.0346441,
+    "ast_hash": "72b0ef138e1a016bcf53c22808067dce",
+    "semantic_hash": "72b0ef138e1a016bcf53c22808067dce"
+  },
+  "internal/utils/validation.go": {
+    "mtime": 1781377998.3533175,
+    "ast_hash": "93d0634ff4c7e23b1e9e9aa4a40a6a86",
+    "semantic_hash": "93d0634ff4c7e23b1e9e9aa4a40a6a86"
+  },
+  ".claude/settings.json": {
+    "mtime": 1781392470.4660575,
+    "ast_hash": "7bf81dca0376bde3a32244b82bc7cbc0",
+    "semantic_hash": ""
+  }
+}

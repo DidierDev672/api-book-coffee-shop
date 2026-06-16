@@ -20,35 +20,39 @@ func (h *CompanyHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	path := strings.TrimPrefix(r.URL.Path, "/companies")
-	id := strings.TrimPrefix(path, "/")
+	path = strings.TrimPrefix(path, "/")
+	segments := strings.SplitN(path, "/", 2)
 
 	switch r.Method {
 	case http.MethodGet:
-		if id != "" {
-			h.getByID(w, r, id)
+		if len(segments) == 2 && segments[0] == "user" {
+			h.getByUserID(w, r, segments[1])
+		} else if len(segments) == 1 && segments[0] != "" {
+			h.getByID(w, r, segments[0])
 		} else {
 			h.getAll(w, r)
 		}
 	case http.MethodPost:
 		h.create(w, r)
 	case http.MethodPut:
-		if id == "" {
+		if len(segments) == 0 || segments[0] == "" {
 			writeError(w, "id is required", http.StatusBadRequest)
 			return
 		}
-		h.update(w, r, id)
+		h.update(w, r, segments[0])
 	case http.MethodDelete:
-		if id == "" {
+		if len(segments) == 0 || segments[0] == "" {
 			writeError(w, "id is required", http.StatusBadRequest)
 			return
 		}
-		h.delete(w, r, id)
+		h.delete(w, r, segments[0])
 	default:
 		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
 	}
 }
 
 type companyRequest struct {
+	UserID           string `json:"user_id"`
 	NIT              string `json:"nit"`
 	SocialReason     string `json:"social_reason"`
 	BusinessName     string `json:"business_name"`
@@ -56,6 +60,9 @@ type companyRequest struct {
 	CompanyType      string `json:"company_type"`
 	Status           string `json:"status"`
 	ConstitutionDate string `json:"constitution_date"`
+	Email            string `json:"email"`
+	Phone            string `json:"phone"`
+	Cellphone        string `json:"cellphone"`
 }
 
 func (h *CompanyHandler) create(w http.ResponseWriter, r *http.Request) {
@@ -66,8 +73,9 @@ func (h *CompanyHandler) create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	c, err := h.uc.Create(
-		req.NIT, req.SocialReason, req.BusinessName,
+		req.UserID, req.NIT, req.SocialReason, req.BusinessName,
 		req.TypePerson, req.CompanyType, req.Status, req.ConstitutionDate,
+		req.Email, req.Phone, req.Cellphone,
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
@@ -84,6 +92,15 @@ func (h *CompanyHandler) getByID(w http.ResponseWriter, r *http.Request, id stri
 		return
 	}
 	writeJSON(w, c, http.StatusOK)
+}
+
+func (h *CompanyHandler) getByUserID(w http.ResponseWriter, r *http.Request, userID string) {
+	companies, err := h.uc.GetByUserID(userID)
+	if err != nil {
+		writeError(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	writeJSON(w, companies, http.StatusOK)
 }
 
 func (h *CompanyHandler) getAll(w http.ResponseWriter, r *http.Request) {
@@ -103,8 +120,9 @@ func (h *CompanyHandler) update(w http.ResponseWriter, r *http.Request, id strin
 	}
 
 	c, err := h.uc.Update(
-		id, req.NIT, req.SocialReason, req.BusinessName,
+		id, req.UserID, req.NIT, req.SocialReason, req.BusinessName,
 		req.TypePerson, req.CompanyType, req.Status, req.ConstitutionDate,
+		req.Email, req.Phone, req.Cellphone,
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)

@@ -1,0 +1,93 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "main.go",
+      "file_type": "code",
+      "source_file": "api/main.go",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "main.go",
+      "id": "api_main"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "api/main.go",
+      "source_location": "L19",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "main()",
+      "id": "api_main_main"
+    },
+    {
+      "label": "runMigrations()",
+      "file_type": "code",
+      "source_file": "api/main.go",
+      "source_location": "L158",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "runmigrations()",
+      "id": "api_main_runmigrations"
+    },
+    {
+      "label": "DB",
+      "file_type": "code",
+      "source_file": "api/main.go",
+      "source_location": "L158",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "db",
+      "id": "db"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "api/main.go",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_main",
+      "target": "api_main_main"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "api/main.go",
+      "source_location": "L158",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_main",
+      "target": "api_main_runmigrations"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "api/main.go",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_main_main",
+      "target": "api_main_runmigrations"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "api/main.go",
+      "source_location": "L158",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "confidence_score": 1.0,
+      "source": "api_main_runmigrations",
+      "target": "db"
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "f88301bbdaecb4e98cd23ee5f09f5ac32ef2d3fd"
+}

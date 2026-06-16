@@ -17,23 +17,23 @@ func NewPostgresMainAddressRepository(db *sql.DB) *PostgresMainAddressRepository
 
 func (r *PostgresMainAddressRepository) Create(a *domain.MainAddress) error {
 	query := `INSERT INTO main_addresses (
-		id, user_id, company_id, country, department, address, postcode, created_at, updated_at
-	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
+		id, user_id, company_id, country, department, municipio, address, postcode, created_at, updated_at
+	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
 
 	_, err := r.db.Exec(query,
-		a.ID, a.UserID, a.CompanyID, a.Country, a.Department, a.Address, a.Postcode,
+		a.ID, a.UserID, a.CompanyID, a.Country, a.Department, a.Municipio, a.Address, a.Postcode,
 		a.CreatedAt, a.UpdatedAt,
 	)
 	return err
 }
 
 func (r *PostgresMainAddressRepository) GetByID(id string) (*domain.MainAddress, error) {
-	query := `SELECT id, user_id, company_id, country, department, address, postcode, created_at, updated_at
+	query := `SELECT id, user_id, company_id, country, department, municipio, address, postcode, created_at, updated_at
 	          FROM main_addresses WHERE id = $1`
 
 	a := &domain.MainAddress{}
 	err := r.db.QueryRow(query, id).Scan(
-		&a.ID, &a.UserID, &a.CompanyID, &a.Country, &a.Department, &a.Address, &a.Postcode,
+		&a.ID, &a.UserID, &a.CompanyID, &a.Country, &a.Department, &a.Municipio, &a.Address, &a.Postcode,
 		&a.CreatedAt, &a.UpdatedAt,
 	)
 	if errors.Is(err, sql.ErrNoRows) {
@@ -46,7 +46,7 @@ func (r *PostgresMainAddressRepository) GetByID(id string) (*domain.MainAddress,
 }
 
 func (r *PostgresMainAddressRepository) GetAll() ([]*domain.MainAddress, error) {
-	query := `SELECT id, user_id, company_id, country, department, address, postcode, created_at, updated_at
+	query := `SELECT id, user_id, company_id, country, department, municipio, address, postcode, created_at, updated_at
 	          FROM main_addresses ORDER BY created_at DESC`
 
 	rows, err := r.db.Query(query)
@@ -59,7 +59,7 @@ func (r *PostgresMainAddressRepository) GetAll() ([]*domain.MainAddress, error) 
 	for rows.Next() {
 		a := &domain.MainAddress{}
 		if err := rows.Scan(
-			&a.ID, &a.UserID, &a.CompanyID, &a.Country, &a.Department, &a.Address, &a.Postcode,
+			&a.ID, &a.UserID, &a.CompanyID, &a.Country, &a.Department, &a.Municipio, &a.Address, &a.Postcode,
 			&a.CreatedAt, &a.UpdatedAt,
 		); err != nil {
 			return nil, err
@@ -72,11 +72,11 @@ func (r *PostgresMainAddressRepository) GetAll() ([]*domain.MainAddress, error) 
 func (r *PostgresMainAddressRepository) Update(a *domain.MainAddress) error {
 	query := `UPDATE main_addresses
 	          SET user_id = $1, company_id = $2, country = $3, department = $4,
-	              address = $5, postcode = $6, updated_at = $7
-	          WHERE id = $8`
+	              municipio = $5, address = $6, postcode = $7, updated_at = $8
+	          WHERE id = $9`
 
 	result, err := r.db.Exec(query,
-		a.UserID, a.CompanyID, a.Country, a.Department, a.Address, a.Postcode,
+		a.UserID, a.CompanyID, a.Country, a.Department, a.Municipio, a.Address, a.Postcode,
 		a.UpdatedAt, a.ID,
 	)
 	if err != nil {
