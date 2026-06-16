@@ -6,6 +6,7 @@ import (
 	"errors"
 
 	"book-coffee-shop/internal/domain"
+	"github.com/lib/pq"
 )
 
 type PostgresProductEntryRepository struct {
@@ -82,6 +83,53 @@ func (r *PostgresProductEntryRepository) GetByID(id string) (*domain.ProductEntr
 	          created_at, updated_at
 	          FROM product_entries WHERE id = $1`
 	return scanProductEntry(r.db.QueryRow(query, id))
+}
+
+func (r *PostgresProductEntryRepository) GetByProductCodes(codes []string, companyID string) ([]*domain.ProductEntry, error) {
+	query := `SELECT DISTINCT pe.id, pe.entry_number, pe.registered_date, pe.movement_type, pe.warehouse,
+	          pe.responsible_party, pe.company_id,
+	          pe.details, pe.financial_summary, pe.observations,
+	          pe.created_at, pe.updated_at
+	          FROM product_entries pe
+	          CROSS JOIN jsonb_array_elements(pe.details) AS d
+	          WHERE pe.company_id = $1 AND d->>'code' = ANY($2)
+	          ORDER BY pe.created_at DESC`
+
+	rows, err := r.db.Query(query, companyID, pq.Array(codes))
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var entries []*domain.ProductEntry
+	for rows.Next() {
+		pe := &domain.ProductEntry{}
+		var detailsJSON []byte
+		var financialJSON []byte
+		var warehouse sql.NullString
+		var obs sql.NullString
+
+		if err := rows.Scan(
+			&pe.ID, &pe.EntryNumber, &pe.RegisteredDate, &pe.MovementType,
+			&warehouse, &pe.ResponsibleParty, &pe.CompanyID,
+			&detailsJSON, &financialJSON, &obs,
+			&pe.CreatedAt, &pe.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+
+		pe.Warehouse = warehouse.String
+		pe.Observations = obs.String
+
+		if err := json.Unmarshal(detailsJSON, &pe.Details); err != nil {
+			return nil, err
+		}
+		if err := json.Unmarshal(financialJSON, &pe.FinancialSummary); err != nil {
+			return nil, err
+		}
+		entries = append(entries, pe)
+	}
+	return entries, rows.Err()
 }
 
 func (r *PostgresProductEntryRepository) GetAll() ([]*domain.ProductEntry, error) {

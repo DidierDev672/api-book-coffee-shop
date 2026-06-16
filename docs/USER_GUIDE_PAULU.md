@@ -322,11 +322,17 @@ El sistema calcula el 19% de IVA automáticamente en cada despacho. Al final del
 ---
 
 > *"El valor de un hombre se mide por su honor, su lealtad y su responsabilidad hacia quienes lo siguen."* — Paulus Atreides
+>
+> *"La Casa Atreides no huye de la batalla. La enfrenta."* — Duncan Idaho
 
-Cada despacho que registras, cada producto que controlas y cada venta que concretas es un acto de liderazgo sobre tu negocio. Paulu está aquí para que gobiernes tu inventario con la misma determinación con la que el Duque Paulus comandaba sus tropas: desde el frente, sin dudar y con honor.
+Cada despacho que registras, cada producto que controlas y cada venta que
+concretas es un acto de liderazgo sobre tu negocio. Paulu está aquí para que
+gobiernes tu inventario con la misma determinación con la que la Casa Atreides
+gobernaba sus dominios: con honor, estrategia y visión de futuro.
 
-**Bienvenido al frente de batalla. Bienvenido a Paulu.**
+**Que el halcón de la Casa te guíe. Bienvenido a Paulu.**
 
 ---
 
-*Documento v1.0 — Junio 2026*
+*Documento v1.1 — Junio 2026*
+*Casa Atreides — Inspirado en la saga *Dune* de Frank Herbert*

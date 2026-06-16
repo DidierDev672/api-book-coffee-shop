@@ -1,7 +1,7 @@
 {
   "cmd/api/main.go": {
-    "mtime": 1781626659.5508876,
-    "ast_hash": "0a69ff31a0b2f65fb9fdbe10f44e7210",
+    "mtime": 1781394264.9896202,
+    "ast_hash": "97c0a476b691013145cea64bb0a1abe4",
     "semantic_hash": ""
   },
   "internal/config/config.go": {
@@ -50,9 +50,9 @@
     "semantic_hash": "6a6dd82f51fbf62062a8fba125d4dde8"
   },
   "internal/domain/main_address.go": {
-    "mtime": 1781533275.3763287,
-    "ast_hash": "e0ce26022de6c6426902821acca1706e",
-    "semantic_hash": ""
+    "mtime": 1781219899.5768511,
+    "ast_hash": "92b682661c8d61205753dbb9de262aa5",
+    "semantic_hash": "92b682661c8d61205753dbb9de262aa5"
   },
   "internal/domain/monthly_summary.go": {
     "mtime": 1780979790.935248,
@@ -75,13 +75,13 @@
     "semantic_hash": "01c4c89bfab6d873d67881d40a241d8f"
   },
   "internal/domain/order.go": {
-    "mtime": 1781569137.6422944,
-    "ast_hash": "315e6a0da1b7d97d3620c1104dc959de",
-    "semantic_hash": ""
+    "mtime": 1780979790.935248,
+    "ast_hash": "48e909064c3b0d5e1fd6cd740fc85069",
+    "semantic_hash": "48e909064c3b0d5e1fd6cd740fc85069"
   },
   "internal/domain/product.go": {
-    "mtime": 1781540410.132596,
-    "ast_hash": "4aab677b59e13c2f2d6215f558dc7409",
+    "mtime": 1781394236.328422,
+    "ast_hash": "1b6ef09e6e6702ffdbaed8f126c1eebb",
     "semantic_hash": ""
   },
   "internal/domain/tax_information.go": {
@@ -100,9 +100,9 @@
     "semantic_hash": "35be76d52b2f13646c1653612eff889d"
   },
   "internal/handler/auth_handler.go": {
-    "mtime": 1781497373.3702188,
-    "ast_hash": "792fe2b95a97934e38670327f4bf66f5",
-    "semantic_hash": ""
+    "mtime": 1781392131.4951544,
+    "ast_hash": "b500684ff333d6769a6a029ee71b2cc9",
+    "semantic_hash": "b500684ff333d6769a6a029ee71b2cc9"
   },
   "internal/handler/author_handler.go": {
     "mtime": 1780979790.935248,
@@ -120,9 +120,9 @@
     "semantic_hash": "82cf83617ecd29783faa671c48cdb8d9"
   },
   "internal/handler/company_handler.go": {
-    "mtime": 1781528093.0469315,
-    "ast_hash": "5eac8376044d71e658e9fc6001042cef",
-    "semantic_hash": ""
+    "mtime": 1781387160.5811448,
+    "ast_hash": "46d572fc2245867460b6b80b323eb231",
+    "semantic_hash": "46d572fc2245867460b6b80b323eb231"
   },
   "internal/handler/economic_activity_handler.go": {
     "mtime": 1781234511.2411249,
@@ -135,9 +135,9 @@
     "semantic_hash": "ec9ad0dc9f7f7b8849ac6999307ac642"
   },
   "internal/handler/main_address_handler.go": {
-    "mtime": 1781533288.4497573,
-    "ast_hash": "34495b7ad8b0fe202fddc18586f19e0a",
-    "semantic_hash": ""
+    "mtime": 1781234976.8375928,
+    "ast_hash": "e3890091eca6155ff01194420956446e",
+    "semantic_hash": "e3890091eca6155ff01194420956446e"
   },
   "internal/handler/monthly_summary_handler.go": {
     "mtime": 1780979790.9388638,
@@ -160,13 +160,13 @@
     "semantic_hash": "30757aab69a90be97aeda60f0e0a3877"
   },
   "internal/handler/order_handler.go": {
-    "mtime": 1781569157.9486132,
-    "ast_hash": "95416b0786a08a1ccaac34af0355af75",
-    "semantic_hash": ""
+    "mtime": 1780979790.9388638,
+    "ast_hash": "9e4b2f659a6e5ab1e1b5701ebcf90f22",
+    "semantic_hash": "9e4b2f659a6e5ab1e1b5701ebcf90f22"
   },
   "internal/handler/product_handler.go": {
-    "mtime": 1781540456.0148604,
-    "ast_hash": "09a74a3f73c6db142a4d0860a5c50439",
+    "mtime": 1781394247.6807702,
+    "ast_hash": "612d374125199bfc91c0034cce0258c6",
     "semantic_hash": ""
   },
   "internal/handler/tax_information_handler.go": {
@@ -210,9 +210,9 @@
     "semantic_hash": "ef7bedb7b09d5bc9b43a4052d8acf788"
   },
   "internal/infrastructure/postgres_company_repository.go": {
-    "mtime": 1781528091.7186234,
-    "ast_hash": "5846e698bbd21a9a0b6f7ca592947dd2",
-    "semantic_hash": ""
+    "mtime": 1781387124.2272274,
+    "ast_hash": "adf780c42362e89e176c3f8e5368b01b",
+    "semantic_hash": "adf780c42362e89e176c3f8e5368b01b"
   },
   "internal/infrastructure/postgres_economic_activity_repository.go": {
     "mtime": 1781234506.329137,
@@ -225,9 +225,9 @@
     "semantic_hash": "1fed756ec47baa0e9347f974743f2e4b"
   },
   "internal/infrastructure/postgres_main_address_repository.go": {
-    "mtime": 1781533313.435599,
-    "ast_hash": "b4ef75afe2c83b306b390ff6cb5a1c3b",
-    "semantic_hash": ""
+    "mtime": 1781219901.697184,
+    "ast_hash": "4bf24c3af38a32fcc9c7aed322abedb1",
+    "semantic_hash": "4bf24c3af38a32fcc9c7aed322abedb1"
   },
   "internal/infrastructure/postgres_monthly_summary_repository.go": {
     "mtime": 1780979790.9388638,
@@ -250,13 +250,13 @@
     "semantic_hash": "0cac1c7bb8eae5a346cbf2aca3a00bcc"
   },
   "internal/infrastructure/postgres_order_repository.go": {
-    "mtime": 1781569168.1344407,
-    "ast_hash": "accfd38b0f038ff73e9251e227afe353",
-    "semantic_hash": ""
+    "mtime": 1780979790.9445302,
+    "ast_hash": "749ec00005e7251cb23e32c00af7a4de",
+    "semantic_hash": "749ec00005e7251cb23e32c00af7a4de"
   },
   "internal/infrastructure/postgres_product_repository.go": {
-    "mtime": 1781540444.633169,
-    "ast_hash": "0c834666fca1998e822320d9fcfff871",
+    "mtime": 1781394261.550712,
+    "ast_hash": "1b27439f71cd9218f2f236599308cc85",
     "semantic_hash": ""
   },
   "internal/infrastructure/postgres_repository.go": {
@@ -315,9 +315,9 @@
     "semantic_hash": "83ac3aeefe98b50cbc1f979293ba7024"
   },
   "internal/repository/company_repository.go": {
-    "mtime": 1781528085.2051933,
-    "ast_hash": "6ae0c872121d61eed61eb184f876075b",
-    "semantic_hash": ""
+    "mtime": 1781387097.447662,
+    "ast_hash": "d22210439fb03faf57fa84429c8d692d",
+    "semantic_hash": "d22210439fb03faf57fa84429c8d692d"
   },
   "internal/repository/economic_activity_repository.go": {
     "mtime": 1781234503.357751,
@@ -360,9 +360,9 @@
     "semantic_hash": "029d7ce5b46abafd3d6ae1aeda5cabf7"
   },
   "internal/repository/product_repository.go": {
-    "mtime": 1781415390.78877,
-    "ast_hash": "fd1cdd24198d147665803657214e809a",
-    "semantic_hash": ""
+    "mtime": 1780979790.9472878,
+    "ast_hash": "cf550a5f1edc060e479df683a84af370",
+    "semantic_hash": "cf550a5f1edc060e479df683a84af370"
   },
   "internal/repository/tax_information_repository.go": {
     "mtime": 1781233935.7373102,
@@ -380,9 +380,9 @@
     "semantic_hash": "b845c1cf8278b93bfea81c6f14e0827c"
   },
   "internal/usecase/auth_usecase.go": {
-    "mtime": 1781497368.1717713,
-    "ast_hash": "4993c9eb5ee261b158aa8254c3d98528",
-    "semantic_hash": ""
+    "mtime": 1781392127.0441954,
+    "ast_hash": "989777177c731df596267703b3da53a2",
+    "semantic_hash": "989777177c731df596267703b3da53a2"
   },
   "internal/usecase/author_usecase.go": {
     "mtime": 1780979790.9472878,
@@ -400,9 +400,9 @@
     "semantic_hash": "352521bca6573df6bba3d136ce118bbc"
   },
   "internal/usecase/company_usecase.go": {
-    "mtime": 1781528087.1549416,
-    "ast_hash": "71a03404cea1345fd7f0a0abd23657b6",
-    "semantic_hash": ""
+    "mtime": 1781387140.3768082,
+    "ast_hash": "8a9ce1336cdbf76d6f7f525de8a2fb00",
+    "semantic_hash": "8a9ce1336cdbf76d6f7f525de8a2fb00"
   },
   "internal/usecase/economic_activity_usecase.go": {
     "mtime": 1781234508.8125193,
@@ -415,9 +415,9 @@
     "semantic_hash": "8d8ffb42b042d9a700b5de798c951639"
   },
   "internal/usecase/main_address_usecase.go": {
-    "mtime": 1781533302.6298125,
-    "ast_hash": "0bf4cb89cc0c8329aff8983477834d77",
-    "semantic_hash": ""
+    "mtime": 1781219903.5457082,
+    "ast_hash": "ef3508b103618904b81f7a8094ef0c0d",
+    "semantic_hash": "ef3508b103618904b81f7a8094ef0c0d"
   },
   "internal/usecase/monthly_summary_usecase.go": {
     "mtime": 1780979790.9472878,
@@ -440,13 +440,13 @@
     "semantic_hash": "cc95b376c838208f4bda3a9da8ec5f18"
   },
   "internal/usecase/order_usecase.go": {
-    "mtime": 1781569148.6964042,
-    "ast_hash": "601e1d98712ce5d919e7d05eb177acbc",
-    "semantic_hash": ""
+    "mtime": 1780979790.9472878,
+    "ast_hash": "871c30e546fe8dbe1a22ad43d0644617",
+    "semantic_hash": "871c30e546fe8dbe1a22ad43d0644617"
   },
   "internal/usecase/product_usecase.go": {
-    "mtime": 1781540501.6051548,
-    "ast_hash": "de7597f2f0272b43432587066af77d11",
+    "mtime": 1781394243.583065,
+    "ast_hash": "1323c3e95ac9de18669b0baa1009e883",
     "semantic_hash": ""
   },
   "internal/usecase/tax_information_usecase.go": {
@@ -487,121 +487,6 @@
   ".claude/settings.json": {
     "mtime": 1781392470.4660575,
     "ast_hash": "7bf81dca0376bde3a32244b82bc7cbc0",
-    "semantic_hash": ""
-  },
-  ".opencode/opencode.json": {
-    "mtime": 1781416563.8643732,
-    "ast_hash": "f2ae21510d07365eb2bce8159272c7a0",
-    "semantic_hash": ""
-  },
-  ".opencode/plugins/graphify.js": {
-    "mtime": 1781416563.8613112,
-    "ast_hash": "32b67963417a30cb80544e0b2a56a98d",
-    "semantic_hash": ""
-  },
-  "internal/domain/product_entry.go": {
-    "mtime": 1781492496.0835588,
-    "ast_hash": "8ebf6e2adc2367cccccf2b9d877b2a55",
-    "semantic_hash": ""
-  },
-  "internal/domain/provider.go": {
-    "mtime": 1781494927.3221228,
-    "ast_hash": "49d9f7a70977d5db13ef2d3a4ee48cae",
-    "semantic_hash": ""
-  },
-  "internal/domain/shipment.go": {
-    "mtime": 1781635866.983106,
-    "ast_hash": "be0a132fdf907b23560657e98793ca1e",
-    "semantic_hash": ""
-  },
-  "internal/domain/winery.go": {
-    "mtime": 1781537757.2662935,
-    "ast_hash": "f415256d551e0121779d5b9ccee5bcdc",
-    "semantic_hash": ""
-  },
-  "internal/handler/product_entry_handler.go": {
-    "mtime": 1781635898.2701435,
-    "ast_hash": "126e6b4d9e5d33f353167c29993b0de7",
-    "semantic_hash": ""
-  },
-  "internal/handler/provider_handler.go": {
-    "mtime": 1781494984.1262426,
-    "ast_hash": "75a656a3707252b7e2f0765777bbc6ee",
-    "semantic_hash": ""
-  },
-  "internal/handler/shipment_handler.go": {
-    "mtime": 1781580725.7384038,
-    "ast_hash": "40b6d89d8c8207f760b45bea6238db1f",
-    "semantic_hash": ""
-  },
-  "internal/handler/winery_handler.go": {
-    "mtime": 1781537791.715493,
-    "ast_hash": "9c8bf1c4ca45dd5b9a26f6d27e6755ae",
-    "semantic_hash": ""
-  },
-  "internal/infrastructure/postgres_product_entry_repository.go": {
-    "mtime": 1781635891.2830987,
-    "ast_hash": "a57d2ccd18d656e79a1b4f33c5389620",
-    "semantic_hash": ""
-  },
-  "internal/infrastructure/postgres_provider_repository.go": {
-    "mtime": 1781494951.7841518,
-    "ast_hash": "bd699cf167f01892bff4de30a381776b",
-    "semantic_hash": ""
-  },
-  "internal/infrastructure/postgres_shipment_repository.go": {
-    "mtime": 1781580764.4145463,
-    "ast_hash": "726edcde4143dc298d49b6cec65e7e45",
-    "semantic_hash": ""
-  },
-  "internal/infrastructure/postgres_winery_repository.go": {
-    "mtime": 1781537780.2913795,
-    "ast_hash": "bd9258333e54b6b2fcdc2b25a748b548",
-    "semantic_hash": ""
-  },
-  "internal/middleware/auth.go": {
-    "mtime": 1781419232.5517602,
-    "ast_hash": "1380af93f5b51845bfba30510c85a0a6",
-    "semantic_hash": ""
-  },
-  "internal/repository/product_entry_repository.go": {
-    "mtime": 1781635870.4701464,
-    "ast_hash": "6fcc59c20026acce12fd472578e87cd9",
-    "semantic_hash": ""
-  },
-  "internal/repository/provider_repository.go": {
-    "mtime": 1781411507.130105,
-    "ast_hash": "a6d7ab514700cf3ea42c611dc7dbc085",
-    "semantic_hash": ""
-  },
-  "internal/repository/shipment_repository.go": {
-    "mtime": 1781580701.7270715,
-    "ast_hash": "37cce0eff58bbb0c691f30196b6c37a8",
-    "semantic_hash": ""
-  },
-  "internal/repository/winery_repository.go": {
-    "mtime": 1781537763.9548328,
-    "ast_hash": "170d0fc29a2e7ff8c819bf7ad82b17b1",
-    "semantic_hash": ""
-  },
-  "internal/usecase/product_entry_usecase.go": {
-    "mtime": 1781635877.5892022,
-    "ast_hash": "615a48f6f26ef088d6cc295daf91f7be",
-    "semantic_hash": ""
-  },
-  "internal/usecase/provider_usecase.go": {
-    "mtime": 1781494972.0001323,
-    "ast_hash": "492fb0437f73fb860b49f31231aa3f21",
-    "semantic_hash": ""
-  },
-  "internal/usecase/shipment_usecase.go": {
-    "mtime": 1781580716.295599,
-    "ast_hash": "3799405b2e3024f569888a9dc235ab65",
-    "semantic_hash": ""
-  },
-  "internal/usecase/winery_usecase.go": {
-    "mtime": 1781539672.2143042,
-    "ast_hash": "a598432b9c34659cd925765fec7b5532",
     "semantic_hash": ""
   }
 }

@@ -1,8 +1,16 @@
 # Atreides — Guía de uso para tu cafetería-librería
 
-> *"El poder de gobernar está en los pequeños detalles."* — Adaptado de las enseñanzas de Thufir Hawat, Mentat de la Casa Atreides.
+> *"El poder de gobernar está en los pequeños detalles."* — Thufir Hawat, Mentat de la Casa Atreides.
+>
+> *"Un buen Duque conoce cada rincón de su feudo."* — Leto Atreides, *Dune*
 
-**Atreides** es el cerebro digital de tu negocio. Así como la Casa Atreides administraba los recursos de Caladan y luego las riquezas de Arrakis, este sistema te permite gobernar tu cafetería-librería desde un solo lugar: productos, inventario, órdenes, clientes y proveedores, con todo lo que necesita una empresa colombiana para operar en regla.
+**Atreides** es el gobierno digital de tu negocio. Así como la Casa Atreides
+administraba los recursos de Caladan — el agua, los cultivos, las cosechas — y
+luego las riquezas de Arrakis — la especia, los silos, las rutas comerciales —,
+este sistema te permite gobernar tu empresa desde un solo lugar: productos,
+inventario, órdenes, clientes y proveedores.
+
+> **Bienvenido a tu Casa. Bienvenido a Atreides.**
 
 Esta guía está escrita para ti, dueño o administrador de un negocio, sin importar tu nivel de experiencia con tecnología. Aquí aprenderás a dar tus primeros pasos: crear tu cuenta, registrar tu empresa y añadir tu primer producto.
 
@@ -277,9 +285,17 @@ Los errores del servidor son poco frecuentes. Si ves uno, espera unos segundos y
 ---
 
 > *"Un comienzo es un tiempo muy delicado."* — Princesa Irulan, *Dune*
+>
+> *"La supervivencia es la capacidad de nadar en un océano de caos."* — Leto Atreides
 
-Al igual que la Casa Atreides, tu negocio está destinado a crecer. Cada producto que registras, cada orden que creas y cada proveedor que agregas fortalece el gobierno digital de tu emprendimiento. **Bienvenido a Atreides.**
+Al igual que la Casa Atreides expandió su influencia de Caladan a Arrakis, tu
+negocio está destinado a crecer. Cada producto que registras, cada orden que
+creas y cada proveedor que agregas fortalece el gobierno digital de tu
+emprendimiento.
+
+**Que el honor de la Casa te guíe. Bienvenido a Atreides.**
 
 ---
 
-*Documento v1.0 — Junio 2026*
+*Documento v1.1 — Junio 2026*
+*Casa Atreides — Inspirado en la saga *Dune* de Frank Herbert*

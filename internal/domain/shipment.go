@@ -12,7 +12,7 @@ type ShipmentDetail struct {
 }
 
 type SourceDocument struct {
-	EntryID string `json:"entry_id"`
+	EntryIDs []string `json:"entry_ids"`
 }
 
 type Recipient struct {

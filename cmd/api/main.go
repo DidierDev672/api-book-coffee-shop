@@ -182,9 +182,6 @@ func main() {
 }
 
 func runMigrations(db *sql.DB) error {
-	db.Exec(`DROP TABLE IF EXISTS movements CASCADE`)
-	db.Exec(`DROP TABLE IF EXISTS companies CASCADE`)
-
 	migrations := []string{
 		`CREATE TABLE IF NOT EXISTS authors (
 			id          VARCHAR(50) PRIMARY KEY,

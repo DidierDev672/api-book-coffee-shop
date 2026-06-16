@@ -1,18 +1,12 @@
-# Graph Report - api-book-coffee-shop  (2026-06-16)
+# Graph Report - .  (2026-06-15)
 
 ## Corpus Check
-- 121 files · ~28,538 words
-- Verdict: corpus is large enough that graph structure adds value.
+- Corpus is ~28,271 words - fits in a single context window. You may not need a graph.
 
 ## Summary
-- 893 nodes · 1590 edges · 104 communities (67 shown, 37 thin omitted)
+- 890 nodes · 1582 edges · 99 communities (62 shown, 37 thin omitted)
 - Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 112 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `953aee08`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Core Infrastructure (61)|Core Infrastructure (61)]]
@@ -111,11 +105,6 @@
 - [[_COMMUNITY_Singleton topic_repository.go|Singleton: topic_repository.go]]
 - [[_COMMUNITY_Singleton user_repository.go|Singleton: user_repository.go]]
 - [[_COMMUNITY_Singleton winery_repository.go|Singleton: winery_repository.go]]
-- [[_COMMUNITY_Community 99|Community 99]]
-- [[_COMMUNITY_Community 100|Community 100]]
-- [[_COMMUNITY_Community 101|Community 101]]
-- [[_COMMUNITY_Community 102|Community 102]]
-- [[_COMMUNITY_Community 103|Community 103]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `main()` - 68 edges
@@ -125,9 +114,9 @@
 5. `AuthUseCase` - 11 edges
 6. `CompanyHandler` - 10 edges
 7. `OrderHandler` - 10 edges
-8. `ProductEntryHandler` - 10 edges
-9. `PostgresCompanyRepository` - 10 edges
-10. `AuthorHandler` - 9 edges
+8. `PostgresCompanyRepository` - 10 edges
+9. `AuthorHandler` - 9 edges
+10. `BookHandler` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `main()` --calls--> `JWTSecret()`  [INFERRED]
@@ -144,27 +133,27 @@
 ## Import Cycles
 - None detected.
 
-## Communities (104 total, 37 thin omitted)
+## Communities (99 total, 37 thin omitted)
 
 ### Community 0 - "Core Infrastructure (61)"
-Cohesion: 0.31
-Nodes (5): NewPostgresBookRepository(), nullIfEmpty(), PostgresBookRepository, Book, DB
+Cohesion: 0.05
+Nodes (25): NewPostgresBookRepository(), nullIfEmpty(), NewPostgresClientRepository(), NewPostgresMovementRepository(), NewPostgresMovementTypeRepository(), NewPostgresNoteRepository(), NewPostgresOrderRepository(), PostgresBookRepository (+17 more)
 
 ### Community 1 - "Core Infrastructure (44)"
 Cohesion: 0.07
 Nodes (33): HandlerFunc, NewAuthHandler(), AuthHandler, AuthUseCase, Request, ResponseWriter, Handler, TokenService (+25 more)
 
 ### Community 2 - "Core Infrastructure (33)"
-Cohesion: 0.33
-Nodes (5): Topic, TopicRepository, NewTopicUseCase(), validateTopicFields(), TopicUseCase
+Cohesion: 0.10
+Nodes (15): AuthorRepository, Author, MonthlySummary, Topic, MonthlySummaryRepository, TopicRepository, generateID(), NewAuthorUseCase() (+7 more)
 
 ### Community 3 - "Core Infrastructure (32)"
 Cohesion: 0.08
 Nodes (16): main(), runMigrations(), DB, DefaultPostgresConfig(), JWTSecret(), PostgresConfig, EnsureDatabaseExists(), NewBcryptPasswordHasher() (+8 more)
 
 ### Community 4 - "HTTP Handlers (15)"
-Cohesion: 0.09
-Nodes (19): AuthorRepository, ClientRepository, CompanyRepository, id, Author, Client, Company, nit (+11 more)
+Cohesion: 0.24
+Nodes (8): CompanyRepository, id, Company, nit, NewCompanyUseCase(), validateCompanyFields(), CompanyUseCase, userID
 
 ### Community 5 - "HTTP Handlers (15)"
 Cohesion: 0.24
@@ -223,7 +212,7 @@ Cohesion: 0.27
 Nodes (6): NewPostgresProviderRepository(), scanProvider(), PostgresProviderRepository, DB, Provider, Row
 
 ### Community 19 - "Repository: FinancialSummary (13)"
-Cohesion: 0.29
+Cohesion: 0.31
 Nodes (7): FinancialSummary, ProductEntry, ProductEntryDetail, ProductEntryRepository, NewProductEntryUseCase(), validateProductEntryFields(), ProductEntryUseCase
 
 ### Community 20 - "BookUseCase (12)"
@@ -255,7 +244,7 @@ Cohesion: 0.42
 Nodes (5): NewNoteHandler(), NoteHandler, Request, ResponseWriter, NoteUseCase
 
 ### Community 27 - "product_entry.go (12)"
-Cohesion: 0.41
+Cohesion: 0.42
 Nodes (5): NewProductEntryHandler(), ProductEntryHandler, Request, ResponseWriter, ProductEntryUseCase
 
 ### Community 28 - "product.go (12)"
@@ -275,7 +264,7 @@ Cohesion: 0.42
 Nodes (5): NewWineryHandler(), WineryHandler, Request, ResponseWriter, WineryUseCase
 
 ### Community 32 - "postgres_product_entry_repository.go (12)"
-Cohesion: 0.26
+Cohesion: 0.27
 Nodes (6): NewPostgresProductEntryRepository(), scanProductEntry(), PostgresProductEntryRepository, DB, ProductEntry, Row
 
 ### Community 33 - "postgres_shipment_repository.go (12)"
@@ -295,8 +284,8 @@ Cohesion: 0.33
 Nodes (5): BookRepository, Book, NewBookUseCase(), validateBookFields(), BookUseCase
 
 ### Community 37 - "ClientRepository (11)"
-Cohesion: 0.31
-Nodes (4): NewPostgresClientRepository(), PostgresClientRepository, Client, DB
+Cohesion: 0.33
+Nodes (5): ClientRepository, Client, NewClientUseCase(), validateClientFields(), ClientUseCase
 
 ### Community 38 - "EconomicActivityRepository (11)"
 Cohesion: 0.33
@@ -352,7 +341,7 @@ Nodes (4): NewPostgresMonthlySummaryRepository(), PostgresMonthlySummaryReposito
 
 ### Community 51 - "postgres_repository.go (10)"
 Cohesion: 0.31
-Nodes (4): NewPostgresMainAddressRepository(), PostgresMainAddressRepository, DB, MainAddress
+Nodes (4): NewPostgresAuthorRepository(), PostgresAuthorRepository, Author, DB
 
 ### Community 52 - "postgres_tax_information_repository.go (10)"
 Cohesion: 0.31
@@ -382,26 +371,6 @@ Nodes (4): FinancialSummary, ProductEntry, ProductEntryDetail, Time
 Cohesion: 0.67
 Nodes (4): Order, OrderDetail, FinancialSummary, Time
 
-### Community 99 - "Community 99"
-Cohesion: 0.31
-Nodes (4): NewPostgresMovementRepository(), PostgresMovementRepository, DB, Movement
-
-### Community 100 - "Community 100"
-Cohesion: 0.31
-Nodes (4): NewPostgresMovementTypeRepository(), PostgresMovementTypeRepository, DB, MovementType
-
-### Community 101 - "Community 101"
-Cohesion: 0.31
-Nodes (4): NewPostgresNoteRepository(), PostgresNoteRepository, DB, Note
-
-### Community 102 - "Community 102"
-Cohesion: 0.31
-Nodes (4): NewPostgresOrderRepository(), PostgresOrderRepository, DB, Order
-
-### Community 103 - "Community 103"
-Cohesion: 0.33
-Nodes (4): MonthlySummary, MonthlySummaryRepository, NewMonthlySummaryUseCase(), MonthlySummaryUseCase
-
 ## Knowledge Gaps
 - **73 isolated node(s):** `DB`, `PostgresConfig`, `Time`, `Time`, `Time` (+68 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -410,7 +379,7 @@ Nodes (4): MonthlySummary, MonthlySummaryRepository, NewMonthlySummaryUseCase(),
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `Core Infrastructure (32)` to `Core Infrastructure (61)`, `Core Infrastructure (44)`, `Core Infrastructure (33)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `EconomicActivityUseCase (13)`, `main_address.go (13)`, `order.go (13)`, `provider.go (13)`, `tax_information.go (13)`, `postgres_provider_repository.go (13)`, `Repository: FinancialSummary (13)`, `BookUseCase (12)`, `ClientUseCase (12)`, `EstablishmentUseCase (12)`, `monthly_summary.go (12)`, `movement.go (12)`, `movement_type.go (12)`, `note.go (12)`, `product_entry.go (12)`, `product.go (12)`, `shipment.go (12)`, `topic.go (12)`, `winery.go (12)`, `postgres_product_entry_repository.go (12)`, `postgres_shipment_repository.go (12)`, `Movement (12)`, `Product (12)`, `BookRepository (11)`, `ClientRepository (11)`, `EconomicActivityRepository (11)`, `EstablishmentRepository (11)`, `postgres_product_repository.go (11)`, `postgres_winery_repository.go (11)`, `MainAddress (11)`, `Note (11)`, `Provider (11)`, `TaxInformation (11)`, `Winery (11)`, `postgres_economic_activity_repository.go (10)`, `postgres_establishment_repository.go (10)`, `postgres_monthly_summary_repository.go (10)`, `postgres_repository.go (10)`, `postgres_tax_information_repository.go (10)`, `postgres_topic_repository.go (10)`, `MovementType (10)`, `Community 99`, `Community 100`, `Community 101`, `Community 102`, `Community 103`?**
+- **Why does `main()` connect `Core Infrastructure (32)` to `Core Infrastructure (61)`, `Core Infrastructure (44)`, `Core Infrastructure (33)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `EconomicActivityUseCase (13)`, `main_address.go (13)`, `order.go (13)`, `provider.go (13)`, `tax_information.go (13)`, `postgres_provider_repository.go (13)`, `Repository: FinancialSummary (13)`, `BookUseCase (12)`, `ClientUseCase (12)`, `EstablishmentUseCase (12)`, `monthly_summary.go (12)`, `movement.go (12)`, `movement_type.go (12)`, `note.go (12)`, `product_entry.go (12)`, `product.go (12)`, `shipment.go (12)`, `topic.go (12)`, `winery.go (12)`, `postgres_product_entry_repository.go (12)`, `postgres_shipment_repository.go (12)`, `Movement (12)`, `Product (12)`, `BookRepository (11)`, `ClientRepository (11)`, `EconomicActivityRepository (11)`, `EstablishmentRepository (11)`, `postgres_product_repository.go (11)`, `postgres_winery_repository.go (11)`, `MainAddress (11)`, `Note (11)`, `Provider (11)`, `TaxInformation (11)`, `Winery (11)`, `postgres_economic_activity_repository.go (10)`, `postgres_establishment_repository.go (10)`, `postgres_monthly_summary_repository.go (10)`, `postgres_repository.go (10)`, `postgres_tax_information_repository.go (10)`, `postgres_topic_repository.go (10)`, `MovementType (10)`?**
   _High betweenness centrality (0.669) - this node is a cross-community bridge._
 - **Why does `NewAuthMiddleware()` connect `Core Infrastructure (44)` to `Core Infrastructure (32)`?**
   _High betweenness centrality (0.046) - this node is a cross-community bridge._
@@ -422,5 +391,5 @@ _Questions this graph is uniquely positioned to answer:_
   _`nullIfEmpty()` has 15 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `DB`, `PostgresConfig`, `Time` to the rest of the system?**
   _73 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Core Infrastructure (44)` be split into smaller, more focused modules?**
-  _Cohesion score 0.06871035940803383 - nodes in this community are weakly interconnected._
+- **Should `Core Infrastructure (61)` be split into smaller, more focused modules?**
+  _Cohesion score 0.053005464480874315 - nodes in this community are weakly interconnected._

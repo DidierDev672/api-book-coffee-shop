@@ -1,34 +1,66 @@
-# Atreides — API REST
+# Atreides — API REST de la Casa Atreides
 
 > *"Un comienzo es un tiempo muy delicado."* — Princesa Irulan, *Dune*
+>
+> *"El poder de gobernar está en los pequeños detalles."* — Thufir Hawat, Mentat de la Casa Atreides
 
-API REST escrita en Go siguiendo **Clean Architecture** con capas de dominio, casos de uso, repositorios e infraestructura. El nombre **Atreides** evoca la Casa Atreides de *Dune*: un linaje que crece, se adapta y se expande a nuevos territorios. Así como la Casa Atreides gobernó Caladan y luego Arrakis, esta API está diseñada para gobernar múltiples dominios de negocio — desde una librería-cafetería hasta proyectos más grandes que compartan el mismo núcleo fiscal, inventario y autenticación.
+API REST escrita en Go que implementa el gobierno digital de tu negocio con la
+misma nobleza y estrategia de la **Casa Atreides** de *Dune*.
+
+Así como la Casa Atreides gobernó Caladan (el dominio de los datos puros) y
+luego conquistó Arrakis (la base de datos donde fluye la especia del inventario),
+esta API está construida con **Clean Architecture** — cada capa es un feudo con
+su propósito: dominio, casos de uso, repositorios e infraestructura.
+
+| Concepto Dune | Componente Atreides API |
+|---|---|
+| **Casa Atreides** | El sistema completo — 29 endpoints, 19 handlers |
+| **Caladan** (mundo oceánico) | `internal/domain/` — entidades puras sin dependencias externas |
+| **Arrakis** (planeta desierto) | `internal/infrastructure/` — repositorios PostgreSQL donde se extraen los datos |
+| **Mentat** (Thufir Hawat) | `internal/config/` + `internal/usecase/` — la lógica que calcula cada movimiento |
+| **Maestro de Armas** (Gurney Halleck) | `internal/middleware/` — AuthMiddleware, RecoveryMiddleware, validación |
+| **Consejo de Guerra** | `internal/handler/` — cada handler decide cómo responder al Imperio (el cliente HTTP) |
+| **Especia Melange** | Los datos — el recurso más valioso que debe fluir sin interrupción |
+| **Sardaukars** | JSONB + PostgreSQL — implacables, eficientes, almacenan todo |
+
+> Inspirado en el linaje Atreides: un linaje que crece, se adapta y se expande
+> a nuevos territorios. Desde una librería-cafetería hasta cualquier dominio
+> de negocio que comparta el mismo núcleo fiscal, inventario y autenticación.
 
 ---
 
-## Descripción general
+## Descripción general — *Los Dominios de la Casa*
 
-Sistema backend monolitico que expone **29 endpoints HTTP** para administrar:
+> *"La Casa Atreides gobierna donde otros apenas sobreviven."*
 
-- **Gestión empresarial colombiana**: Compañías (NIT), direcciones, actividades económicas, información tributaria (regímenes, responsables de IVA, autorretenedores, grandes contribuyentes).
-- **Inventario y producto**: Productos con categorías, unidades de medida, stock mínimo, cantidad, proveedores, bodegas, entradas de producto con detalle JSONB y resumen financiero, movimientos de inventario, resúmenes mensuales.
-- **Bodegas**: Bodegas con área, unidades, fecha de registro, vinculadas a compañía.
-- **Órdenes y ventas**: Órdenes con detalles JSONB, métodos de pago (`cash`, `transfer`, `debit-card`, `credit-card`), estados (`received`, `in-preparation`, `ready-for-delivery`, `delivered`, `cancelled`).
-- **Autenticación**: Registro y login con JWT HS256 + bcrypt, middleware de autenticación para rutas protegidas.
-- **Módulo editorial (legacy)**: Autores, libros, tópicos y notas.
-- **Clientes**: CRUD de clientes.
+Sistema backend monolitico que expone **29 endpoints HTTP** para administrar
+los dominios de tu negocio, como la Casa Atreides administraba los recursos
+de Caladan y luego las riquezas de Arrakis:
 
-### Stack técnico
+| Dominio Atreides | Recurso API | Descripción |
+|---|---|---|
+| **El Gran Almacén** | Productos, Bodegas, Entradas | Control de inventario con JSONB y resúmenes financieros |
+| **El Feudo Fiscal** | Compañías, Direcciones, Actividades Económicas, Info Tributaria | Gestión empresarial colombiana (NIT, regímenes, IVA) |
+| **El Consejo de Órdenes** | Órdenes, Despachos, Clientes | Ventas con métodos de pago y estados tipo Dune |
+| **La Guardia del Palacio** | Auth (JWT + bcrypt) | Registro y login, middleware de autenticación para rutas protegidas |
+| **La Biblioteca de Caladan** | Autores, Libros, Tópicos, Notas | Módulo editorial (legacy, como los archivos históricos de la Casa) |
 
-| Capa | Tecnología |
-|------|-----------|
-| Lenguaje | **Go 1.26.3** |
-| Base de datos | **PostgreSQL 15+** con JSONB, arrays (`TEXT[]`), `uuid-ossp` |
-| Autenticación | **JWT HS256** (`github.com/golang-jwt/jwt/v5`) + **bcrypt** (`golang.org/x/crypto`) |
-| Driver BD | `github.com/lib/pq` v1.12.3 |
-| Validación | `github.com/go-playground/validator/v10` (solo en `models/`) |
-| CORS | `github.com/rs/cors` v1.11.1 |
-| Arquitectura | Clean Architecture (Domain → Repository → Usecase → Handler → Infrastructure) |
+> Detalle de los endpoints y operaciones en la sección [Catálogo completo de rutas](#catálogo-completo-de-rutas).
+
+### Stack técnico — *El Arsenal de la Casa*
+
+> Como el Mentat prepara sus cálculos y el Maestro de Armas afila sus espadas,
+> cada tecnología en este stack fue elegida con precisión.
+
+| Capa | Tecnología | Rol en la Casa Atreides |
+|------|-----------|------------------------|
+| Lenguaje | **Go 1.26.3** | El carácter del Duque — rápido, confiable, sin concesiones |
+| Base de datos | **PostgreSQL 15+** (JSONB, arrays, `uuid-ossp`) | Arrakis — almacena la especia (datos) en su forma más pura |
+| Autenticación | **JWT HS256** + **bcrypt** | El Sello de la Casa — solo quienes portan el token correcto cruzan el puente |
+| Driver BD | `github.com/lib/pq` v1.12.3 | Los gusanos de arena — transportan datos desde las profundidades |
+| Validación | `go-playground/validator/v10` | El Catecismo Fremen — cada campo debe cumplir su ley |
+| CORS | `github.com/rs/cors` v1.11.1 | El Muro de Shield — solo los orígenes permitidos traspasan |
+| Arquitectura | Clean Architecture | La Estructura del Landsraad — cada capa conoce su lugar |
 
 ### Estructura del proyecto
 
@@ -805,3 +837,36 @@ No, es opcional. Si no se envía en la petición (o se envía como `""`), el pro
 ```
 "received", "in-preparation", "ready-for-delivery", "delivered", "cancelled"
 ```
+
+---
+
+## Sobre la Casa Atreides
+
+> *"Un hombre debe ver antes de poder actuar."*
+> — Leto Atreides, *Dune*
+
+Esta API no es solo un conjunto de endpoints. Es el **gobierno digital** de tu
+negocio, construido con el honor y la estrategia de la más noble Casa del
+Landsraad.
+
+### Principios de la Casa
+
+1. **Honor en los datos** — Cada transacción es ACID, cada respuesta es JSON,
+   cada error tiene un código. No mentimos al Imperio.
+2. **Estrategia en la arquitectura** — Clean Architecture no es un lujo, es una
+   necesidad. Como el Mentat calcula rutas de especia, cada capa tiene un
+   propósito definido.
+3. **Adaptación constante** — Así como los Atreides pasaron de Caladan a Arrakis,
+   esta API puede gobernar cualquier dominio de negocio. El mismo núcleo fiscal,
+   inventario y autenticación funciona para una cafetería, una bodega o una
+   cadena de suministro completa.
+4. **Legado mantenible** — El código que escribes hoy será la base del imperio
+   de mañana. Sin deuda técnica evitable, sin magia, sin atajos.
+
+> *"El poder de gobernar está en los pequeños detalles."*
+> — Thufir Hawat, Mentat de la Casa Atreides
+
+---
+
+*Atreides API v2.0 — Documentación de la Casa*
+*Inspirado en la saga *Dune* de Frank Herbert*

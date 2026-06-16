@@ -21,6 +21,7 @@ type ProductEntryUseCase interface {
 	Create(entryNumber, registeredDate, movementType, warehouse, responsibleParty, companyID string, details []domain.ProductEntryDetail, financialSummary domain.FinancialSummary, observations string) (*domain.ProductEntry, error)
 	GetByID(id string) (*domain.ProductEntry, error)
 	GetAll() ([]*domain.ProductEntry, error)
+	GetByProductCodes(codes []string, companyID string) ([]*domain.ProductEntry, error)
 	Update(id, entryNumber, registeredDate, movementType, warehouse, responsibleParty, companyID string, details []domain.ProductEntryDetail, financialSummary domain.FinancialSummary, observations string) (*domain.ProductEntry, error)
 	Delete(id string) error
 }
@@ -68,6 +69,16 @@ func (uc *productEntryUseCase) GetByID(id string) (*domain.ProductEntry, error) 
 
 func (uc *productEntryUseCase) GetAll() ([]*domain.ProductEntry, error) {
 	return uc.repo.GetAll()
+}
+
+func (uc *productEntryUseCase) GetByProductCodes(codes []string, companyID string) ([]*domain.ProductEntry, error) {
+	if len(codes) == 0 {
+		return nil, errors.New("codes cannot be empty")
+	}
+	if companyID == "" {
+		return nil, errors.New("company_id cannot be empty")
+	}
+	return uc.repo.GetByProductCodes(codes, companyID)
 }
 
 func (uc *productEntryUseCase) Update(id, entryNumber, registeredDate, movementType, warehouse, responsibleParty, companyID string, details []domain.ProductEntryDetail, financialSummary domain.FinancialSummary, observations string) (*domain.ProductEntry, error) {

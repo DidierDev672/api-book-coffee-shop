@@ -23,6 +23,11 @@ func (h *ProductEntryHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	path := strings.TrimPrefix(r.URL.Path, "/product-entries")
 	id := strings.TrimPrefix(path, "/")
 
+	if r.Method == http.MethodGet && id == "by-product-codes" {
+		h.getByProductCodes(w, r)
+		return
+	}
+
 	switch r.Method {
 	case http.MethodGet:
 		if id != "" {
@@ -86,6 +91,27 @@ func (h *ProductEntryHandler) getByID(w http.ResponseWriter, r *http.Request, id
 		return
 	}
 	writeJSON(w, pe, http.StatusOK)
+}
+
+func (h *ProductEntryHandler) getByProductCodes(w http.ResponseWriter, r *http.Request) {
+	codesParam := r.URL.Query().Get("codes")
+	companyID := r.URL.Query().Get("company_id")
+	if codesParam == "" {
+		writeError(w, "codes query parameter is required", http.StatusBadRequest)
+		return
+	}
+	if companyID == "" {
+		writeError(w, "company_id query parameter is required", http.StatusBadRequest)
+		return
+	}
+	codes := strings.Split(codesParam, ",")
+
+	entries, err := h.uc.GetByProductCodes(codes, companyID)
+	if err != nil {
+		writeError(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	writeJSON(w, entries, http.StatusOK)
 }
 
 func (h *ProductEntryHandler) getAll(w http.ResponseWriter, r *http.Request) {
