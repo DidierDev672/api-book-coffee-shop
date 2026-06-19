@@ -66,7 +66,7 @@ func (h *ProductHandler) create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	p, err := h.uc.Create(req.CompanyID, req.SupplierID, req.Name, req.ProductCode, req.Categories, req.Unit, req.Quantity, req.MinimumStock, req.WineryID)
+	p, err := h.uc.Create(req.CompanyID, req.SupplierID, req.Name, req.ProductCode, req.Categories, req.Unit, req.Quantity, req.MinimumStock, req.WineryID, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -116,7 +116,7 @@ func (h *ProductHandler) update(w http.ResponseWriter, r *http.Request, id strin
 		return
 	}
 
-	p, err := h.uc.Update(id, req.SupplierID, req.Name, req.ProductCode, req.Categories, req.Unit, req.Quantity, req.MinimumStock, req.WineryID)
+	p, err := h.uc.Update(id, req.SupplierID, req.Name, req.ProductCode, req.Categories, req.Unit, req.Quantity, req.MinimumStock, req.WineryID, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -126,7 +126,7 @@ func (h *ProductHandler) update(w http.ResponseWriter, r *http.Request, id strin
 }
 
 func (h *ProductHandler) delete(w http.ResponseWriter, r *http.Request, id string) {
-	if err := h.uc.Delete(id); err != nil {
+	if err := h.uc.Delete(id, extractIP(r)); err != nil {
 		writeError(w, err.Error(), http.StatusNotFound)
 		return
 	}

@@ -6,13 +6,14 @@ import (
 	"errors"
 
 	"book-coffee-shop/internal/domain"
+	"book-coffee-shop/internal/repository"
 )
 
 type PostgresShipmentRepository struct {
-	db *sql.DB
+	db repository.DBTX
 }
 
-func NewPostgresShipmentRepository(db *sql.DB) *PostgresShipmentRepository {
+func NewPostgresShipmentRepository(db repository.DBTX) *PostgresShipmentRepository {
 	return &PostgresShipmentRepository{db: db}
 }
 

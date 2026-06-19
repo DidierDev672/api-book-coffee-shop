@@ -5,15 +5,15 @@ import (
 	"errors"
 
 	"book-coffee-shop/internal/domain"
-
+	"book-coffee-shop/internal/repository"
 	"github.com/lib/pq"
 )
 
 type PostgresProductRepository struct {
-	db *sql.DB
+	db repository.DBTX
 }
 
-func NewPostgresProductRepository(db *sql.DB) *PostgresProductRepository {
+func NewPostgresProductRepository(db repository.DBTX) *PostgresProductRepository {
 	return &PostgresProductRepository{db: db}
 }
 

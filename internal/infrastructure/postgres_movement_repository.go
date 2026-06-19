@@ -5,13 +5,14 @@ import (
 	"errors"
 
 	"book-coffee-shop/internal/domain"
+	"book-coffee-shop/internal/repository"
 )
 
 type PostgresMovementRepository struct {
-	db *sql.DB
+	db repository.DBTX
 }
 
-func NewPostgresMovementRepository(db *sql.DB) *PostgresMovementRepository {
+func NewPostgresMovementRepository(db repository.DBTX) *PostgresMovementRepository {
 	return &PostgresMovementRepository{db: db}
 }
 

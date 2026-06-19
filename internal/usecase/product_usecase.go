@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"database/sql"
 	"errors"
 	"slices"
 	"time"
@@ -12,23 +13,26 @@ import (
 var validUnits = []string{"Kg", "Litro", "Libra", "Gramos", "Unidad"}
 
 type ProductUseCase interface {
-	Create(companyID, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID string) (*domain.Product, error)
+	Create(companyID, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID, ipAddress string) (*domain.Product, error)
 	GetByID(id string) (*domain.Product, error)
 	GetAll() ([]*domain.Product, error)
 	GetByCompanyID(companyID string) ([]*domain.Product, error)
-	Update(id, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID string) (*domain.Product, error)
-	Delete(id string) error
+	Update(id, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID, ipAddress string) (*domain.Product, error)
+	Delete(id, ipAddress string) error
 }
 
 type productUseCase struct {
-	repo repository.ProductRepository
+	db          *sql.DB
+	repo        repository.ProductRepository
+	repoFactory repository.ProductRepoFactory
+	historySvc  *HistoryService
 }
 
-func NewProductUseCase(repo repository.ProductRepository) ProductUseCase {
-	return &productUseCase{repo: repo}
+func NewProductUseCase(db *sql.DB, repo repository.ProductRepository, repoFactory repository.ProductRepoFactory, historySvc *HistoryService) ProductUseCase {
+	return &productUseCase{db: db, repo: repo, repoFactory: repoFactory, historySvc: historySvc}
 }
 
-func (uc *productUseCase) Create(companyID, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID string) (*domain.Product, error) {
+func (uc *productUseCase) Create(companyID, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID, ipAddress string) (*domain.Product, error) {
 	if err := validateProductFields(productCode, categories, unit); err != nil {
 		return nil, err
 	}
@@ -51,7 +55,26 @@ func (uc *productUseCase) Create(companyID, supplierID, name, productCode string
 		UpdatedAt:    time.Now(),
 	}
 
-	if err := uc.repo.Create(p); err != nil {
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	prodRepo := uc.repoFactory(tx)
+	if err := prodRepo.Create(p); err != nil {
+		return nil, err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeCREATE, "", companyID,
+		p.ID, "product", "Product "+p.Name+" created",
+		ipAddress, nil, p,
+	); err != nil {
+		return nil, err
+	}
+
+	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
 	return p, nil
@@ -75,7 +98,7 @@ func (uc *productUseCase) GetByCompanyID(companyID string) ([]*domain.Product, e
 	return uc.repo.GetByCompanyID(companyID)
 }
 
-func (uc *productUseCase) Update(id, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID string) (*domain.Product, error) {
+func (uc *productUseCase) Update(id, supplierID, name, productCode string, categories []string, unit string, quantity, minimumStock float64, wineryID, ipAddress string) (*domain.Product, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
@@ -86,32 +109,80 @@ func (uc *productUseCase) Update(id, supplierID, name, productCode string, categ
 		return nil, errors.New("name cannot be empty")
 	}
 
-	p, err := uc.repo.GetByID(id)
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	prodRepo := uc.repoFactory(tx)
+	existing, err := prodRepo.GetByID(id)
 	if err != nil {
 		return nil, err
 	}
 
-	p.SupplierID = supplierID
-	p.Name = name
-	p.ProductCode = productCode
-	p.Categories = categories
-	p.Unit = unit
-	p.Quantity = quantity
-	p.MinimumStock = minimumStock
-	p.WineryID = wineryID
-	p.UpdatedAt = time.Now()
+	previousData := *existing
 
-	if err := uc.repo.Update(p); err != nil {
+	existing.SupplierID = supplierID
+	existing.Name = name
+	existing.ProductCode = productCode
+	existing.Categories = categories
+	existing.Unit = unit
+	existing.Quantity = quantity
+	existing.MinimumStock = minimumStock
+	existing.WineryID = wineryID
+	existing.UpdatedAt = time.Now()
+
+	if err := prodRepo.Update(existing); err != nil {
 		return nil, err
 	}
-	return p, nil
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeUPDATE, "", existing.CompanyID,
+		id, "product", "Product "+existing.Name+" updated",
+		ipAddress, previousData, existing,
+	); err != nil {
+		return nil, err
+	}
+
+	if err := tx.Commit(); err != nil {
+		return nil, err
+	}
+	return existing, nil
 }
 
-func (uc *productUseCase) Delete(id string) error {
+func (uc *productUseCase) Delete(id, ipAddress string) error {
 	if id == "" {
 		return errors.New("id cannot be empty")
 	}
-	return uc.repo.Delete(id)
+
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	prodRepo := uc.repoFactory(tx)
+	p, err := prodRepo.GetByID(id)
+	if err != nil {
+		return err
+	}
+
+	previousData := *p
+
+	if err := prodRepo.Delete(id); err != nil {
+		return err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeCANCEL, "", p.CompanyID,
+		id, "product", "Product "+p.Name+" deleted",
+		ipAddress, previousData, nil,
+	); err != nil {
+		return err
+	}
+
+	return tx.Commit()
 }
 
 func validateProductFields(productCode string, categories []string, unit string) error {

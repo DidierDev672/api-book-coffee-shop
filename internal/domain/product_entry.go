@@ -15,6 +15,11 @@ type ProductEntryDetail struct {
 	SuggestedSellingPrice float64 `json:"suggested_selling_price"`
 }
 
+type Deduction struct {
+	Code     string  `json:"code"`
+	Quantity float64 `json:"quantity"`
+}
+
 type FinancialSummary struct {
 	PurchaseSubtotal float64 `json:"purchase_subtotal"`
 	VAT              float64 `json:"vat"`

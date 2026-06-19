@@ -9,6 +9,10 @@ import (
 	"book-coffee-shop/internal/usecase"
 )
 
+type DeductRequest struct {
+	Deductions []domain.Deduction `json:"deductions"`
+}
+
 type ProductEntryHandler struct {
 	uc usecase.ProductEntryUseCase
 }
@@ -23,8 +27,21 @@ func (h *ProductEntryHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	path := strings.TrimPrefix(r.URL.Path, "/product-entries")
 	id := strings.TrimPrefix(path, "/")
 
-	if r.Method == http.MethodGet && id == "by-product-codes" {
-		h.getByProductCodes(w, r)
+	if id == "by-product-codes" {
+		if r.Method == http.MethodGet {
+			h.getByProductCodes(w, r)
+			return
+		}
+		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	if id != "" && strings.HasSuffix(id, "/deduct") {
+		if r.Method == http.MethodPatch {
+			h.deductQuantity(w, r, strings.TrimSuffix(id, "/deduct"))
+			return
+		}
+		writeError(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -74,7 +91,7 @@ func (h *ProductEntryHandler) create(w http.ResponseWriter, r *http.Request) {
 	pe, err := h.uc.Create(
 		req.EntryNumber, req.RegisteredDate, req.MovementType,
 		req.Warehouse, req.ResponsibleParty, req.CompanyID,
-		req.Details, req.FinancialSummary, req.Observations,
+		req.Details, req.FinancialSummary, req.Observations, extractIP(r),
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
@@ -143,19 +160,40 @@ func (h *ProductEntryHandler) update(w http.ResponseWriter, r *http.Request, id 
 	pe, err := h.uc.Update(
 		id, req.EntryNumber, req.RegisteredDate, req.MovementType,
 		req.Warehouse, req.ResponsibleParty, req.CompanyID,
-		req.Details, req.FinancialSummary, req.Observations,
+		req.Details, req.FinancialSummary, req.Observations, extractIP(r),
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
 	writeJSON(w, pe, http.StatusOK)
 }
 
 func (h *ProductEntryHandler) delete(w http.ResponseWriter, r *http.Request, id string) {
-	if err := h.uc.Delete(id); err != nil {
+	if err := h.uc.Delete(id, extractIP(r)); err != nil {
 		writeError(w, err.Error(), http.StatusNotFound)
 		return
 	}
 	w.WriteHeader(http.StatusNoContent)
+}
+
+func (h *ProductEntryHandler) deductQuantity(w http.ResponseWriter, r *http.Request, id string) {
+	var req DeductRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		writeError(w, "invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	if err := h.uc.DeductQuantity(id, req.Deductions); err != nil {
+		writeError(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	pe, err := h.uc.GetByID(id)
+	if err != nil {
+		writeError(w, err.Error(), http.StatusNotFound)
+		return
+	}
+	writeJSON(w, pe, http.StatusOK)
 }

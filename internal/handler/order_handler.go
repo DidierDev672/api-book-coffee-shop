@@ -76,7 +76,7 @@ func (h *OrderHandler) create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	order, err := h.uc.Create(req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder)
+	order, err := h.uc.Create(req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -121,16 +121,17 @@ func (h *OrderHandler) update(w http.ResponseWriter, r *http.Request, id string)
 		return
 	}
 
-	order, err := h.uc.Update(id, req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder)
+	order, err := h.uc.Update(id, req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
 	writeJSON(w, order, http.StatusOK)
 }
 
 func (h *OrderHandler) delete(w http.ResponseWriter, r *http.Request, id string) {
-	if err := h.uc.Delete(id); err != nil {
+	if err := h.uc.Delete(id, extractIP(r)); err != nil {
 		writeError(w, err.Error(), http.StatusNotFound)
 		return
 	}
@@ -138,7 +139,7 @@ func (h *OrderHandler) delete(w http.ResponseWriter, r *http.Request, id string)
 }
 
 func (h *OrderHandler) approve(w http.ResponseWriter, r *http.Request, id string) {
-	order, err := h.uc.Approve(id)
+	order, err := h.uc.Approve(id, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return

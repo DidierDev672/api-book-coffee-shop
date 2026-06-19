@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"database/sql"
 	"errors"
 	"slices"
 	"time"
@@ -10,26 +11,29 @@ import (
 )
 
 var validOrderTypes = []string{"PURCHASE", "REPLENISHMENT", "PRODUCTION", "TRANSFER"}
-var validStatuses = []string{"DRAFT", "PENDING", "APPROVED", "REJECTED", "COMPLETED"}
+var validStatuses = []string{"DRAFT", "PENDING", "APPROVED", "REJECTED", "COMPLETED", "CANCELED"}
 
 type OrderUseCase interface {
-	Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error)
+	Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*domain.Order, error)
 	GetByID(id string) (*domain.Order, error)
 	GetAll() ([]*domain.Order, error)
-	Update(id, orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error)
-	Delete(id string) error
-	Approve(id string) (*domain.Order, error)
+	Update(id, orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*domain.Order, error)
+	Delete(id, ipAddress string) error
+	Approve(id, ipAddress string) (*domain.Order, error)
 }
 
 type orderUseCase struct {
-	repo repository.OrderRepository
+	db          *sql.DB
+	repo        repository.OrderRepository
+	repoFactory repository.OrderRepoFactory
+	historySvc  *HistoryService
 }
 
-func NewOrderUseCase(repo repository.OrderRepository) OrderUseCase {
-	return &orderUseCase{repo: repo}
+func NewOrderUseCase(db *sql.DB, repo repository.OrderRepository, repoFactory repository.OrderRepoFactory, historySvc *HistoryService) OrderUseCase {
+	return &orderUseCase{db: db, repo: repo, repoFactory: repoFactory, historySvc: historySvc}
 }
 
-func (uc *orderUseCase) Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error) {
+func (uc *orderUseCase) Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*domain.Order, error) {
 	if err := validateOrderFields(orderNumeric, orderType, date, companyID, userID, details, status); err != nil {
 		return nil, err
 	}
@@ -50,7 +54,26 @@ func (uc *orderUseCase) Create(orderNumeric, orderType, date, companyID, userID,
 		UpdatedAt:        time.Now(),
 	}
 
-	if err := uc.repo.Create(order); err != nil {
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	orderRepo := uc.repoFactory(tx)
+	if err := orderRepo.Create(order); err != nil {
+		return nil, err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeORDER_CREATED, userID, companyID,
+		order.ID, "order", "Order "+order.OrderNumeric+" created",
+		ipAddress, nil, order,
+	); err != nil {
+		return nil, err
+	}
+
+	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
 	return order, nil
@@ -67,7 +90,7 @@ func (uc *orderUseCase) GetAll() ([]*domain.Order, error) {
 	return uc.repo.GetAll()
 }
 
-func (uc *orderUseCase) Update(id, orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder string) (*domain.Order, error) {
+func (uc *orderUseCase) Update(id, orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*domain.Order, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
@@ -75,45 +98,104 @@ func (uc *orderUseCase) Update(id, orderNumeric, orderType, date, companyID, use
 		return nil, err
 	}
 
-	order, err := uc.repo.GetByID(id)
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	orderRepo := uc.repoFactory(tx)
+	existing, err := orderRepo.GetByID(id)
 	if err != nil {
 		return nil, err
 	}
 
-	order.OrderNumeric = orderNumeric
-	order.OrderType = orderType
-	order.Date = date
-	order.CompanyID = companyID
-	order.UserID = userID
-	order.RequestedBy = requestedBy
-	order.Details = details
-	order.FinancialSummary = financialSummary
-	order.Status = status
-	order.ReasonForOrder = reasonForOrder
-	order.UpdatedAt = time.Now()
+	previousData := *existing
 
-	if err := uc.repo.Update(order); err != nil {
+	existing.OrderNumeric = orderNumeric
+	existing.OrderType = orderType
+	existing.Date = date
+	existing.CompanyID = companyID
+	existing.UserID = userID
+	existing.RequestedBy = requestedBy
+	existing.Details = details
+	existing.FinancialSummary = financialSummary
+	existing.Status = status
+	existing.ReasonForOrder = reasonForOrder
+	existing.UpdatedAt = time.Now()
+
+	if err := orderRepo.Update(existing); err != nil {
 		return nil, err
 	}
-	return order, nil
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeORDER_UPDATED, userID, companyID,
+		id, "order", "Order "+existing.OrderNumeric+" updated",
+		ipAddress, previousData, existing,
+	); err != nil {
+		return nil, err
+	}
+
+	if err := tx.Commit(); err != nil {
+		return nil, err
+	}
+	return existing, nil
 }
 
-func (uc *orderUseCase) Delete(id string) error {
+func (uc *orderUseCase) Delete(id, ipAddress string) error {
 	if id == "" {
 		return errors.New("id cannot be empty")
 	}
-	return uc.repo.Delete(id)
+
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	orderRepo := uc.repoFactory(tx)
+	order, err := orderRepo.GetByID(id)
+	if err != nil {
+		return err
+	}
+
+	previousData := *order
+	order.Status = "CANCELED"
+	order.UpdatedAt = time.Now()
+
+	if err := orderRepo.Update(order); err != nil {
+		return err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeCANCEL, order.UserID, order.CompanyID,
+		id, "order", "Order "+order.OrderNumeric+" canceled",
+		ipAddress, previousData, order,
+	); err != nil {
+		return err
+	}
+
+	return tx.Commit()
 }
 
-func (uc *orderUseCase) Approve(id string) (*domain.Order, error) {
+func (uc *orderUseCase) Approve(id, ipAddress string) (*domain.Order, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
 
-	order, err := uc.repo.GetByID(id)
+	tx, err := uc.db.Begin()
 	if err != nil {
 		return nil, err
 	}
+	defer tx.Rollback()
+
+	orderRepo := uc.repoFactory(tx)
+	order, err := orderRepo.GetByID(id)
+	if err != nil {
+		return nil, err
+	}
+
+	previousData := *order
 
 	switch order.Status {
 	case "DRAFT":
@@ -125,7 +207,19 @@ func (uc *orderUseCase) Approve(id string) (*domain.Order, error) {
 	}
 
 	order.UpdatedAt = time.Now()
-	if err := uc.repo.Update(order); err != nil {
+	if err := orderRepo.Update(order); err != nil {
+		return nil, err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeORDER_APPROVED, order.UserID, order.CompanyID,
+		id, "order", "Order "+order.OrderNumeric+" approved",
+		ipAddress, previousData, order,
+	); err != nil {
+		return nil, err
+	}
+
+	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
 	return order, nil
@@ -174,7 +268,7 @@ func validateOrderFields(orderNumeric, orderType, date, companyID, userID string
 		return errors.New("status cannot be empty")
 	}
 	if !slices.Contains(validStatuses, status) {
-		return errors.New("status must be one of: DRAFT, PENDING, APPROVED, REJECTED, COMPLETED")
+		return errors.New("status must be one of: DRAFT, PENDING, APPROVED, REJECTED, COMPLETED, CANCELED")
 	}
 	return nil
 }

@@ -8939,9 +8939,9 @@
       "source_file": "internal/domain/inventory_history.go",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "domain_inventory_history",
       "community": 58,
-      "norm_label": "inventory_history.go",
-      "id": "domain_inventory_history"
+      "norm_label": "inventory_history.go"
     },
     {
       "label": "InventoryEventType",
@@ -8949,9 +8949,9 @@
       "source_file": "internal/domain/inventory_history.go",
       "source_location": "L5",
       "_origin": "ast",
+      "id": "domain_inventoryeventtype",
       "community": 58,
-      "norm_label": "inventoryeventtype",
-      "id": "domain_inventoryeventtype"
+      "norm_label": "inventoryeventtype"
     },
     {
       "label": "InventoryHistory",
@@ -8959,9 +8959,9 @@
       "source_file": "internal/domain/inventory_history.go",
       "source_location": "L23",
       "_origin": "ast",
+      "id": "domain_inventoryhistory",
       "community": 58,
-      "norm_label": "inventoryhistory",
-      "id": "domain_inventoryhistory"
+      "norm_label": "inventoryhistory"
     },
     {
       "label": "Time",
@@ -8969,9 +8969,9 @@
       "source_file": "internal/domain/inventory_history.go",
       "source_location": "L25",
       "_origin": "ast",
+      "id": "internal_domain_inventory_history_go_time",
       "community": 58,
-      "norm_label": "time",
-      "id": "internal_domain_inventory_history_go_time"
+      "norm_label": "time"
     },
     {
       "label": "Deduction",
@@ -8979,9 +8979,9 @@
       "source_file": "internal/domain/product_entry.go",
       "source_location": "L18",
       "_origin": "ast",
+      "id": "domain_deduction",
       "community": 55,
-      "norm_label": "deduction",
-      "id": "domain_deduction"
+      "norm_label": "deduction"
     },
     {
       "label": "AuthUseCase",
@@ -8989,9 +8989,9 @@
       "source_file": "internal/handler/auth_handler.go",
       "source_location": "L14",
       "_origin": "ast",
+      "id": "authusecase",
       "community": 4,
-      "norm_label": "authusecase",
-      "id": "authusecase"
+      "norm_label": "authusecase"
     },
     {
       "label": "extractIP()",
@@ -8999,9 +8999,9 @@
       "source_file": "internal/handler/author_handler.go",
       "source_location": "L118",
       "_origin": "ast",
+      "id": "handler_author_handler_extractip",
       "community": 0,
-      "norm_label": "extractip()",
-      "id": "handler_author_handler_extractip"
+      "norm_label": "extractip()"
     },
     {
       "label": "inventory_history_handler.go",
@@ -9009,9 +9009,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "handler_inventory_history_handler",
       "community": 2,
-      "norm_label": "inventory_history_handler.go",
-      "id": "handler_inventory_history_handler"
+      "norm_label": "inventory_history_handler.go"
     },
     {
       "label": "InventoryHistoryHandler",
@@ -9019,9 +9019,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L10",
       "_origin": "ast",
+      "id": "handler_inventoryhistoryhandler",
       "community": 2,
-      "norm_label": "inventoryhistoryhandler",
-      "id": "handler_inventoryhistoryhandler"
+      "norm_label": "inventoryhistoryhandler"
     },
     {
       "label": "HistoryService",
@@ -9029,9 +9029,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L11",
       "_origin": "ast",
+      "id": "internal_handler_inventory_history_handler_go_historyservice",
       "community": 2,
-      "norm_label": "historyservice",
-      "id": "internal_handler_inventory_history_handler_go_historyservice"
+      "norm_label": "historyservice"
     },
     {
       "label": "NewInventoryHistoryHandler()",
@@ -9039,9 +9039,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L14",
       "_origin": "ast",
+      "id": "handler_inventory_history_handler_newinventoryhistoryhandler",
       "community": 2,
-      "norm_label": "newinventoryhistoryhandler()",
-      "id": "handler_inventory_history_handler_newinventoryhistoryhandler"
+      "norm_label": "newinventoryhistoryhandler()"
     },
     {
       "label": ".Handle()",
@@ -9049,9 +9049,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L18",
       "_origin": "ast",
+      "id": "handler_inventoryhistoryhandler_handle",
       "community": 2,
-      "norm_label": ".handle()",
-      "id": "handler_inventoryhistoryhandler_handle"
+      "norm_label": ".handle()"
     },
     {
       "label": "ResponseWriter",
@@ -9059,9 +9059,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L18",
       "_origin": "ast",
+      "id": "internal_handler_inventory_history_handler_go_responsewriter",
       "community": 2,
-      "norm_label": "responsewriter",
-      "id": "internal_handler_inventory_history_handler_go_responsewriter"
+      "norm_label": "responsewriter"
     },
     {
       "label": "Request",
@@ -9069,9 +9069,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L18",
       "_origin": "ast",
+      "id": "internal_handler_inventory_history_handler_go_request",
       "community": 2,
-      "norm_label": "request",
-      "id": "internal_handler_inventory_history_handler_go_request"
+      "norm_label": "request"
     },
     {
       "label": ".getByDocument()",
@@ -9079,9 +9079,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L39",
       "_origin": "ast",
+      "id": "handler_inventoryhistoryhandler_getbydocument",
       "community": 2,
-      "norm_label": ".getbydocument()",
-      "id": "handler_inventoryhistoryhandler_getbydocument"
+      "norm_label": ".getbydocument()"
     },
     {
       "label": ".getAll()",
@@ -9089,9 +9089,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L48",
       "_origin": "ast",
+      "id": "handler_inventoryhistoryhandler_getall",
       "community": 2,
-      "norm_label": ".getall()",
-      "id": "handler_inventoryhistoryhandler_getall"
+      "norm_label": ".getall()"
     },
     {
       "label": "DeductRequest",
@@ -9099,9 +9099,9 @@
       "source_file": "internal/handler/product_entry_handler.go",
       "source_location": "L12",
       "_origin": "ast",
+      "id": "handler_deductrequest",
       "community": 0,
-      "norm_label": "deductrequest",
-      "id": "handler_deductrequest"
+      "norm_label": "deductrequest"
     },
     {
       "label": "Deduction",
@@ -9109,9 +9109,9 @@
       "source_file": "internal/handler/product_entry_handler.go",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "internal_handler_product_entry_handler_go_deduction",
       "community": 0,
-      "norm_label": "deduction",
-      "id": "internal_handler_product_entry_handler_go_deduction"
+      "norm_label": "deduction"
     },
     {
       "label": ".deductQuantity()",
@@ -9119,9 +9119,9 @@
       "source_file": "internal/handler/product_entry_handler.go",
       "source_location": "L181",
       "_origin": "ast",
+      "id": "handler_productentryhandler_deductquantity",
       "community": 0,
-      "norm_label": ".deductquantity()",
-      "id": "handler_productentryhandler_deductquantity"
+      "norm_label": ".deductquantity()"
     },
     {
       "label": "postgres_inventory_history_repository.go",
@@ -9129,9 +9129,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "infrastructure_postgres_inventory_history_repository",
       "community": 2,
-      "norm_label": "postgres_inventory_history_repository.go",
-      "id": "infrastructure_postgres_inventory_history_repository"
+      "norm_label": "postgres_inventory_history_repository.go"
     },
     {
       "label": "PostgresInventoryHistoryRepository",
@@ -9139,9 +9139,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L11",
       "_origin": "ast",
+      "id": "infrastructure_postgresinventoryhistoryrepository",
       "community": 2,
-      "norm_label": "postgresinventoryhistoryrepository",
-      "id": "infrastructure_postgresinventoryhistoryrepository"
+      "norm_label": "postgresinventoryhistoryrepository"
     },
     {
       "label": "DBTX",
@@ -9149,9 +9149,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L12",
       "_origin": "ast",
+      "id": "internal_infrastructure_postgres_inventory_history_repository_go_dbtx",
       "community": 2,
-      "norm_label": "dbtx",
-      "id": "internal_infrastructure_postgres_inventory_history_repository_go_dbtx"
+      "norm_label": "dbtx"
     },
     {
       "label": "NewPostgresInventoryHistoryRepository()",
@@ -9159,9 +9159,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L15",
       "_origin": "ast",
+      "id": "infrastructure_postgres_inventory_history_repository_newpostgresinventoryhistoryrepository",
       "community": 2,
-      "norm_label": "newpostgresinventoryhistoryrepository()",
-      "id": "infrastructure_postgres_inventory_history_repository_newpostgresinventoryhistoryrepository"
+      "norm_label": "newpostgresinventoryhistoryrepository()"
     },
     {
       "label": ".Create()",
@@ -9169,9 +9169,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L19",
       "_origin": "ast",
+      "id": "infrastructure_postgresinventoryhistoryrepository_create",
       "community": 2,
-      "norm_label": ".create()",
-      "id": "infrastructure_postgresinventoryhistoryrepository_create"
+      "norm_label": ".create()"
     },
     {
       "label": "InventoryHistory",
@@ -9179,9 +9179,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L19",
       "_origin": "ast",
+      "id": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory",
       "community": 2,
-      "norm_label": "inventoryhistory",
-      "id": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory"
+      "norm_label": "inventoryhistory"
     },
     {
       "label": ".GetByDocument()",
@@ -9189,9 +9189,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L44",
       "_origin": "ast",
+      "id": "infrastructure_postgresinventoryhistoryrepository_getbydocument",
       "community": 2,
-      "norm_label": ".getbydocument()",
-      "id": "infrastructure_postgresinventoryhistoryrepository_getbydocument"
+      "norm_label": ".getbydocument()"
     },
     {
       "label": ".GetAll()",
@@ -9199,9 +9199,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L87",
       "_origin": "ast",
+      "id": "infrastructure_postgresinventoryhistoryrepository_getall",
       "community": 2,
-      "norm_label": ".getall()",
-      "id": "infrastructure_postgresinventoryhistoryrepository_getall"
+      "norm_label": ".getall()"
     },
     {
       "label": "DBTX",
@@ -9209,9 +9209,9 @@
       "source_file": "internal/infrastructure/postgres_movement_repository.go",
       "source_location": "L12",
       "_origin": "ast",
+      "id": "internal_infrastructure_postgres_movement_repository_go_dbtx",
       "community": 29,
-      "norm_label": "dbtx",
-      "id": "internal_infrastructure_postgres_movement_repository_go_dbtx"
+      "norm_label": "dbtx"
     },
     {
       "label": "DBTX",
@@ -9219,9 +9219,9 @@
       "source_file": "internal/infrastructure/postgres_order_repository.go",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "internal_infrastructure_postgres_order_repository_go_dbtx",
       "community": 34,
-      "norm_label": "dbtx",
-      "id": "internal_infrastructure_postgres_order_repository_go_dbtx"
+      "norm_label": "dbtx"
     },
     {
       "label": "DBTX",
@@ -9229,9 +9229,9 @@
       "source_file": "internal/infrastructure/postgres_product_entry_repository.go",
       "source_location": "L14",
       "_origin": "ast",
+      "id": "internal_infrastructure_postgres_product_entry_repository_go_dbtx",
       "community": 14,
-      "norm_label": "dbtx",
-      "id": "internal_infrastructure_postgres_product_entry_repository_go_dbtx"
+      "norm_label": "dbtx"
     },
     {
       "label": "DBTX",
@@ -9239,9 +9239,9 @@
       "source_file": "internal/infrastructure/postgres_product_repository.go",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "internal_infrastructure_postgres_product_repository_go_dbtx",
       "community": 30,
-      "norm_label": "dbtx",
-      "id": "internal_infrastructure_postgres_product_repository_go_dbtx"
+      "norm_label": "dbtx"
     },
     {
       "label": "DBTX",
@@ -9249,9 +9249,9 @@
       "source_file": "internal/infrastructure/postgres_shipment_repository.go",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "internal_infrastructure_postgres_shipment_repository_go_dbtx",
       "community": 20,
-      "norm_label": "dbtx",
-      "id": "internal_infrastructure_postgres_shipment_repository_go_dbtx"
+      "norm_label": "dbtx"
     },
     {
       "label": "Handler",
@@ -9259,9 +9259,9 @@
       "source_file": "internal/middleware/auth.go",
       "source_location": "L11",
       "_origin": "ast",
+      "id": "handler",
       "community": 4,
-      "norm_label": "handler",
-      "id": "handler"
+      "norm_label": "handler"
     },
     {
       "label": "dbtx.go",
@@ -9269,9 +9269,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "repository_dbtx",
       "community": 54,
-      "norm_label": "dbtx.go",
-      "id": "repository_dbtx"
+      "norm_label": "dbtx.go"
     },
     {
       "label": "OrderRepoFactory",
@@ -9279,9 +9279,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L11",
       "_origin": "ast",
+      "id": "repository_orderrepofactory",
       "community": 54,
-      "norm_label": "orderrepofactory",
-      "id": "repository_orderrepofactory"
+      "norm_label": "orderrepofactory"
     },
     {
       "label": "ShipmentRepoFactory",
@@ -9289,9 +9289,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L12",
       "_origin": "ast",
+      "id": "repository_shipmentrepofactory",
       "community": 54,
-      "norm_label": "shipmentrepofactory",
-      "id": "repository_shipmentrepofactory"
+      "norm_label": "shipmentrepofactory"
     },
     {
       "label": "ProductEntryRepoFactory",
@@ -9299,9 +9299,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "repository_productentryrepofactory",
       "community": 54,
-      "norm_label": "productentryrepofactory",
-      "id": "repository_productentryrepofactory"
+      "norm_label": "productentryrepofactory"
     },
     {
       "label": "ProductRepoFactory",
@@ -9309,9 +9309,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L14",
       "_origin": "ast",
+      "id": "repository_productrepofactory",
       "community": 54,
-      "norm_label": "productrepofactory",
-      "id": "repository_productrepofactory"
+      "norm_label": "productrepofactory"
     },
     {
       "label": "MovementRepoFactory",
@@ -9319,9 +9319,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L15",
       "_origin": "ast",
+      "id": "repository_movementrepofactory",
       "community": 54,
-      "norm_label": "movementrepofactory",
-      "id": "repository_movementrepofactory"
+      "norm_label": "movementrepofactory"
     },
     {
       "label": "HistoryRepoFactory",
@@ -9329,9 +9329,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L16",
       "_origin": "ast",
+      "id": "repository_historyrepofactory",
       "community": 54,
-      "norm_label": "historyrepofactory",
-      "id": "repository_historyrepofactory"
+      "norm_label": "historyrepofactory"
     },
     {
       "label": "inventory_history_repository.go",
@@ -9339,9 +9339,9 @@
       "source_file": "internal/repository/inventory_history_repository.go",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "repository_inventory_history_repository",
       "community": 84,
-      "norm_label": "inventory_history_repository.go",
-      "id": "repository_inventory_history_repository"
+      "norm_label": "inventory_history_repository.go"
     },
     {
       "label": "InventoryHistoryRepository",
@@ -9349,9 +9349,9 @@
       "source_file": "internal/repository/inventory_history_repository.go",
       "source_location": "L5",
       "_origin": "ast",
+      "id": "repository_inventoryhistoryrepository",
       "community": 84,
-      "norm_label": "inventoryhistoryrepository",
-      "id": "repository_inventoryhistoryrepository"
+      "norm_label": "inventoryhistoryrepository"
     },
     {
       "label": "User",
@@ -9359,9 +9359,9 @@
       "source_file": "internal/usecase/auth_usecase.go",
       "source_location": "L38",
       "_origin": "ast",
+      "id": "user",
       "community": 8,
-      "norm_label": "user",
-      "id": "user"
+      "norm_label": "user"
     },
     {
       "label": "inventory_history_usecase.go",
@@ -9369,9 +9369,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "usecase_inventory_history_usecase",
       "community": 18,
-      "norm_label": "inventory_history_usecase.go",
-      "id": "usecase_inventory_history_usecase"
+      "norm_label": "inventory_history_usecase.go"
     },
     {
       "label": "HistoryService",
@@ -9379,9 +9379,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "usecase_historyservice",
       "community": 18,
-      "norm_label": "historyservice",
-      "id": "usecase_historyservice"
+      "norm_label": "historyservice"
     },
     {
       "label": "DB",
@@ -9389,9 +9389,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L14",
       "_origin": "ast",
+      "id": "internal_usecase_inventory_history_usecase_go_db",
       "community": 18,
-      "norm_label": "db",
-      "id": "internal_usecase_inventory_history_usecase_go_db"
+      "norm_label": "db"
     },
     {
       "label": "HistoryRepoFactory",
@@ -9399,9 +9399,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L15",
       "_origin": "ast",
+      "id": "historyrepofactory",
       "community": 18,
-      "norm_label": "historyrepofactory",
-      "id": "historyrepofactory"
+      "norm_label": "historyrepofactory"
     },
     {
       "label": "NewHistoryService()",
@@ -9409,9 +9409,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L18",
       "_origin": "ast",
+      "id": "usecase_inventory_history_usecase_newhistoryservice",
       "community": 18,
-      "norm_label": "newhistoryservice()",
-      "id": "usecase_inventory_history_usecase_newhistoryservice"
+      "norm_label": "newhistoryservice()"
     },
     {
       "label": ".LogEvent()",
@@ -9419,9 +9419,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L22",
       "_origin": "ast",
+      "id": "usecase_historyservice_logevent",
       "community": 18,
-      "norm_label": ".logevent()",
-      "id": "usecase_historyservice_logevent"
+      "norm_label": ".logevent()"
     },
     {
       "label": "DBTX",
@@ -9429,9 +9429,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L22",
       "_origin": "ast",
+      "id": "internal_usecase_inventory_history_usecase_go_dbtx",
       "community": 18,
-      "norm_label": "dbtx",
-      "id": "internal_usecase_inventory_history_usecase_go_dbtx"
+      "norm_label": "dbtx"
     },
     {
       "label": "InventoryEventType",
@@ -9439,9 +9439,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L22",
       "_origin": "ast",
+      "id": "inventoryeventtype",
       "community": 18,
-      "norm_label": "inventoryeventtype",
-      "id": "inventoryeventtype"
+      "norm_label": "inventoryeventtype"
     },
     {
       "label": ".LogRelation()",
@@ -9449,9 +9449,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L63",
       "_origin": "ast",
+      "id": "usecase_historyservice_logrelation",
       "community": 18,
-      "norm_label": ".logrelation()",
-      "id": "usecase_historyservice_logrelation"
+      "norm_label": ".logrelation()"
     },
     {
       "label": ".LogStockUpdate()",
@@ -9459,9 +9459,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L100",
       "_origin": "ast",
+      "id": "usecase_historyservice_logstockupdate",
       "community": 18,
-      "norm_label": ".logstockupdate()",
-      "id": "usecase_historyservice_logstockupdate"
+      "norm_label": ".logstockupdate()"
     },
     {
       "label": ".GetByDocument()",
@@ -9469,9 +9469,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L112",
       "_origin": "ast",
+      "id": "usecase_historyservice_getbydocument",
       "community": 18,
-      "norm_label": ".getbydocument()",
-      "id": "usecase_historyservice_getbydocument"
+      "norm_label": ".getbydocument()"
     },
     {
       "label": "InventoryHistory",
@@ -9479,9 +9479,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L112",
       "_origin": "ast",
+      "id": "internal_usecase_inventory_history_usecase_go_inventoryhistory",
       "community": 18,
-      "norm_label": "inventoryhistory",
-      "id": "internal_usecase_inventory_history_usecase_go_inventoryhistory"
+      "norm_label": "inventoryhistory"
     },
     {
       "label": ".GetAll()",
@@ -9489,9 +9489,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L117",
       "_origin": "ast",
+      "id": "usecase_historyservice_getall",
       "community": 18,
-      "norm_label": ".getall()",
-      "id": "usecase_historyservice_getall"
+      "norm_label": ".getall()"
     },
     {
       "label": "DB",
@@ -9499,9 +9499,9 @@
       "source_file": "internal/usecase/movement_usecase.go",
       "source_location": "L21",
       "_origin": "ast",
+      "id": "internal_usecase_movement_usecase_go_db",
       "community": 9,
-      "norm_label": "db",
-      "id": "internal_usecase_movement_usecase_go_db"
+      "norm_label": "db"
     },
     {
       "label": "MovementRepoFactory",
@@ -9509,9 +9509,9 @@
       "source_file": "internal/usecase/movement_usecase.go",
       "source_location": "L23",
       "_origin": "ast",
+      "id": "movementrepofactory",
       "community": 9,
-      "norm_label": "movementrepofactory",
-      "id": "movementrepofactory"
+      "norm_label": "movementrepofactory"
     },
     {
       "label": "MovementTypeRepository",
@@ -9519,9 +9519,9 @@
       "source_file": "internal/usecase/movement_usecase.go",
       "source_location": "L24",
       "_origin": "ast",
+      "id": "movementtyperepository",
       "community": 9,
-      "norm_label": "movementtyperepository",
-      "id": "movementtyperepository"
+      "norm_label": "movementtyperepository"
     },
     {
       "label": "HistoryService",
@@ -9529,9 +9529,9 @@
       "source_file": "internal/usecase/movement_usecase.go",
       "source_location": "L25",
       "_origin": "ast",
+      "id": "internal_usecase_movement_usecase_go_historyservice",
       "community": 9,
-      "norm_label": "historyservice",
-      "id": "internal_usecase_movement_usecase_go_historyservice"
+      "norm_label": "historyservice"
     },
     {
       "label": "DB",
@@ -9539,9 +9539,9 @@
       "source_file": "internal/usecase/order_usecase.go",
       "source_location": "L26",
       "_origin": "ast",
+      "id": "internal_usecase_order_usecase_go_db",
       "community": 7,
-      "norm_label": "db",
-      "id": "internal_usecase_order_usecase_go_db"
+      "norm_label": "db"
     },
     {
       "label": "OrderRepoFactory",
@@ -9549,9 +9549,9 @@
       "source_file": "internal/usecase/order_usecase.go",
       "source_location": "L28",
       "_origin": "ast",
+      "id": "orderrepofactory",
       "community": 7,
-      "norm_label": "orderrepofactory",
-      "id": "orderrepofactory"
+      "norm_label": "orderrepofactory"
     },
     {
       "label": "HistoryService",
@@ -9559,9 +9559,9 @@
       "source_file": "internal/usecase/order_usecase.go",
       "source_location": "L29",
       "_origin": "ast",
+      "id": "internal_usecase_order_usecase_go_historyservice",
       "community": 7,
-      "norm_label": "historyservice",
-      "id": "internal_usecase_order_usecase_go_historyservice"
+      "norm_label": "historyservice"
     },
     {
       "label": "DB",
@@ -9569,9 +9569,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L33",
       "_origin": "ast",
+      "id": "internal_usecase_product_entry_usecase_go_db",
       "community": 5,
-      "norm_label": "db",
-      "id": "internal_usecase_product_entry_usecase_go_db"
+      "norm_label": "db"
     },
     {
       "label": "ProductEntryRepoFactory",
@@ -9579,9 +9579,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L35",
       "_origin": "ast",
+      "id": "productentryrepofactory",
       "community": 5,
-      "norm_label": "productentryrepofactory",
-      "id": "productentryrepofactory"
+      "norm_label": "productentryrepofactory"
     },
     {
       "label": "HistoryService",
@@ -9589,9 +9589,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L36",
       "_origin": "ast",
+      "id": "internal_usecase_product_entry_usecase_go_historyservice",
       "community": 5,
-      "norm_label": "historyservice",
-      "id": "internal_usecase_product_entry_usecase_go_historyservice"
+      "norm_label": "historyservice"
     },
     {
       "label": ".DeductQuantity()",
@@ -9599,9 +9599,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L194",
       "_origin": "ast",
+      "id": "usecase_productentryusecase_deductquantity",
       "community": 5,
-      "norm_label": ".deductquantity()",
-      "id": "usecase_productentryusecase_deductquantity"
+      "norm_label": ".deductquantity()"
     },
     {
       "label": "Deduction",
@@ -9609,9 +9609,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L194",
       "_origin": "ast",
+      "id": "internal_usecase_product_entry_usecase_go_deduction",
       "community": 5,
-      "norm_label": "deduction",
-      "id": "internal_usecase_product_entry_usecase_go_deduction"
+      "norm_label": "deduction"
     },
     {
       "label": "DB",
@@ -9619,9 +9619,9 @@
       "source_file": "internal/usecase/product_usecase.go",
       "source_location": "L25",
       "_origin": "ast",
+      "id": "internal_usecase_product_usecase_go_db",
       "community": 12,
-      "norm_label": "db",
-      "id": "internal_usecase_product_usecase_go_db"
+      "norm_label": "db"
     },
     {
       "label": "ProductRepoFactory",
@@ -9629,9 +9629,9 @@
       "source_file": "internal/usecase/product_usecase.go",
       "source_location": "L27",
       "_origin": "ast",
+      "id": "productrepofactory",
       "community": 12,
-      "norm_label": "productrepofactory",
-      "id": "productrepofactory"
+      "norm_label": "productrepofactory"
     },
     {
       "label": "HistoryService",
@@ -9639,9 +9639,9 @@
       "source_file": "internal/usecase/product_usecase.go",
       "source_location": "L28",
       "_origin": "ast",
+      "id": "internal_usecase_product_usecase_go_historyservice",
       "community": 12,
-      "norm_label": "historyservice",
-      "id": "internal_usecase_product_usecase_go_historyservice"
+      "norm_label": "historyservice"
     },
     {
       "label": "DB",
@@ -9649,9 +9649,9 @@
       "source_file": "internal/usecase/shipment_usecase.go",
       "source_location": "L26",
       "_origin": "ast",
+      "id": "internal_usecase_shipment_usecase_go_db",
       "community": 6,
-      "norm_label": "db",
-      "id": "internal_usecase_shipment_usecase_go_db"
+      "norm_label": "db"
     },
     {
       "label": "ShipmentRepoFactory",
@@ -9659,9 +9659,9 @@
       "source_file": "internal/usecase/shipment_usecase.go",
       "source_location": "L28",
       "_origin": "ast",
+      "id": "shipmentrepofactory",
       "community": 6,
-      "norm_label": "shipmentrepofactory",
-      "id": "shipmentrepofactory"
+      "norm_label": "shipmentrepofactory"
     },
     {
       "label": "HistoryService",
@@ -9669,9 +9669,9 @@
       "source_file": "internal/usecase/shipment_usecase.go",
       "source_location": "L29",
       "_origin": "ast",
+      "id": "internal_usecase_shipment_usecase_go_historyservice",
       "community": 6,
-      "norm_label": "historyservice",
-      "id": "internal_usecase_shipment_usecase_go_historyservice"
+      "norm_label": "historyservice"
     }
   ],
   "links": [
@@ -10870,9 +10870,9 @@
       "source_file": "internal/domain/product_entry.go",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "domain_product_entry",
-      "target": "domain_deduction"
+      "target": "domain_deduction",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -11165,9 +11165,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "handler_authhandler",
-      "target": "authusecase"
+      "target": "authusecase",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -11238,9 +11238,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_auth_handler_newauthhandler",
-      "target": "authusecase"
+      "target": "authusecase",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -11490,9 +11490,9 @@
       "source_file": "internal/handler/author_handler.go",
       "source_location": "L118",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_author_handler",
-      "target": "handler_author_handler_extractip"
+      "target": "handler_author_handler_extractip",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -11788,9 +11788,9 @@
       "source_location": "L118",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_author_handler_extractip",
-      "target": "internal_handler_author_handler_go_request"
+      "target": "internal_handler_author_handler_go_request",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -16578,9 +16578,9 @@
       "source_file": "internal/handler/product_entry_handler.go",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_product_entry_handler",
-      "target": "handler_deductrequest"
+      "target": "handler_deductrequest",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -16629,9 +16629,9 @@
       "source_file": "internal/handler/product_entry_handler.go",
       "source_location": "L181",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_productentryhandler",
-      "target": "handler_productentryhandler_deductquantity"
+      "target": "handler_productentryhandler_deductquantity",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -16733,9 +16733,9 @@
       "source_file": "internal/handler/product_entry_handler.go",
       "source_location": "L41",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_productentryhandler_handle",
-      "target": "handler_productentryhandler_deductquantity"
+      "target": "handler_productentryhandler_deductquantity",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -16832,9 +16832,9 @@
       "source_location": "L181",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_productentryhandler_deductquantity",
-      "target": "internal_handler_product_entry_handler_go_responsewriter"
+      "target": "internal_handler_product_entry_handler_go_responsewriter",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -16909,9 +16909,9 @@
       "source_location": "L181",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_productentryhandler_deductquantity",
-      "target": "internal_handler_product_entry_handler_go_request"
+      "target": "internal_handler_product_entry_handler_go_request",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -20793,9 +20793,9 @@
       "source_location": "L12",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresmovementrepository",
-      "target": "internal_infrastructure_postgres_movement_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_movement_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -20815,9 +20815,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_movement_repository_newpostgresmovementrepository",
-      "target": "internal_infrastructure_postgres_movement_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_movement_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -21256,9 +21256,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresorderrepository",
-      "target": "internal_infrastructure_postgres_order_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_order_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -21278,9 +21278,9 @@
       "source_location": "L16",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_order_repository_newpostgresorderrepository",
-      "target": "internal_infrastructure_postgres_order_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_order_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -21445,9 +21445,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresproductentryrepository",
-      "target": "internal_infrastructure_postgres_product_entry_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_product_entry_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -21467,9 +21467,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_product_entry_repository_newpostgresproductentryrepository",
-      "target": "internal_infrastructure_postgres_product_entry_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_product_entry_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -21668,9 +21668,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresproductrepository",
-      "target": "internal_infrastructure_postgres_product_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_product_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -21690,9 +21690,9 @@
       "source_location": "L16",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_product_repository_newpostgresproductrepository",
-      "target": "internal_infrastructure_postgres_product_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_product_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -22227,9 +22227,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresshipmentrepository",
-      "target": "internal_infrastructure_postgres_shipment_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_shipment_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -22249,9 +22249,9 @@
       "source_location": "L16",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_shipment_repository_newpostgresshipmentrepository",
-      "target": "internal_infrastructure_postgres_shipment_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_shipment_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -23105,9 +23105,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "middleware_auth_newauthmiddleware",
-      "target": "handler"
+      "target": "handler",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -23857,9 +23857,9 @@
       "source_location": "L38",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_authusecase_register",
-      "target": "user"
+      "target": "user",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -23912,9 +23912,9 @@
       "source_location": "L81",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_authusecase_login",
-      "target": "user"
+      "target": "user",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -23923,9 +23923,9 @@
       "source_location": "L109",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_authusecase_getall",
-      "target": "user"
+      "target": "user",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -23934,9 +23934,9 @@
       "source_location": "L113",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_authusecase_getprofile",
-      "target": "user"
+      "target": "user",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -23945,9 +23945,9 @@
       "source_location": "L117",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_authusecase_updateuser",
-      "target": "user"
+      "target": "user",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -25949,9 +25949,9 @@
       "source_location": "L21",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_movementusecase",
-      "target": "internal_usecase_movement_usecase_go_db"
+      "target": "internal_usecase_movement_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -25960,9 +25960,9 @@
       "source_location": "L25",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_movementusecase",
-      "target": "internal_usecase_movement_usecase_go_historyservice"
+      "target": "internal_usecase_movement_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -25982,9 +25982,9 @@
       "source_location": "L23",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_movementusecase",
-      "target": "movementrepofactory"
+      "target": "movementrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26004,9 +26004,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_movementusecase",
-      "target": "movementtyperepository"
+      "target": "movementtyperepository",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -26087,9 +26087,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_movement_usecase_newmovementusecase",
-      "target": "internal_usecase_movement_usecase_go_db"
+      "target": "internal_usecase_movement_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26098,9 +26098,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_movement_usecase_newmovementusecase",
-      "target": "internal_usecase_movement_usecase_go_historyservice"
+      "target": "internal_usecase_movement_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26109,9 +26109,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_movement_usecase_newmovementusecase",
-      "target": "movementrepofactory"
+      "target": "movementrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26120,9 +26120,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_movement_usecase_newmovementusecase",
-      "target": "movementtyperepository"
+      "target": "movementtyperepository",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26450,9 +26450,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_orderusecase",
-      "target": "internal_usecase_order_usecase_go_db"
+      "target": "internal_usecase_order_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26461,9 +26461,9 @@
       "source_location": "L29",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_orderusecase",
-      "target": "internal_usecase_order_usecase_go_historyservice"
+      "target": "internal_usecase_order_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26472,9 +26472,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_orderusecase",
-      "target": "orderrepofactory"
+      "target": "orderrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26565,9 +26565,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_order_usecase_neworderusecase",
-      "target": "internal_usecase_order_usecase_go_db"
+      "target": "internal_usecase_order_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26576,9 +26576,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_order_usecase_neworderusecase",
-      "target": "internal_usecase_order_usecase_go_historyservice"
+      "target": "internal_usecase_order_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26587,9 +26587,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_order_usecase_neworderusecase",
-      "target": "orderrepofactory"
+      "target": "orderrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26730,9 +26730,9 @@
       "source_file": "internal/usecase/order_usecase.go",
       "source_location": "L157",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_orderusecase_delete",
-      "target": "usecase_orderusecase_getbyid"
+      "target": "usecase_orderusecase_getbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -26763,9 +26763,9 @@
       "source_file": "internal/usecase/order_usecase.go",
       "source_location": "L166",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_orderusecase_delete",
-      "target": "usecase_orderusecase_update"
+      "target": "usecase_orderusecase_update",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -26826,9 +26826,9 @@
       "source_location": "L33",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase",
-      "target": "internal_usecase_product_entry_usecase_go_db"
+      "target": "internal_usecase_product_entry_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26837,9 +26837,9 @@
       "source_location": "L36",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase",
-      "target": "internal_usecase_product_entry_usecase_go_historyservice"
+      "target": "internal_usecase_product_entry_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26848,9 +26848,9 @@
       "source_location": "L35",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase",
-      "target": "productentryrepofactory"
+      "target": "productentryrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26879,9 +26879,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L194",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase",
-      "target": "usecase_productentryusecase_deductquantity"
+      "target": "usecase_productentryusecase_deductquantity",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -26951,9 +26951,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_product_entry_usecase_newproductentryusecase",
-      "target": "internal_usecase_product_entry_usecase_go_db"
+      "target": "internal_usecase_product_entry_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26962,9 +26962,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_product_entry_usecase_newproductentryusecase",
-      "target": "internal_usecase_product_entry_usecase_go_historyservice"
+      "target": "internal_usecase_product_entry_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -26973,9 +26973,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_product_entry_usecase_newproductentryusecase",
-      "target": "productentryrepofactory"
+      "target": "productentryrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27116,9 +27116,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L202",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase_deductquantity",
-      "target": "usecase_productentryusecase_getbyid"
+      "target": "usecase_productentryusecase_getbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -27127,9 +27127,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L172",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase_delete",
-      "target": "usecase_productentryusecase_getbyid"
+      "target": "usecase_productentryusecase_getbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -27149,9 +27149,9 @@
       "source_file": "internal/usecase/product_entry_usecase.go",
       "source_location": "L234",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase_deductquantity",
-      "target": "usecase_productentryusecase_update"
+      "target": "usecase_productentryusecase_update",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -27212,9 +27212,9 @@
       "source_location": "L25",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_productusecase",
-      "target": "internal_usecase_product_usecase_go_db"
+      "target": "internal_usecase_product_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27223,9 +27223,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_productusecase",
-      "target": "internal_usecase_product_usecase_go_historyservice"
+      "target": "internal_usecase_product_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27234,9 +27234,9 @@
       "source_location": "L27",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_productusecase",
-      "target": "productrepofactory"
+      "target": "productrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27327,9 +27327,9 @@
       "source_location": "L31",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_product_usecase_newproductusecase",
-      "target": "internal_usecase_product_usecase_go_db"
+      "target": "internal_usecase_product_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27338,9 +27338,9 @@
       "source_location": "L31",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_product_usecase_newproductusecase",
-      "target": "internal_usecase_product_usecase_go_historyservice"
+      "target": "internal_usecase_product_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27349,9 +27349,9 @@
       "source_location": "L31",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_product_usecase_newproductusecase",
-      "target": "productrepofactory"
+      "target": "productrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27426,9 +27426,9 @@
       "source_file": "internal/usecase/product_usecase.go",
       "source_location": "L166",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_productusecase_delete",
-      "target": "usecase_productusecase_getbyid"
+      "target": "usecase_productusecase_getbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -27690,9 +27690,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_shipmentusecase",
-      "target": "internal_usecase_shipment_usecase_go_db"
+      "target": "internal_usecase_shipment_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27701,9 +27701,9 @@
       "source_location": "L29",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_shipmentusecase",
-      "target": "internal_usecase_shipment_usecase_go_historyservice"
+      "target": "internal_usecase_shipment_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27712,9 +27712,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_shipmentusecase",
-      "target": "shipmentrepofactory"
+      "target": "shipmentrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27795,9 +27795,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_shipment_usecase_newshipmentusecase",
-      "target": "internal_usecase_shipment_usecase_go_db"
+      "target": "internal_usecase_shipment_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27806,9 +27806,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_shipment_usecase_newshipmentusecase",
-      "target": "internal_usecase_shipment_usecase_go_historyservice"
+      "target": "internal_usecase_shipment_usecase_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -27817,9 +27817,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_shipment_usecase_newshipmentusecase",
-      "target": "shipmentrepofactory"
+      "target": "shipmentrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28004,9 +28004,9 @@
       "source_file": "internal/usecase/shipment_usecase.go",
       "source_location": "L169",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_shipmentusecase_delete",
-      "target": "usecase_shipmentusecase_getbyid"
+      "target": "usecase_shipmentusecase_getbyid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -28026,9 +28026,9 @@
       "source_file": "internal/usecase/shipment_usecase.go",
       "source_location": "L178",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_shipmentusecase_delete",
-      "target": "usecase_shipmentusecase_update"
+      "target": "usecase_shipmentusecase_update",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -28784,9 +28784,9 @@
       "source_file": "internal/domain/inventory_history.go",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "domain_inventory_history",
-      "target": "domain_inventoryeventtype"
+      "target": "domain_inventoryeventtype",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -28794,9 +28794,9 @@
       "source_file": "internal/domain/inventory_history.go",
       "source_location": "L23",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "domain_inventory_history",
-      "target": "domain_inventoryhistory"
+      "target": "domain_inventoryhistory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28805,9 +28805,9 @@
       "source_location": "L27",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "domain_inventoryhistory",
-      "target": "domain_inventoryeventtype"
+      "target": "domain_inventoryeventtype",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28816,9 +28816,9 @@
       "source_location": "L37",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "domain_inventoryhistory",
-      "target": "internal_domain_inventory_history_go_time"
+      "target": "internal_domain_inventory_history_go_time",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -28826,9 +28826,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_inventory_history_handler",
-      "target": "handler_inventory_history_handler_newinventoryhistoryhandler"
+      "target": "handler_inventory_history_handler_newinventoryhistoryhandler",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -28836,9 +28836,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_inventory_history_handler",
-      "target": "handler_inventoryhistoryhandler"
+      "target": "handler_inventoryhistoryhandler",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28847,9 +28847,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "handler_inventory_history_handler_newinventoryhistoryhandler",
-      "target": "handler_inventoryhistoryhandler"
+      "target": "handler_inventoryhistoryhandler",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -28857,9 +28857,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L48",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler",
-      "target": "handler_inventoryhistoryhandler_getall"
+      "target": "handler_inventoryhistoryhandler_getall",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -28867,9 +28867,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler",
-      "target": "handler_inventoryhistoryhandler_getbydocument"
+      "target": "handler_inventoryhistoryhandler_getbydocument",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -28877,9 +28877,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler",
-      "target": "handler_inventoryhistoryhandler_handle"
+      "target": "handler_inventoryhistoryhandler_handle",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28888,9 +28888,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler",
-      "target": "internal_handler_inventory_history_handler_go_historyservice"
+      "target": "internal_handler_inventory_history_handler_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28899,9 +28899,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_inventory_history_handler_newinventoryhistoryhandler",
-      "target": "internal_handler_inventory_history_handler_go_historyservice"
+      "target": "internal_handler_inventory_history_handler_go_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -28910,9 +28910,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L33",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_handle",
-      "target": "handler_inventoryhistoryhandler_getall"
+      "target": "handler_inventoryhistoryhandler_getall",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -28921,9 +28921,9 @@
       "source_file": "internal/handler/inventory_history_handler.go",
       "source_location": "L29",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_handle",
-      "target": "handler_inventoryhistoryhandler_getbydocument"
+      "target": "handler_inventoryhistoryhandler_getbydocument",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28932,9 +28932,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_handle",
-      "target": "internal_handler_inventory_history_handler_go_request"
+      "target": "internal_handler_inventory_history_handler_go_request",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28943,9 +28943,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_handle",
-      "target": "internal_handler_inventory_history_handler_go_responsewriter"
+      "target": "internal_handler_inventory_history_handler_go_responsewriter",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28954,9 +28954,9 @@
       "source_location": "L48",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_getall",
-      "target": "internal_handler_inventory_history_handler_go_responsewriter"
+      "target": "internal_handler_inventory_history_handler_go_responsewriter",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28965,9 +28965,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_getbydocument",
-      "target": "internal_handler_inventory_history_handler_go_responsewriter"
+      "target": "internal_handler_inventory_history_handler_go_responsewriter",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28976,9 +28976,9 @@
       "source_location": "L48",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_getall",
-      "target": "internal_handler_inventory_history_handler_go_request"
+      "target": "internal_handler_inventory_history_handler_go_request",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28987,9 +28987,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "handler_inventoryhistoryhandler_getbydocument",
-      "target": "internal_handler_inventory_history_handler_go_request"
+      "target": "internal_handler_inventory_history_handler_go_request",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -28998,9 +28998,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "handler_deductrequest",
-      "target": "internal_handler_product_entry_handler_go_deduction"
+      "target": "internal_handler_product_entry_handler_go_deduction",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29008,9 +29008,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_inventory_history_repository",
-      "target": "infrastructure_postgres_inventory_history_repository_newpostgresinventoryhistoryrepository"
+      "target": "infrastructure_postgres_inventory_history_repository_newpostgresinventoryhistoryrepository",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29018,9 +29018,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_inventory_history_repository",
-      "target": "infrastructure_postgresinventoryhistoryrepository"
+      "target": "infrastructure_postgresinventoryhistoryrepository",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29029,9 +29029,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_inventory_history_repository_newpostgresinventoryhistoryrepository",
-      "target": "infrastructure_postgresinventoryhistoryrepository"
+      "target": "infrastructure_postgresinventoryhistoryrepository",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29039,9 +29039,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresinventoryhistoryrepository",
-      "target": "infrastructure_postgresinventoryhistoryrepository_create"
+      "target": "infrastructure_postgresinventoryhistoryrepository_create",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29049,9 +29049,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L87",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresinventoryhistoryrepository",
-      "target": "infrastructure_postgresinventoryhistoryrepository_getall"
+      "target": "infrastructure_postgresinventoryhistoryrepository_getall",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29059,9 +29059,9 @@
       "source_file": "internal/infrastructure/postgres_inventory_history_repository.go",
       "source_location": "L44",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresinventoryhistoryrepository",
-      "target": "infrastructure_postgresinventoryhistoryrepository_getbydocument"
+      "target": "infrastructure_postgresinventoryhistoryrepository_getbydocument",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29070,9 +29070,9 @@
       "source_location": "L12",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresinventoryhistoryrepository",
-      "target": "internal_infrastructure_postgres_inventory_history_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_inventory_history_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29081,9 +29081,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgres_inventory_history_repository_newpostgresinventoryhistoryrepository",
-      "target": "internal_infrastructure_postgres_inventory_history_repository_go_dbtx"
+      "target": "internal_infrastructure_postgres_inventory_history_repository_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29092,9 +29092,9 @@
       "source_location": "L19",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresinventoryhistoryrepository_create",
-      "target": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory"
+      "target": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29103,9 +29103,9 @@
       "source_location": "L87",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresinventoryhistoryrepository_getall",
-      "target": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory"
+      "target": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29114,9 +29114,9 @@
       "source_location": "L44",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "infrastructure_postgresinventoryhistoryrepository_getbydocument",
-      "target": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory"
+      "target": "internal_infrastructure_postgres_inventory_history_repository_go_inventoryhistory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29124,9 +29124,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_dbtx",
-      "target": "repository_dbtx"
+      "target": "repository_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29134,9 +29134,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_dbtx",
-      "target": "repository_historyrepofactory"
+      "target": "repository_historyrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29144,9 +29144,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_dbtx",
-      "target": "repository_movementrepofactory"
+      "target": "repository_movementrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29154,9 +29154,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_dbtx",
-      "target": "repository_orderrepofactory"
+      "target": "repository_orderrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29164,9 +29164,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_dbtx",
-      "target": "repository_productentryrepofactory"
+      "target": "repository_productentryrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29174,9 +29174,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_dbtx",
-      "target": "repository_productrepofactory"
+      "target": "repository_productrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29184,9 +29184,9 @@
       "source_file": "internal/repository/dbtx.go",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_dbtx",
-      "target": "repository_shipmentrepofactory"
+      "target": "repository_shipmentrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29194,9 +29194,9 @@
       "source_file": "internal/repository/inventory_history_repository.go",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "repository_inventory_history_repository",
-      "target": "repository_inventoryhistoryrepository"
+      "target": "repository_inventoryhistoryrepository",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29204,9 +29204,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_inventory_history_usecase",
-      "target": "usecase_historyservice"
+      "target": "usecase_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -29214,9 +29214,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_inventory_history_usecase",
-      "target": "usecase_inventory_history_usecase_newhistoryservice"
+      "target": "usecase_inventory_history_usecase_newhistoryservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29225,9 +29225,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice",
-      "target": "historyrepofactory"
+      "target": "historyrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29236,9 +29236,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "context": "field",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice",
-      "target": "internal_usecase_inventory_history_usecase_go_db"
+      "target": "internal_usecase_inventory_history_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29246,9 +29246,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L117",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_historyservice",
-      "target": "usecase_historyservice_getall"
+      "target": "usecase_historyservice_getall",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29256,9 +29256,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L112",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_historyservice",
-      "target": "usecase_historyservice_getbydocument"
+      "target": "usecase_historyservice_getbydocument",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29266,9 +29266,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_historyservice",
-      "target": "usecase_historyservice_logevent"
+      "target": "usecase_historyservice_logevent",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29276,9 +29276,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L63",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_historyservice",
-      "target": "usecase_historyservice_logrelation"
+      "target": "usecase_historyservice_logrelation",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -29286,9 +29286,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L100",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_historyservice",
-      "target": "usecase_historyservice_logstockupdate"
+      "target": "usecase_historyservice_logstockupdate",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29297,9 +29297,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_inventory_history_usecase_newhistoryservice",
-      "target": "usecase_historyservice"
+      "target": "usecase_historyservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29308,9 +29308,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_inventory_history_usecase_newhistoryservice",
-      "target": "internal_usecase_inventory_history_usecase_go_db"
+      "target": "internal_usecase_inventory_history_usecase_go_db",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29319,9 +29319,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_inventory_history_usecase_newhistoryservice",
-      "target": "historyrepofactory"
+      "target": "historyrepofactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29330,9 +29330,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice_logevent",
-      "target": "internal_usecase_inventory_history_usecase_go_dbtx"
+      "target": "internal_usecase_inventory_history_usecase_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29341,9 +29341,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice_logevent",
-      "target": "inventoryeventtype"
+      "target": "inventoryeventtype",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -29352,9 +29352,9 @@
       "source_file": "internal/usecase/inventory_history_usecase.go",
       "source_location": "L104",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "usecase_historyservice_logstockupdate",
-      "target": "usecase_historyservice_logevent"
+      "target": "usecase_historyservice_logevent",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29363,9 +29363,9 @@
       "source_location": "L63",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice_logrelation",
-      "target": "internal_usecase_inventory_history_usecase_go_dbtx"
+      "target": "internal_usecase_inventory_history_usecase_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29374,9 +29374,9 @@
       "source_location": "L100",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice_logstockupdate",
-      "target": "internal_usecase_inventory_history_usecase_go_dbtx"
+      "target": "internal_usecase_inventory_history_usecase_go_dbtx",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29385,9 +29385,9 @@
       "source_location": "L112",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice_getbydocument",
-      "target": "internal_usecase_inventory_history_usecase_go_inventoryhistory"
+      "target": "internal_usecase_inventory_history_usecase_go_inventoryhistory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29396,9 +29396,9 @@
       "source_location": "L117",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "usecase_historyservice_getall",
-      "target": "internal_usecase_inventory_history_usecase_go_inventoryhistory"
+      "target": "internal_usecase_inventory_history_usecase_go_inventoryhistory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -29407,9 +29407,9 @@
       "source_location": "L194",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "usecase_productentryusecase_deductquantity",
-      "target": "internal_usecase_product_entry_usecase_go_deduction"
+      "target": "internal_usecase_product_entry_usecase_go_deduction",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],

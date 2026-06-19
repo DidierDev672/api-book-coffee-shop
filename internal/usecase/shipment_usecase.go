@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"database/sql"
 	"errors"
 	"slices"
 	"time"
@@ -14,22 +15,25 @@ var validShipmentStatuses = []string{"DRAFT", "CONFIRMED", "CANCELED"}
 var validRecipientTypes = []string{"CUSTOMER", "SUPPLIER", "WAREHOUSE", "INTERNAL"}
 
 type ShipmentUseCase interface {
-	Create(shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks string) (*domain.Shipment, error)
+	Create(shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks, ipAddress string) (*domain.Shipment, error)
 	GetByID(id string) (*domain.Shipment, error)
 	GetAll() ([]*domain.Shipment, error)
-	Update(id, shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks string) (*domain.Shipment, error)
-	Delete(id string) error
+	Update(id, shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks, ipAddress string) (*domain.Shipment, error)
+	Delete(id, ipAddress string) error
 }
 
 type shipmentUseCase struct {
-	repo repository.ShipmentRepository
+	db          *sql.DB
+	repo        repository.ShipmentRepository
+	repoFactory repository.ShipmentRepoFactory
+	historySvc  *HistoryService
 }
 
-func NewShipmentUseCase(repo repository.ShipmentRepository) ShipmentUseCase {
-	return &shipmentUseCase{repo: repo}
+func NewShipmentUseCase(db *sql.DB, repo repository.ShipmentRepository, repoFactory repository.ShipmentRepoFactory, historySvc *HistoryService) ShipmentUseCase {
+	return &shipmentUseCase{db: db, repo: repo, repoFactory: repoFactory, historySvc: historySvc}
 }
 
-func (uc *shipmentUseCase) Create(shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks string) (*domain.Shipment, error) {
+func (uc *shipmentUseCase) Create(shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks, ipAddress string) (*domain.Shipment, error) {
 	if err := validateShipmentFields(shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID, sourceDocument, recipient, details); err != nil {
 		return nil, err
 	}
@@ -52,7 +56,34 @@ func (uc *shipmentUseCase) Create(shipmentNumber, recordDate, movementType, stat
 		UpdatedAt:        time.Now(),
 	}
 
-	if err := uc.repo.Create(shipment); err != nil {
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	shipmentRepo := uc.repoFactory(tx)
+	if err := shipmentRepo.Create(shipment); err != nil {
+		return nil, err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeSHIPMENT_CREATED, responsibleID, companyID,
+		shipment.ID, "shipment", "Shipment "+shipment.ShipmentNumber+" created",
+		ipAddress, nil, shipment,
+	); err != nil {
+		return nil, err
+	}
+
+	if len(sourceDocument.EntryIDs) > 0 {
+		for _, entryID := range sourceDocument.EntryIDs {
+			if err := uc.historySvc.LogRelation(tx, entryID, shipment.ID, responsibleID, companyID, ipAddress); err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
 	return shipment, nil
@@ -69,7 +100,7 @@ func (uc *shipmentUseCase) GetAll() ([]*domain.Shipment, error) {
 	return uc.repo.GetAll()
 }
 
-func (uc *shipmentUseCase) Update(id, shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks string) (*domain.Shipment, error) {
+func (uc *shipmentUseCase) Update(id, shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail, financialSummary domain.ShipmentFinancialSummary, remarks, ipAddress string) (*domain.Shipment, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
@@ -77,36 +108,86 @@ func (uc *shipmentUseCase) Update(id, shipmentNumber, recordDate, movementType, 
 		return nil, err
 	}
 
-	shipment, err := uc.repo.GetByID(id)
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	shipmentRepo := uc.repoFactory(tx)
+	existing, err := shipmentRepo.GetByID(id)
 	if err != nil {
 		return nil, err
 	}
 
-	shipment.ShipmentNumber = shipmentNumber
-	shipment.RecordDate = recordDate
-	shipment.MovementType = movementType
-	shipment.Status = status
-	shipment.CompanyID = companyID
-	shipment.WarehouseID = warehouseID
-	shipment.ResponsibleID = responsibleID
-	shipment.SourceDocument = sourceDocument
-	shipment.Recipient = recipient
-	shipment.Details = details
-	shipment.FinancialSummary = financialSummary
-	shipment.Remarks = remarks
-	shipment.UpdatedAt = time.Now()
+	previousData := *existing
 
-	if err := uc.repo.Update(shipment); err != nil {
+	existing.ShipmentNumber = shipmentNumber
+	existing.RecordDate = recordDate
+	existing.MovementType = movementType
+	existing.Status = status
+	existing.CompanyID = companyID
+	existing.WarehouseID = warehouseID
+	existing.ResponsibleID = responsibleID
+	existing.SourceDocument = sourceDocument
+	existing.Recipient = recipient
+	existing.Details = details
+	existing.FinancialSummary = financialSummary
+	existing.Remarks = remarks
+	existing.UpdatedAt = time.Now()
+
+	if err := shipmentRepo.Update(existing); err != nil {
 		return nil, err
 	}
-	return shipment, nil
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeUPDATE, responsibleID, companyID,
+		id, "shipment", "Shipment "+existing.ShipmentNumber+" updated",
+		ipAddress, previousData, existing,
+	); err != nil {
+		return nil, err
+	}
+
+	if err := tx.Commit(); err != nil {
+		return nil, err
+	}
+	return existing, nil
 }
 
-func (uc *shipmentUseCase) Delete(id string) error {
+func (uc *shipmentUseCase) Delete(id, ipAddress string) error {
 	if id == "" {
 		return errors.New("id cannot be empty")
 	}
-	return uc.repo.Delete(id)
+
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	shipmentRepo := uc.repoFactory(tx)
+	shipment, err := shipmentRepo.GetByID(id)
+	if err != nil {
+		return err
+	}
+
+	previousData := *shipment
+	shipment.Status = "CANCELED"
+	shipment.UpdatedAt = time.Now()
+
+	if err := shipmentRepo.Update(shipment); err != nil {
+		return err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeSHIPMENT_CANCELLED, shipment.ResponsibleID, shipment.CompanyID,
+		id, "shipment", "Shipment "+shipment.ShipmentNumber+" canceled",
+		ipAddress, previousData, shipment,
+	); err != nil {
+		return err
+	}
+
+	return tx.Commit()
 }
 
 func validateShipmentFields(shipmentNumber, recordDate, movementType, status, companyID, warehouseID, responsibleID string, sourceDocument domain.SourceDocument, recipient domain.Recipient, details []domain.ShipmentDetail) error {

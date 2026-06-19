@@ -69,7 +69,7 @@ func (h *ShipmentHandler) create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	shipment, err := h.uc.Create(req.ShipmentNumber, req.RecordDate, req.MovementType, req.Status, req.CompanyID, req.WarehouseID, req.ResponsibleID, req.SourceDocument, req.Recipient, req.Details, req.FinancialSummary, req.Remarks)
+	shipment, err := h.uc.Create(req.ShipmentNumber, req.RecordDate, req.MovementType, req.Status, req.CompanyID, req.WarehouseID, req.ResponsibleID, req.SourceDocument, req.Recipient, req.Details, req.FinancialSummary, req.Remarks, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -116,16 +116,17 @@ func (h *ShipmentHandler) update(w http.ResponseWriter, r *http.Request, id stri
 		return
 	}
 
-	shipment, err := h.uc.Update(id, req.ShipmentNumber, req.RecordDate, req.MovementType, req.Status, req.CompanyID, req.WarehouseID, req.ResponsibleID, req.SourceDocument, req.Recipient, req.Details, req.FinancialSummary, req.Remarks)
+	shipment, err := h.uc.Update(id, req.ShipmentNumber, req.RecordDate, req.MovementType, req.Status, req.CompanyID, req.WarehouseID, req.ResponsibleID, req.SourceDocument, req.Recipient, req.Details, req.FinancialSummary, req.Remarks, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
 	writeJSON(w, shipment, http.StatusOK)
 }
 
 func (h *ShipmentHandler) delete(w http.ResponseWriter, r *http.Request, id string) {
-	if err := h.uc.Delete(id); err != nil {
+	if err := h.uc.Delete(id, extractIP(r)); err != nil {
 		writeError(w, err.Error(), http.StatusNotFound)
 		return
 	}

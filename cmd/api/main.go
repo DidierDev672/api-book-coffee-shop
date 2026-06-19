@@ -6,6 +6,7 @@ import (
 	"book-coffee-shop/internal/handler"
 	"book-coffee-shop/internal/infrastructure"
 	"book-coffee-shop/internal/middleware"
+	"book-coffee-shop/internal/repository"
 	"book-coffee-shop/internal/usecase"
 	"database/sql"
 	"fmt"
@@ -59,16 +60,28 @@ func main() {
 	estUC := usecase.NewEstablishmentUseCase(estRepo)
 	estH := handler.NewEstablishmentHandler(estUC)
 
+	historySvc := usecase.NewHistoryService(db, func(tx repository.DBTX) repository.InventoryHistoryRepository {
+		return infrastructure.NewPostgresInventoryHistoryRepository(tx)
+	})
+
 	movTypeRepo := infrastructure.NewPostgresMovementTypeRepository(db)
 	movTypeUC := usecase.NewMovementTypeUseCase(movTypeRepo)
 	movTypeH := handler.NewMovementTypeHandler(movTypeUC)
 
 	movRepo := infrastructure.NewPostgresMovementRepository(db)
-	movUC := usecase.NewMovementUseCase(movRepo, movTypeRepo)
+	movUC := usecase.NewMovementUseCase(db, movRepo,
+		func(tx repository.DBTX) repository.MovementRepository {
+			return infrastructure.NewPostgresMovementRepository(tx)
+		},
+		movTypeRepo, historySvc)
 	movH := handler.NewMovementHandler(movUC)
 
 	prodRepo := infrastructure.NewPostgresProductRepository(db)
-	prodUC := usecase.NewProductUseCase(prodRepo)
+	prodUC := usecase.NewProductUseCase(db, prodRepo,
+		func(tx repository.DBTX) repository.ProductRepository {
+			return infrastructure.NewPostgresProductRepository(tx)
+		},
+		historySvc)
 	prodH := handler.NewProductHandler(prodUC)
 
 	msRepo := infrastructure.NewPostgresMonthlySummaryRepository(db)
@@ -96,7 +109,11 @@ func main() {
 	economicActivityH := handler.NewEconomicActivityHandler(economicActivityUC)
 
 	orderRepo := infrastructure.NewPostgresOrderRepository(db)
-	orderUC := usecase.NewOrderUseCase(orderRepo)
+	orderUC := usecase.NewOrderUseCase(db, orderRepo,
+		func(tx repository.DBTX) repository.OrderRepository {
+			return infrastructure.NewPostgresOrderRepository(tx)
+		},
+		historySvc)
 	orderH := handler.NewOrderHandler(orderUC)
 
 	providerRepo := infrastructure.NewPostgresProviderRepository(db)
@@ -104,7 +121,11 @@ func main() {
 	providerH := handler.NewProviderHandler(providerUC)
 
 	productEntryRepo := infrastructure.NewPostgresProductEntryRepository(db)
-	productEntryUC := usecase.NewProductEntryUseCase(productEntryRepo)
+	productEntryUC := usecase.NewProductEntryUseCase(db, productEntryRepo,
+		func(tx repository.DBTX) repository.ProductEntryRepository {
+			return infrastructure.NewPostgresProductEntryRepository(tx)
+		},
+		historySvc)
 	productEntryH := handler.NewProductEntryHandler(productEntryUC)
 
 	userRepo := infrastructure.NewPostgresUserRepository(db)
@@ -118,8 +139,14 @@ func main() {
 	wineryH := handler.NewWineryHandler(wineryUC)
 
 	shipmentRepo := infrastructure.NewPostgresShipmentRepository(db)
-	shipmentUC := usecase.NewShipmentUseCase(shipmentRepo)
+	shipmentUC := usecase.NewShipmentUseCase(db, shipmentRepo,
+		func(tx repository.DBTX) repository.ShipmentRepository {
+			return infrastructure.NewPostgresShipmentRepository(tx)
+		},
+		historySvc)
 	shipmentH := handler.NewShipmentHandler(shipmentUC)
+
+	historyH := handler.NewInventoryHistoryHandler(historySvc)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/authors", authorH.Handle)
@@ -161,6 +188,8 @@ func main() {
 	mux.HandleFunc("/wineries/", wineryH.Handle)
 	mux.HandleFunc("/shipments", shipmentH.Handle)
 	mux.HandleFunc("/shipments/", shipmentH.Handle)
+	mux.HandleFunc("/history", historyH.Handle)
+	mux.HandleFunc("/history/", historyH.Handle)
 	mux.HandleFunc("/auth/register", authH.Register)
 	mux.HandleFunc("/auth/login", authH.Login)
 	mux.HandleFunc("/users", authH.ListUsers)
@@ -396,6 +425,22 @@ func runMigrations(db *sql.DB) error {
 			units            VARCHAR(50) NOT NULL,
 			created_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 			updated_at       TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
+		`CREATE TABLE IF NOT EXISTS inventory_history (
+			history_id              VARCHAR(50) PRIMARY KEY,
+			event_date              TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			user_id                 VARCHAR(50) NOT NULL DEFAULT '',
+			event_type              VARCHAR(50) NOT NULL,
+			company_id              VARCHAR(50) NOT NULL DEFAULT '',
+			document_id             VARCHAR(50) NOT NULL DEFAULT '',
+			document_type           VARCHAR(50) NOT NULL DEFAULT '',
+			provider_destination_id VARCHAR(50),
+			previous_data           JSONB,
+			new_data                JSONB,
+			description             TEXT NOT NULL DEFAULT '',
+			ip_address              VARCHAR(50) NOT NULL DEFAULT '',
+			result                  VARCHAR(20) NOT NULL DEFAULT 'SUCCESS',
+			created_at              TIMESTAMPTZ NOT NULL DEFAULT NOW()
 		)`,
 		`CREATE TABLE IF NOT EXISTS shipments (
 			id                VARCHAR(50) PRIMARY KEY,

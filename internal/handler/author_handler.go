@@ -115,6 +115,14 @@ func (h *AuthorHandler) delete(w http.ResponseWriter, r *http.Request, id string
 	w.WriteHeader(http.StatusNoContent)
 }
 
+func extractIP(r *http.Request) string {
+	fwd := r.Header.Get("X-Forwarded-For")
+	if fwd != "" {
+		return fwd
+	}
+	return r.RemoteAddr
+}
+
 func writeJSON(w http.ResponseWriter, data any, status int) {
 	w.WriteHeader(status)
 	json.NewEncoder(w).Encode(data)

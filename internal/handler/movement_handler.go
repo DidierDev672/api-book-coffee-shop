@@ -67,7 +67,7 @@ func (h *MovementHandler) create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	m, err := h.uc.Create(req.Date, req.Code, req.Product, req.Unit, req.Entrance, req.Output, req.Balance, req.UnitCost, req.ValorValue, req.MovementTypeID, req.Observations)
+	m, err := h.uc.Create(req.Date, req.Code, req.Product, req.Unit, req.Entrance, req.Output, req.Balance, req.UnitCost, req.ValorValue, req.MovementTypeID, req.Observations, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
@@ -113,7 +113,7 @@ func (h *MovementHandler) update(w http.ResponseWriter, r *http.Request, id stri
 		return
 	}
 
-	m, err := h.uc.Update(id, req.Date, req.Code, req.Product, req.Unit, req.Entrance, req.Output, req.Balance, req.UnitCost, req.ValorValue, req.MovementTypeID, req.Observations)
+	m, err := h.uc.Update(id, req.Date, req.Code, req.Product, req.Unit, req.Entrance, req.Output, req.Balance, req.UnitCost, req.ValorValue, req.MovementTypeID, req.Observations, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return

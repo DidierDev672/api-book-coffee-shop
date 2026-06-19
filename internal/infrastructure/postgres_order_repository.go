@@ -6,13 +6,14 @@ import (
 	"errors"
 
 	"book-coffee-shop/internal/domain"
+	"book-coffee-shop/internal/repository"
 )
 
 type PostgresOrderRepository struct {
-	db *sql.DB
+	db repository.DBTX
 }
 
-func NewPostgresOrderRepository(db *sql.DB) *PostgresOrderRepository {
+func NewPostgresOrderRepository(db repository.DBTX) *PostgresOrderRepository {
 	return &PostgresOrderRepository{db: db}
 }
 
