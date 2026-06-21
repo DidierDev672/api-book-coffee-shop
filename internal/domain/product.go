@@ -13,6 +13,7 @@ type Product struct {
 	Quantity     float64   `json:"quantity"`
 	MinimumStock float64   `json:"minimum_stock"`
 	WineryID     string    `json:"winery_id"`
+	Status       string    `json:"status"`
 	CreatedAt    time.Time `json:"createdAt"`
 	UpdatedAt    time.Time `json:"updatedAt"`
 }

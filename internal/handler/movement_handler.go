@@ -122,7 +122,7 @@ func (h *MovementHandler) update(w http.ResponseWriter, r *http.Request, id stri
 }
 
 func (h *MovementHandler) delete(w http.ResponseWriter, r *http.Request, id string) {
-	if err := h.uc.Delete(id); err != nil {
+	if err := h.uc.Delete(id, extractIP(r)); err != nil {
 		writeError(w, err.Error(), http.StatusNotFound)
 		return
 	}

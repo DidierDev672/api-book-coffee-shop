@@ -10,11 +10,20 @@ import (
 	"book-coffee-shop/internal/repository"
 )
 
-var validOrderTypes = []string{"PURCHASE", "REPLENISHMENT", "PRODUCTION", "TRANSFER"}
+type SaleUseCaseForOrder interface {
+	CreateFromOrder(tx *sql.Tx, order *domain.Order, ipAddress string) (*domain.Sale, error)
+}
+
+var validOrderTypes = []string{"PURCHASE", "REPLENISHMENT", "PRODUCTION", "TRANSFER", "SALE"}
 var validStatuses = []string{"DRAFT", "PENDING", "APPROVED", "REJECTED", "COMPLETED", "CANCELED"}
 
+type OrderCreateResponse struct {
+	Order *domain.Order `json:"order"`
+	Sale  *domain.Sale  `json:"sale,omitempty"`
+}
+
 type OrderUseCase interface {
-	Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*domain.Order, error)
+	Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*OrderCreateResponse, error)
 	GetByID(id string) (*domain.Order, error)
 	GetAll() ([]*domain.Order, error)
 	Update(id, orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*domain.Order, error)
@@ -27,13 +36,14 @@ type orderUseCase struct {
 	repo        repository.OrderRepository
 	repoFactory repository.OrderRepoFactory
 	historySvc  *HistoryService
+	saleUC      SaleUseCaseForOrder
 }
 
-func NewOrderUseCase(db *sql.DB, repo repository.OrderRepository, repoFactory repository.OrderRepoFactory, historySvc *HistoryService) OrderUseCase {
-	return &orderUseCase{db: db, repo: repo, repoFactory: repoFactory, historySvc: historySvc}
+func NewOrderUseCase(db *sql.DB, repo repository.OrderRepository, repoFactory repository.OrderRepoFactory, historySvc *HistoryService, saleUC SaleUseCaseForOrder) OrderUseCase {
+	return &orderUseCase{db: db, repo: repo, repoFactory: repoFactory, historySvc: historySvc, saleUC: saleUC}
 }
 
-func (uc *orderUseCase) Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*domain.Order, error) {
+func (uc *orderUseCase) Create(orderNumeric, orderType, date, companyID, userID, requestedBy string, details []domain.OrderDetail, financialSummary domain.FinancialSummary, status, reasonForOrder, ipAddress string) (*OrderCreateResponse, error) {
 	if err := validateOrderFields(orderNumeric, orderType, date, companyID, userID, details, status); err != nil {
 		return nil, err
 	}
@@ -73,10 +83,20 @@ func (uc *orderUseCase) Create(orderNumeric, orderType, date, companyID, userID,
 		return nil, err
 	}
 
+	resp := &OrderCreateResponse{Order: order}
+
+	if orderType == "SALE" {
+		sale, err := uc.saleUC.CreateFromOrder(tx, order, ipAddress)
+		if err != nil {
+			return nil, err
+		}
+		resp.Sale = sale
+	}
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	return order, nil
+	return resp, nil
 }
 
 func (uc *orderUseCase) GetByID(id string) (*domain.Order, error) {

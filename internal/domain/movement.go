@@ -15,6 +15,7 @@ type Movement struct {
 	ValorValue     float64   `json:"valor_value"`
 	MovementTypeID string    `json:"movement_type_id"`
 	Observations   string    `json:"observations"`
+	Status         string    `json:"status"`
 	CreatedAt      time.Time `json:"createdAt"`
 	UpdatedAt      time.Time `json:"updatedAt"`
 }

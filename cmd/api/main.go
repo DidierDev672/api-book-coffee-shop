@@ -109,12 +109,19 @@ func main() {
 	economicActivityH := handler.NewEconomicActivityHandler(economicActivityUC)
 
 	orderRepo := infrastructure.NewPostgresOrderRepository(db)
+	saleRepo := infrastructure.NewPostgresSaleRepository(db)
+	saleUC := usecase.NewSaleUseCase(db, saleRepo,
+		func(tx repository.DBTX) repository.SaleRepository {
+			return infrastructure.NewPostgresSaleRepository(tx)
+		},
+		historySvc)
 	orderUC := usecase.NewOrderUseCase(db, orderRepo,
 		func(tx repository.DBTX) repository.OrderRepository {
 			return infrastructure.NewPostgresOrderRepository(tx)
 		},
-		historySvc)
+		historySvc, saleUC)
 	orderH := handler.NewOrderHandler(orderUC)
+	saleH := handler.NewSaleHandler(saleUC)
 
 	providerRepo := infrastructure.NewPostgresProviderRepository(db)
 	providerUC := usecase.NewProviderUseCase(providerRepo)
@@ -190,12 +197,14 @@ func main() {
 	mux.HandleFunc("/shipments/", shipmentH.Handle)
 	mux.HandleFunc("/history", historyH.Handle)
 	mux.HandleFunc("/history/", historyH.Handle)
+	mux.HandleFunc("/sales", saleH.Handle)
+	mux.HandleFunc("/sales/", saleH.Handle)
 	mux.HandleFunc("/auth/register", authH.Register)
 	mux.HandleFunc("/auth/login", authH.Login)
 	mux.HandleFunc("/users", authH.ListUsers)
 	mux.HandleFunc("/users/", authH.HandleUser)
 
-	authMiddleware := middleware.NewAuthMiddleware(tokenService, userRepo, "/auth/register", "/auth/login")
+	authMiddleware := middleware.NewAuthMiddleware(tokenService, userRepo, "/auth/register", "/auth/login", "/topics", "/topics/")
 
 	//! Configuracion de CORS
 	c := cors.New(cors.Options{
@@ -442,6 +451,24 @@ func runMigrations(db *sql.DB) error {
 			result                  VARCHAR(20) NOT NULL DEFAULT 'SUCCESS',
 			created_at              TIMESTAMPTZ NOT NULL DEFAULT NOW()
 		)`,
+		`CREATE TABLE IF NOT EXISTS sales (
+			sale_id       VARCHAR(50) PRIMARY KEY,
+			sale_number   VARCHAR(50) NOT NULL,
+			order_id      VARCHAR(50) NOT NULL,
+			client_id     VARCHAR(50) NOT NULL DEFAULT '',
+			warehouse_id  VARCHAR(50) NOT NULL DEFAULT '',
+			order_type    VARCHAR(50) NOT NULL,
+			products      JSONB NOT NULL DEFAULT '[]',
+			subtotal      DOUBLE PRECISION NOT NULL DEFAULT 0,
+			vat           DOUBLE PRECISION NOT NULL DEFAULT 0,
+			discount      DOUBLE PRECISION NOT NULL DEFAULT 0,
+			total         DOUBLE PRECISION NOT NULL DEFAULT 0,
+			payment_method VARCHAR(50) NOT NULL DEFAULT '',
+			status        VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+			created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			created_by    VARCHAR(50) NOT NULL DEFAULT '',
+			company_id    VARCHAR(50) NOT NULL DEFAULT ''
+		)`,
 		`CREATE TABLE IF NOT EXISTS shipments (
 			id                VARCHAR(50) PRIMARY KEY,
 			shipment_number   VARCHAR(100) NOT NULL,
@@ -470,6 +497,7 @@ func runMigrations(db *sql.DB) error {
 		`ALTER TABLE providers ADD COLUMN IF NOT EXISTS business_activity TEXT NOT NULL DEFAULT ''`,
 		`ALTER TABLE main_addresses ADD COLUMN IF NOT EXISTS municipio VARCHAR(255) NOT NULL DEFAULT ''`,
 		`ALTER TABLE products ADD COLUMN IF NOT EXISTS company_id VARCHAR(50) NOT NULL DEFAULT ''`,
+		`ALTER TABLE companies ADD COLUMN IF NOT EXISTS logo TEXT NOT NULL DEFAULT ''`,
 		`ALTER TABLE products ADD COLUMN IF NOT EXISTS supplier_id VARCHAR(50) NOT NULL DEFAULT ''`,
 		`ALTER TABLE products ADD COLUMN IF NOT EXISTS name VARCHAR(255) NOT NULL DEFAULT ''`,
 		`ALTER TABLE products ADD COLUMN IF NOT EXISTS product_code VARCHAR(255) NOT NULL DEFAULT ''`,
@@ -493,6 +521,9 @@ func runMigrations(db *sql.DB) error {
 		`ALTER TABLE orders DROP COLUMN IF EXISTS observations`,
 		`ALTER TABLE orders DROP COLUMN IF EXISTS warehouse_id`,
 		`ALTER TABLE orders DROP COLUMN IF EXISTS supplier_id`,
+		`ALTER TABLE product_entries ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE'`,
+		`ALTER TABLE products ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE'`,
+		`ALTER TABLE movements ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE'`,
 	}
 	for _, a := range alterations {
 		db.Exec(a)

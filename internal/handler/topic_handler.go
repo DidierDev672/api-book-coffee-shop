@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -21,6 +22,8 @@ func (h *TopicHandler) Handle(w http.ResponseWriter, r *http.Request) {
 
 	path := strings.TrimPrefix(r.URL.Path, "/topics")
 	id := strings.TrimPrefix(path, "/")
+
+	fmt.Println("Received request:", r.Method, r.URL.Path);
 
 	switch r.Method {
 	case http.MethodGet:
@@ -54,6 +57,8 @@ func (h *TopicHandler) create(w http.ResponseWriter, r *http.Request) {
 		Type        string `json:"type"`
 		Description string `json:"description"`
 	}
+
+
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		writeError(w, "invalid request body", http.StatusBadRequest)
 		return

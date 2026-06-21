@@ -175,8 +175,10 @@ func (uc *productEntryUseCase) Delete(id, ipAddress string) error {
 	}
 
 	previousData := *pe
+	pe.Status = "CANCELED"
+	pe.UpdatedAt = time.Now()
 
-	if err := peRepo.Delete(id); err != nil {
+	if err := peRepo.Update(pe); err != nil {
 		return err
 	}
 

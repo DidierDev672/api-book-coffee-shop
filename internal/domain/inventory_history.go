@@ -8,6 +8,7 @@ const (
 	EventTypeCREATE            InventoryEventType = "CREATE"
 	EventTypeUPDATE            InventoryEventType = "UPDATE"
 	EventTypeCANCEL            InventoryEventType = "CANCEL"
+	EventTypeDELETE            InventoryEventType = "DELETE"
 	EventTypeORDER_CREATED     InventoryEventType = "ORDER_CREATED"
 	EventTypeORDER_UPDATED     InventoryEventType = "ORDER_UPDATED"
 	EventTypeORDER_APPROVED    InventoryEventType = "ORDER_APPROVED"

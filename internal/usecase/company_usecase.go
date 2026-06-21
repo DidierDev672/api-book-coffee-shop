@@ -9,11 +9,11 @@ import (
 )
 
 type CompanyUseCase interface {
-	Create(userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error)
+	Create(userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone, logo string) (*domain.Company, error)
 	GetByID(id string) (*domain.Company, error)
 	GetByUserID(userID string) ([]*domain.Company, error)
 	GetAll() ([]*domain.Company, error)
-	Update(id, userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error)
+	Update(id, userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone, logo string) (*domain.Company, error)
 	Delete(id string) error
 }
 
@@ -25,7 +25,7 @@ func NewCompanyUseCase(repo repository.CompanyRepository) CompanyUseCase {
 	return &companyUseCase{repo: repo}
 }
 
-func (uc *companyUseCase) Create(userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error) {
+func (uc *companyUseCase) Create(userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone, logo string) (*domain.Company, error) {
 	if err := validateCompanyFields(nit, socialReason, businessName, typePerson, companyType, status, constitutionDate); err != nil {
 		return nil, err
 	}
@@ -47,6 +47,7 @@ func (uc *companyUseCase) Create(userID, nit, socialReason, businessName, typePe
 		Email:            email,
 		Phone:            phone,
 		Cellphone:        cellphone,
+		Logo:             logo,
 		CreatedAt:        time.Now(),
 		UpdatedAt:        time.Now(),
 	}
@@ -75,7 +76,7 @@ func (uc *companyUseCase) GetAll() ([]*domain.Company, error) {
 	return uc.repo.GetAll()
 }
 
-func (uc *companyUseCase) Update(id, userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone string) (*domain.Company, error) {
+func (uc *companyUseCase) Update(id, userID, nit, socialReason, businessName, typePerson, companyType, status, constitutionDate, email, phone, cellphone, logo string) (*domain.Company, error) {
 	if id == "" {
 		return nil, errors.New("id cannot be empty")
 	}
@@ -103,6 +104,7 @@ func (uc *companyUseCase) Update(id, userID, nit, socialReason, businessName, ty
 	c.Email = email
 	c.Phone = phone
 	c.Cellphone = cellphone
+	c.Logo = logo
 	c.UpdatedAt = time.Now()
 
 	if err := uc.repo.Update(c); err != nil {

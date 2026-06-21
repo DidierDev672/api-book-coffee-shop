@@ -2,6 +2,7 @@ package infrastructure
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -33,7 +34,7 @@ func (s *JWTTokenService) Validate(tokenString string) (string, error) {
 		return s.secret, nil
 	})
 	if err != nil {
-		return "", errors.New("invalid or expired token")
+		return "", fmt.Errorf("token validation failed: %w", err)
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)

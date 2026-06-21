@@ -76,13 +76,13 @@ func (h *OrderHandler) create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	order, err := h.uc.Create(req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder, extractIP(r))
+	resp, err := h.uc.Create(req.OrderNumeric, req.OrderType, req.Date, req.CompanyID, req.UserID, req.RequestedBy, req.Details, req.FinancialSummary, req.Status, req.ReasonForOrder, extractIP(r))
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	writeJSON(w, order, http.StatusCreated)
+	writeJSON(w, resp, http.StatusCreated)
 }
 
 func (h *OrderHandler) getByID(w http.ResponseWriter, r *http.Request, id string) {

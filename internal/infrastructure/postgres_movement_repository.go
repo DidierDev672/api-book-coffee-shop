@@ -17,20 +17,25 @@ func NewPostgresMovementRepository(db repository.DBTX) *PostgresMovementReposito
 }
 
 func (r *PostgresMovementRepository) Create(m *domain.Movement) error {
-	query := `INSERT INTO movements (id, date, code, product, unit, entrance, output, balance, unit_cost, valor_value, movement_type_id, observations, created_at, updated_at)
-	          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`
+	status := m.Status
+	if status == "" {
+		status = "ACTIVE"
+	}
+	query := `INSERT INTO movements (id, date, code, product, unit, entrance, output, balance, unit_cost, valor_value, movement_type_id, observations, status, created_at, updated_at)
+	          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`
 
 	_, err := r.db.Exec(query,
 		m.ID, m.Date, m.Code, m.Product, m.Unit,
 		m.Entrance, m.Output, m.Balance, m.UnitCost, m.ValorValue,
 		m.MovementTypeID, nullIfEmpty(m.Observations),
+		status,
 		m.CreatedAt, m.UpdatedAt,
 	)
 	return err
 }
 
 func (r *PostgresMovementRepository) GetByID(id string) (*domain.Movement, error) {
-	query := `SELECT id, date, code, product, unit, entrance, output, balance, unit_cost, valor_value, movement_type_id, observations, created_at, updated_at
+	query := `SELECT id, date, code, product, unit, entrance, output, balance, unit_cost, valor_value, movement_type_id, observations, status, created_at, updated_at
 	          FROM movements WHERE id = $1`
 
 	m := &domain.Movement{}
@@ -39,6 +44,7 @@ func (r *PostgresMovementRepository) GetByID(id string) (*domain.Movement, error
 		&m.ID, &m.Date, &m.Code, &m.Product, &m.Unit,
 		&m.Entrance, &m.Output, &m.Balance, &m.UnitCost, &m.ValorValue,
 		&m.MovementTypeID, &obs,
+		&m.Status,
 		&m.CreatedAt, &m.UpdatedAt,
 	)
 	if errors.Is(err, sql.ErrNoRows) {
@@ -52,7 +58,7 @@ func (r *PostgresMovementRepository) GetByID(id string) (*domain.Movement, error
 }
 
 func (r *PostgresMovementRepository) GetAll() ([]*domain.Movement, error) {
-	query := `SELECT id, date, code, product, unit, entrance, output, balance, unit_cost, valor_value, movement_type_id, observations, created_at, updated_at
+	query := `SELECT id, date, code, product, unit, entrance, output, balance, unit_cost, valor_value, movement_type_id, observations, status, created_at, updated_at
 	          FROM movements ORDER BY created_at DESC`
 
 	rows, err := r.db.Query(query)
@@ -69,6 +75,7 @@ func (r *PostgresMovementRepository) GetAll() ([]*domain.Movement, error) {
 			&m.ID, &m.Date, &m.Code, &m.Product, &m.Unit,
 			&m.Entrance, &m.Output, &m.Balance, &m.UnitCost, &m.ValorValue,
 			&m.MovementTypeID, &obs,
+			&m.Status,
 			&m.CreatedAt, &m.UpdatedAt,
 		); err != nil {
 			return nil, err
@@ -80,18 +87,22 @@ func (r *PostgresMovementRepository) GetAll() ([]*domain.Movement, error) {
 }
 
 func (r *PostgresMovementRepository) Update(m *domain.Movement) error {
+	status := m.Status
+	if status == "" {
+		status = "ACTIVE"
+	}
 	query := `UPDATE movements
 	          SET date = $1, code = $2, product = $3, unit = $4,
 	              entrance = $5, output = $6, balance = $7,
 	              unit_cost = $8, valor_value = $9,
-	              movement_type_id = $10, observations = $11, updated_at = $12
-	          WHERE id = $13`
+	              movement_type_id = $10, observations = $11, status = $12, updated_at = $13
+	          WHERE id = $14`
 
 	result, err := r.db.Exec(query,
 		m.Date, m.Code, m.Product, m.Unit,
 		m.Entrance, m.Output, m.Balance, m.UnitCost, m.ValorValue,
 		m.MovementTypeID, nullIfEmpty(m.Observations),
-		m.UpdatedAt, m.ID,
+		status, m.UpdatedAt, m.ID,
 	)
 	if err != nil {
 		return err

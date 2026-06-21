@@ -32,14 +32,19 @@ func (r *PostgresProductEntryRepository) Create(pe *domain.ProductEntry) error {
 	query := `INSERT INTO product_entries (
 		id, entry_number, registered_date, movement_type, warehouse,
 		responsible_party, company_id,
-		details, financial_summary, observations,
+		details, financial_summary, observations, status,
 		created_at, updated_at
-	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`
+	) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`
 
+	status := pe.Status
+	if status == "" {
+		status = "ACTIVE"
+	}
 	_, err = r.db.Exec(query,
 		pe.ID, pe.EntryNumber, pe.RegisteredDate, pe.MovementType,
 		nullIfEmpty(pe.Warehouse), pe.ResponsibleParty, pe.CompanyID,
 		detailsJSON, financialJSON, nullIfEmpty(pe.Observations),
+		status,
 		pe.CreatedAt, pe.UpdatedAt,
 	)
 	return err
@@ -56,6 +61,7 @@ func scanProductEntry(row *sql.Row) (*domain.ProductEntry, error) {
 		&pe.ID, &pe.EntryNumber, &pe.RegisteredDate, &pe.MovementType,
 		&warehouse, &pe.ResponsibleParty, &pe.CompanyID,
 		&detailsJSON, &financialJSON, &obs,
+		&pe.Status,
 		&pe.CreatedAt, &pe.UpdatedAt,
 	)
 	if errors.Is(err, sql.ErrNoRows) {
@@ -80,7 +86,7 @@ func scanProductEntry(row *sql.Row) (*domain.ProductEntry, error) {
 func (r *PostgresProductEntryRepository) GetByID(id string) (*domain.ProductEntry, error) {
 	query := `SELECT id, entry_number, registered_date, movement_type, warehouse,
 	          responsible_party, company_id,
-	          details, financial_summary, observations,
+	          details, financial_summary, observations, status,
 	          created_at, updated_at
 	          FROM product_entries WHERE id = $1`
 	return scanProductEntry(r.db.QueryRow(query, id))
@@ -89,7 +95,7 @@ func (r *PostgresProductEntryRepository) GetByID(id string) (*domain.ProductEntr
 func (r *PostgresProductEntryRepository) GetByProductCodes(codes []string, companyID string) ([]*domain.ProductEntry, error) {
 	query := `SELECT DISTINCT pe.id, pe.entry_number, pe.registered_date, pe.movement_type, pe.warehouse,
 	          pe.responsible_party, pe.company_id,
-	          pe.details, pe.financial_summary, pe.observations,
+	          pe.details, pe.financial_summary, pe.observations, pe.status,
 	          pe.created_at, pe.updated_at
 	          FROM product_entries pe
 	          CROSS JOIN jsonb_array_elements(pe.details) AS d
@@ -136,7 +142,7 @@ func (r *PostgresProductEntryRepository) GetByProductCodes(codes []string, compa
 func (r *PostgresProductEntryRepository) GetAll() ([]*domain.ProductEntry, error) {
 	query := `SELECT id, entry_number, registered_date, movement_type, warehouse,
 	          responsible_party, company_id,
-	          details, financial_summary, observations,
+	          details, financial_summary, observations, status,
 	          created_at, updated_at
 	          FROM product_entries ORDER BY created_at DESC`
 
@@ -158,6 +164,7 @@ func (r *PostgresProductEntryRepository) GetAll() ([]*domain.ProductEntry, error
 			&pe.ID, &pe.EntryNumber, &pe.RegisteredDate, &pe.MovementType,
 			&warehouse, &pe.ResponsibleParty, &pe.CompanyID,
 			&detailsJSON, &financialJSON, &obs,
+			&pe.Status,
 			&pe.CreatedAt, &pe.UpdatedAt,
 		); err != nil {
 			return nil, err
@@ -193,15 +200,15 @@ func (r *PostgresProductEntryRepository) Update(pe *domain.ProductEntry) error {
 	              warehouse = $4, responsible_party = $5,
 	              company_id = $6,
 	              details = $7, financial_summary = $8,
-	              observations = $9, updated_at = $10
-	          WHERE id = $11`
+	              observations = $9, status = $10, updated_at = $11
+	          WHERE id = $12`
 
 	result, err := r.db.Exec(query,
 		pe.EntryNumber, pe.RegisteredDate, pe.MovementType,
 		nullIfEmpty(pe.Warehouse), pe.ResponsibleParty,
 		pe.CompanyID,
 		detailsJSON, financialJSON, nullIfEmpty(pe.Observations),
-		pe.UpdatedAt, pe.ID,
+		pe.Status, pe.UpdatedAt, pe.ID,
 	)
 	if err != nil {
 		return err

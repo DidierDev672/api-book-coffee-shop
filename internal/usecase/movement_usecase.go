@@ -14,7 +14,7 @@ type MovementUseCase interface {
 	GetByID(id string) (*domain.Movement, error)
 	GetAll() ([]*domain.Movement, error)
 	Update(id, date, code, product, unit string, entrance, output, balance, unitCost, valorValue float64, movementTypeID, observations, ipAddress string) (*domain.Movement, error)
-	Delete(id string) error
+	Delete(id, ipAddress string) error
 }
 
 type movementUseCase struct {
@@ -135,11 +135,40 @@ func (uc *movementUseCase) Update(id, date, code, product, unit string, entrance
 	return existing, nil
 }
 
-func (uc *movementUseCase) Delete(id string) error {
+func (uc *movementUseCase) Delete(id, ipAddress string) error {
 	if id == "" {
 		return errors.New("id cannot be empty")
 	}
-	return uc.repo.Delete(id)
+
+	tx, err := uc.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	movRepo := uc.repoFactory(tx)
+	m, err := movRepo.GetByID(id)
+	if err != nil {
+		return err
+	}
+
+	previousData := *m
+	m.Status = "CANCELED"
+	m.UpdatedAt = time.Now()
+
+	if err := movRepo.Update(m); err != nil {
+		return err
+	}
+
+	if err := uc.historySvc.LogEvent(tx,
+		domain.EventTypeCANCEL, "", m.Product,
+		id, "movement", "Movement "+m.Code+" deleted",
+		ipAddress, previousData, nil,
+	); err != nil {
+		return err
+	}
+
+	return tx.Commit()
 }
 
 func validateMovementFields(date, code, product, unit, movementTypeID string) error {

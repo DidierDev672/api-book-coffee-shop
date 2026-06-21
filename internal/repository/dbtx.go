@@ -14,3 +14,4 @@ type ProductEntryRepoFactory func(tx DBTX) ProductEntryRepository
 type ProductRepoFactory func(tx DBTX) ProductRepository
 type MovementRepoFactory func(tx DBTX) MovementRepository
 type HistoryRepoFactory func(tx DBTX) InventoryHistoryRepository
+type SaleRepoFactory func(tx DBTX) SaleRepository

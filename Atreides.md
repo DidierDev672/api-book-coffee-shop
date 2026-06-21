@@ -14,7 +14,7 @@ su propósito: dominio, casos de uso, repositorios e infraestructura.
 
 | Concepto Dune | Componente Atreides API |
 |---|---|
-| **Casa Atreides** | El sistema completo — 29 endpoints, 19 handlers |
+| **Casa Atreides** | El sistema completo — 31 endpoints, 20 handlers |
 | **Caladan** (mundo oceánico) | `internal/domain/` — entidades puras sin dependencias externas |
 | **Arrakis** (planeta desierto) | `internal/infrastructure/` — repositorios PostgreSQL donde se extraen los datos |
 | **Mentat** (Thufir Hawat) | `internal/config/` + `internal/usecase/` — la lógica que calcula cada movimiento |
@@ -22,6 +22,7 @@ su propósito: dominio, casos de uso, repositorios e infraestructura.
 | **Consejo de Guerra** | `internal/handler/` — cada handler decide cómo responder al Imperio (el cliente HTTP) |
 | **Especia Melange** | Los datos — el recurso más valioso que debe fluir sin interrupción |
 | **Sardaukars** | JSONB + PostgreSQL — implacables, eficientes, almacenan todo |
+| **Archivos de la Casa** (Crónicas de Irulan) | `internal/domain/InventoryHistory` + `internal/infrastructure/PostgresInventoryHistoryRepository` + `internal/usecase/HistoryService` — cada evento del inventario queda registrado como un pergamino en la Biblioteca de Caladan |
 
 > Inspirado en el linaje Atreides: un linaje que crece, se adapta y se expande
 > a nuevos territorios. Desde una librería-cafetería hasta cualquier dominio
@@ -70,10 +71,10 @@ cmd/api/
 internal/
   config/config.go         → Config Postgres + JWT (con fallback hardcodeado)
   database/postgres.go     → EnsureDatabaseExists (crea DB si no existe)
-  domain/                  → 19 structs de dominio (sin dependencias externas)
+  domain/                  → 20 structs de dominio (sin dependencias externas)
   repository/              → 21 interfaces + 2 servicios (TokenService, PasswordHasher)
-  usecase/                 → 19 implementaciones de lógica de negocio
-  handler/                 → 19 handlers HTTP activos
+  usecase/                 → 20 implementaciones de lógica de negocio
+  handler/                 → 20 handlers HTTP activos
   handlers/                → 1 handler legacy (AuthHandler con middleware roles)
   infrastructure/          → 20 impls PostgreSQL + bcrypt + JWT
   middleware/              → Recovery, Auth (JWT), Authorization (roles), Validation
@@ -308,6 +309,8 @@ curl -X DELETE http://localhost:8080/products/abc123 \
 | GET/PUT/DEL | `/wineries/{id}` | Sí |  |
 | POST | `/auth/register` | **No** | Registro de usuario |
 | POST | `/auth/login` | **No** | Inicio de sesión |
+| GET | `/history` | Sí | Listar todo el historial de inventario (Crónicas de la Casa) |
+| GET | `/history/{document_type}/{document_id}` | Sí | Historial filtrado por documento (Archivos de un feudo específico) |
 | GET | `/users` | Sí | Listar todos los usuarios |
 | GET/PUT | `/users/{id}` | Sí | Obtener/actualizar perfil |
 
@@ -403,6 +406,27 @@ json.Unmarshal(detailsJSON, &order.Details)         // Al leer
 pq.Array(author.Genres)      // Al guardar
 pq.Array(&genres)            // Al leer
 ```
+
+**Repositorio de Historial — `PostgresInventoryHistoryRepository`:**
+
+> *"Lo que no se registra, no ha ocurrido."*
+> — Proverbio Fremen adaptado por la Casa Atreides
+
+```go
+func NewPostgresInventoryHistoryRepository(db repository.DBTX) *PostgresInventoryHistoryRepository
+```
+
+Crea un repositorio que lee y escribe en la tabla `inventory_history`. Cada
+pergamino se almacena como una fila en Arrakis (PostgreSQL).
+
+| Método | SQL | Descripción |
+|--------|-----|-------------|
+| `Create(event)` | `INSERT INTO inventory_history (...)` | Graba un nuevo pergamino en los Archivos |
+| `GetByDocument(docType, docID)` | `SELECT ... WHERE document_type=$1 AND document_id=$2 ORDER BY event_date DESC` | Busca eventos por feudo y documento |
+| `GetAll()` | `SELECT ... ORDER BY event_date DESC` | Abre el Libro Mayor de la Casa |
+
+Los campos `previous_data` y `new_data` viajan como `JSONB` en PostgreSQL — la
+Especia se almacena en su forma más pura dentro del desierto digital.
 
 **Helper compartido:**
 
@@ -535,6 +559,83 @@ func (uc *authUseCase) verifyToken(token string) error
 
 Método privado que valida JWT + verifica que el token exista en BD (`GetByAuthToken`).
 
+#### `HistoryService` — *Las Crónicas de la Casa*
+
+> *"Un pueblo sin historia es como un hombre sin memoria."*
+> — Leto Atreides II, *God Emperor of Dune*
+
+El `HistoryService` es el **Archivero de la Casa Atreides**. No es un CRUD
+tradicional — solo escribe y consulta. Así como la Princesa Irulan documentó
+cada movimiento del imperio, este servicio registra cada evento del inventario
+para que el Mentat (y el Dueño del negocio) puedan reconstruir el pasado.
+
+```go
+func NewHistoryService(db *sql.DB, makeRepo repository.HistoryRepoFactory) *HistoryService
+```
+
+| Parámetro | Tipo | Descripción |
+|-----------|------|-------------|
+| `db` | `*sql.DB` | Conexión a PostgreSQL — el ojo del Archivero |
+| `makeRepo` | `HistoryRepoFactory` | Fábrica que crea repositorios — como un Escriba que prepara sus pergaminos |
+
+**Métodos públicos:**
+
+```go
+func (s *HistoryService) LogEvent(tx repository.DBTX, eventType domain.InventoryEventType,
+    userID, companyID, documentID, documentType, description, ipAddress string,
+    previousData, newData interface{}) error
+```
+
+Registra un evento en el **Gran Pergamino**. El Mentat serializa `previousData`
+y `newData` a JSON automáticamente (como una visión del antes y después de un
+cálculo). Retorna `nil` si el evento quedó grabado en los Archivos.
+
+| Parámetro | Tipo | Descripción |
+|-----------|------|-------------|
+| `tx` | `DBTX` | Transacción activa — el Escriba escribe con tinta indeleble |
+| `eventType` | `InventoryEventType` | Tipo de decreto imperial (ver tabla abajo) |
+| `userID` | `string` | ID del Noble que ejecutó la acción |
+| `companyID` | `string` | Feudo al que pertenece el evento |
+| `documentID` | `string` | ID del documento afectado (orden, entrada, etc.) |
+| `documentType` | `string` | Tipo de documento ("order", "product-entry", "shipment", etc.) |
+| `description` | `string` | Narración del evento — lo que el Cronista escribe |
+| `ipAddress` | `string` | Dirección desde donde se emitió la orden |
+| `previousData` | `interface{}` | Estado anterior del recurso (puede ser `nil`) |
+| `newData` | `interface{}` | Estado posterior del recurso (puede ser `nil`) |
+
+```go
+func (s *HistoryService) LogRelation(tx repository.DBTX, orderID, shipmentID,
+    userID, companyID, ipAddress string) error
+```
+
+Registra la **Alianza entre dos Casas** — la relación entre una orden y su
+despacho (`shipment`). Crea dos eventos: uno asociado a la orden y otro al
+despacho, como un tratado bilateral en el Landsraad.
+
+```go
+func (s *HistoryService) LogStockUpdate(tx repository.DBTX, productCode string,
+    previousStock, newStock float64, userID, companyID, ipAddress string) error
+```
+
+Registra un **ajuste de especia** en los silos. Método de conveniencia que
+envuelve `LogEvent` con `EventType = STOCK_UPDATED`. Útil cuando el Mentat
+recalcula el inventario después de una tormenta de arena (un error humano).
+
+```go
+func (s *HistoryService) GetByDocument(documentType, documentID string) ([]*domain.InventoryHistory, error)
+```
+
+Consulta los Archivos por **feudo y pergamino**. Retorna todos los eventos
+asociados a un documento específico, ordenados del más reciente al más antiguo
+(como los anales de Irulan, del presente hacia el pasado).
+
+```go
+func (s *HistoryService) GetAll() ([]*domain.InventoryHistory, error)
+```
+
+Abre el **Gran Libro de la Casa** y devuelve todos los eventos registrados.
+Ordenados por fecha descendente. Útil para el Dashboard del Duque.
+
 #### Casos de uso con lógica adicional
 
 | Usecase | Complejidad |
@@ -556,7 +657,7 @@ Método privado que valida JWT + verifica que el token exista en BD (`GetByAuthT
 func generateID() string
 // Formato: timestamp_unix_milisegundos_númeroSecuencial
 // Ejemplo: "1749372100_001"
-// Usado por los 18 usecases
+// Usado por los 19 usecases
 ```
 
 ---
@@ -662,7 +763,88 @@ Ejecuta `fn()` en una goroutine con:
 
 ### Capa de dominio — `internal/domain/`
 
-18 structs sin dependencias externas. Solo `User` tiene método:
+19 structs sin dependencias externas. El dominio incluye ahora el **Archivo
+Histórico de la Casa** — `InventoryHistory` — que registra cada decreto,
+movimiento y transacción como un pergamino en la Biblioteca de Caladan.
+
+**`InventoryHistory` — *El Pergamino Digital*:**
+
+```go
+type InventoryEventType string
+
+const (
+    EventTypeCREATE            InventoryEventType = "CREATE"
+    EventTypeUPDATE            InventoryEventType = "UPDATE"
+    EventTypeCANCEL            InventoryEventType = "CANCEL"
+    EventTypeORDER_CREATED     InventoryEventType = "ORDER_CREATED"
+    EventTypeORDER_UPDATED     InventoryEventType = "ORDER_UPDATED"
+    EventTypeORDER_APPROVED    InventoryEventType = "ORDER_APPROVED"
+    EventTypeSHIPMENT_CREATED  InventoryEventType = "SHIPMENT_CREATED"
+    EventTypeSHIPMENT_CANCELLED InventoryEventType = "SHIPMENT_CANCELLED"
+    EventTypeENTRY_CREATED     InventoryEventType = "ENTRY_CREATED"
+    EventTypeENTRY_DELETED     InventoryEventType = "ENTRY_DELETED"
+    EventTypeSTOCK_UPDATED     InventoryEventType = "STOCK_UPDATED"
+    EventTypeINVOICE_LINKED    InventoryEventType = "INVOICE_LINKED"
+    EventTypeRELATION_CREATED  InventoryEventType = "RELATION_CREATED"
+)
+```
+
+Cada constante es un **Decreto Imperial** — un tipo de evento que la Casa
+reconoce. El Archivero (`HistoryService`) los usa para clasificar cada entrada.
+
+| Decreto (EventType) | Significado en el Imperio |
+|---------------------|--------------------------|
+| `CREATE` | Se fundó un nuevo feudo (recurso creado) |
+| `UPDATE` | Se modificó un trato (recurso actualizado) |
+| `CANCEL` | Se anuló una orden del Duque |
+| `ORDER_CREATED` | Se emitió una orden de compra |
+| `ORDER_UPDATED` | Se modificó una orden existente |
+| `ORDER_APPROVED` | El Consejo aprobó la orden |
+| `SHIPMENT_CREATED` | Un cargamento de especia partió de Arrakis |
+| `SHIPMENT_CANCELLED` | El cargamento fue abortado |
+| `ENTRY_CREATED` | Llegó especia a los almacenes (entrada de producto) |
+| `ENTRY_DELETED` | Se eliminó un registro de entrada |
+| `STOCK_UPDATED` | El Mentat ajustó el inventario |
+| `INVOICE_LINKED` | Se vinculó una factura al feudo |
+| `RELATION_CREATED` | Se firmó un tratado (relación orden↔despacho) |
+
+```go
+type InventoryHistory struct {
+    HistoryID             string             `json:"history_id"`
+    EventDate             time.Time          `json:"event_date"`
+    UserID                string             `json:"user_id"`
+    EventType             InventoryEventType `json:"event_type"`
+    CompanyID             string             `json:"company_id"`
+    DocumentID            string             `json:"document_id"`
+    DocumentType          string             `json:"document_type"`
+    ProviderDestinationID *string            `json:"provider_destination_id,omitempty"`
+    PreviousData          *string            `json:"previous_data,omitempty"`
+    NewData               *string            `json:"new_data,omitempty"`
+    Description           string             `json:"description"`
+    IPAddress             string             `json:"ip_address"`
+    Result                string             `json:"result"`
+    CreatedAt             time.Time          `json:"created_at"`
+}
+```
+
+| Campo | Tipo | Propósito en la Casa |
+|-------|------|---------------------|
+| `HistoryID` | `string` | Identificador único del pergamino (generado por `generateID()`) |
+| `EventDate` | `time.Time` | Momento exacto en que ocurrió el evento — el sello temporal del Archivero |
+| `UserID` | `string` | El Noble que ejecutó la acción |
+| `EventType` | `InventoryEventType` | Tipo de decreto imperial |
+| `CompanyID` | `string` | Feudo al que pertenece el registro |
+| `DocumentID` | `string` | ID del documento asociado (orden, entrada, despacho) |
+| `DocumentType` | `string` | Tipo de documento (`"order"`, `"product-entry"`, `"shipment"`, `"product"`) |
+| `ProviderDestinationID` | `*string` | Destino del cargamento (opcional, como una ruta en el mapa de Arrakis) |
+| `PreviousData` | `*string` | JSON del estado anterior — la foto del feudo antes del cambio |
+| `NewData` | `*string` | JSON del estado posterior — la foto del feudo después del cambio |
+| `Description` | `string` | Narración del evento en lenguaje del Landsraad |
+| `IPAddress` | `string` | Coordenadas del originante (dirección IP) |
+| `Result` | `string` | Verdict final: `"SUCCESS"` o `"FAILURE"` |
+| `CreatedAt` | `time.Time` | Cuándo se selló el pergamino en los Archivos |
+
+Solo `User` tiene método:
 
 ```go
 func (u *User) HasPermission(permission string) bool
@@ -684,6 +866,8 @@ ProductEntry (N) ──→ Product (N) vía Details[].Product
 ProductEntry (N) ──→ Provider (1) vía SupplierID
 Movement (N) ──→ MovementType (1) vía MovementTypeID (FK)
 Order (N) ──→ Client (1)         vía ClientID
+InventoryHistory (N) ──→ User (1)  vía UserID
+InventoryHistory (N) ──→ Company (1) vía CompanyID
 ```
 
 ### Capa de configuración — `internal/config/`
@@ -714,7 +898,7 @@ Conecta a `postgres` database, verifica si `cfg.DBName` existe, la crea si no. N
 
 ### Migraciones — `cmd/api/main.go:runMigrations()`
 
-Sistema inline con 19 `CREATE TABLE IF NOT EXISTS` + 10 `ALTER TABLE ... ADD COLUMN IF NOT EXISTS`.
+Sistema inline con 20 `CREATE TABLE IF NOT EXISTS` + 10 `ALTER TABLE ... ADD COLUMN IF NOT EXISTS`.
 
 **Advertencia:** Las primeras líneas ejecutan `DROP TABLE IF EXISTS movements CASCADE` y `DROP TABLE IF EXISTS companies CASCADE` — **peligroso en producción** porque elimina datos existentes.
 
@@ -745,6 +929,58 @@ type WineryHandler struct {
 | GET | `/wineries/{id}` | Obtiene bodega por ID |
 | PUT | `/wineries/{id}` | Actualiza bodega |
 | DELETE | `/wineries/{id}` | Elimina bodega |
+
+---
+
+### Capa de handlers HTTP — inventory history (Las Crónicas)
+
+> *"El pasado es un libro que siempre está abierto."*
+> — Princesa Irulan, *Dune*
+
+```go
+type InventoryHistoryHandler struct {
+    svc *usecase.HistoryService
+}
+
+func NewInventoryHistoryHandler(svc *usecase.HistoryService) *InventoryHistoryHandler
+```
+
+El handler de historial es el **Bibliotecario de Caladan**. No crea, no actualiza,
+no elimina — solo **consulta los Archivos**. Sus métodos son de solo lectura,
+como los anales de Irulan que narran lo ocurrido sin poder cambiarlo.
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| GET | `/history` | Abre el Gran Libro de la Casa (todos los eventos) |
+| GET | `/history/{document_type}/{document_id}` | Busca pergaminos por feudo y documento específico |
+
+El handler parsea la ruta extrayendo `document_type` y `document_id` del path,
+y delega al `HistoryService`:
+
+- `getAll()` → `svc.GetAll()` — retorna todos los eventos, ordenados por fecha descendente.
+- `getByDocument(documentType, documentID)` → `svc.GetByDocument()` — retorna solo los eventos de un documento concreto.
+
+**Respuesta típica:**
+```json
+[
+  {
+    "history_id": "1749372100_042",
+    "event_date": "2026-06-19T10:30:00Z",
+    "user_id": "1749372100_001",
+    "event_type": "ORDER_CREATED",
+    "company_id": "1749372100_015",
+    "document_id": "1749372100_020",
+    "document_type": "order",
+    "provider_destination_id": null,
+    "previous_data": null,
+    "new_data": "{\"order_numeric\":\"OC-001\",\"status\":\"received\",\"details\":[...]}",
+    "description": "Orden de compra OC-001 creada por Juan Pérez",
+    "ip_address": "192.168.1.10",
+    "result": "SUCCESS",
+    "created_at": "2026-06-19T10:30:00Z"
+  }
+]
+```
 
 ---
 
@@ -837,6 +1073,32 @@ No, es opcional. Si no se envía en la petición (o se envía como `""`), el pro
 ```
 "received", "in-preparation", "ready-for-delivery", "delivered", "cancelled"
 ```
+
+### ¿El historial de inventario soporta escritura desde los endpoints?
+
+No. El historial es solo de lectura vía API (GET). La escritura ocurre
+**automáticamente** desde los casos de uso de producto, orden, entrada y despacho
+cuando ejecutan acciones. El `HistoryService` se inyecta como dependencia y cada
+operación relevante registra su evento. Esto es como los **Archivos Imperiales**:
+solo los Escribas autorizados (los casos de uso) pueden añadir pergaminos; el
+resto del Imperio solo puede consultarlos.
+
+### ¿Qué módulos registran eventos en el historial?
+
+Actualmente 5 módulos alimentan las Crónicas:
+
+| Módulo (Casa) | Eventos que registra |
+|---------------|---------------------|
+| `productUseCase` | `CREATE`, `UPDATE`, `STOCK_UPDATED` |
+| `orderUseCase` | `ORDER_CREATED`, `ORDER_UPDATED`, `ORDER_APPROVED` |
+| `productEntryUseCase` | `ENTRY_CREATED`, `ENTRY_DELETED` |
+| `shipmentUseCase` | `SHIPMENT_CREATED`, `SHIPMENT_CANCELLED`, `RELATION_CREATED` |
+| `movementUseCase` | `CREATE`, `UPDATE`, `CANCEL` |
+
+Cada uno inyecta `HistoryService` en su constructor y llama a `LogEvent()`
+(o `LogRelation()`, `LogStockUpdate()`) dentro de la misma transacción de base
+de datos. Si el evento falla, toda la operación se revierte — la especia no
+se mueve si el Escriba no puede escribir.
 
 ---
 

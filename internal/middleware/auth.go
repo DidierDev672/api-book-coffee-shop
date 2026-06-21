@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"log"
 	"net/http"
 	"strings"
 
@@ -32,17 +33,13 @@ func NewAuthMiddleware(tokenService repository.TokenService, userRepo repository
 
 			userID, err := tokenService.Validate(token)
 			if err != nil {
+				log.Printf("[auth] token validation failed for %s: %v", r.URL.Path, err)
 				utils.WriteError(w, "invalid or expired token", http.StatusUnauthorized)
 				return
 			}
 
-			user, err := userRepo.GetByAuthToken(token)
+			user, err := userRepo.GetByID(userID)
 			if err != nil {
-				utils.WriteError(w, "invalid or expired token", http.StatusUnauthorized)
-				return
-			}
-
-			if user.ID != userID {
 				utils.WriteError(w, "invalid or expired token", http.StatusUnauthorized)
 				return
 			}

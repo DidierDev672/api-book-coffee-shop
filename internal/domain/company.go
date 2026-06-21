@@ -15,6 +15,7 @@ type Company struct {
 	Email             string    `json:"email"`
 	Phone             string    `json:"phone"`
 	Cellphone         string    `json:"cellphone"`
+	Logo              string    `json:"logo"`
 	CreatedAt         time.Time `json:"createdAt"`
 	UpdatedAt         time.Time `json:"updatedAt"`
 }

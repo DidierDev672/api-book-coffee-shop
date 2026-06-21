@@ -63,6 +63,7 @@ type companyRequest struct {
 	Email            string `json:"email"`
 	Phone            string `json:"phone"`
 	Cellphone        string `json:"cellphone"`
+	Logo             string `json:"logo"`
 }
 
 func (h *CompanyHandler) create(w http.ResponseWriter, r *http.Request) {
@@ -75,7 +76,7 @@ func (h *CompanyHandler) create(w http.ResponseWriter, r *http.Request) {
 	c, err := h.uc.Create(
 		req.UserID, req.NIT, req.SocialReason, req.BusinessName,
 		req.TypePerson, req.CompanyType, req.Status, req.ConstitutionDate,
-		req.Email, req.Phone, req.Cellphone,
+		req.Email, req.Phone, req.Cellphone, req.Logo,
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
@@ -122,7 +123,7 @@ func (h *CompanyHandler) update(w http.ResponseWriter, r *http.Request, id strin
 	c, err := h.uc.Update(
 		id, req.UserID, req.NIT, req.SocialReason, req.BusinessName,
 		req.TypePerson, req.CompanyType, req.Status, req.ConstitutionDate,
-		req.Email, req.Phone, req.Cellphone,
+		req.Email, req.Phone, req.Cellphone, req.Logo,
 	)
 	if err != nil {
 		writeError(w, err.Error(), http.StatusBadRequest)
