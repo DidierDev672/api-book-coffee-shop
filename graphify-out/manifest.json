@@ -633,5 +633,705 @@
     "mtime": 1781752309.041804,
     "ast_hash": "3c65725296ce985c379443f4e45cb0a7",
     "semantic_hash": "3c65725296ce985c379443f4e45cb0a7"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\.claude\\settings.json": {
+    "mtime": 1781392470.4660575,
+    "ast_hash": "7bf81dca0376bde3a32244b82bc7cbc0",
+    "semantic_hash": "7bf81dca0376bde3a32244b82bc7cbc0"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\.opencode\\opencode.json": {
+    "mtime": 1781416563.8643732,
+    "ast_hash": "f2ae21510d07365eb2bce8159272c7a0",
+    "semantic_hash": "f2ae21510d07365eb2bce8159272c7a0"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\.opencode\\plugins\\graphify.js": {
+    "mtime": 1781416563.8613112,
+    "ast_hash": "32b67963417a30cb80544e0b2a56a98d",
+    "semantic_hash": "32b67963417a30cb80544e0b2a56a98d"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\cmd\\api\\main.go": {
+    "mtime": 1781996106.4696817,
+    "ast_hash": "c87e67c26a7b9fd615eb6b65d5b2e3f8",
+    "semantic_hash": "c87e67c26a7b9fd615eb6b65d5b2e3f8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\cmd\\gin-server\\main.go": {
+    "mtime": 1782189185.2259502,
+    "ast_hash": "3b48ae495cfd0895c4960b1eda0b23b5",
+    "semantic_hash": "3b48ae495cfd0895c4960b1eda0b23b5"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\config\\config.go": {
+    "mtime": 1781196248.4824853,
+    "ast_hash": "8ab3503352791e87b81b96f17b581bac",
+    "semantic_hash": "8ab3503352791e87b81b96f17b581bac"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\database\\migrations\\001_create_authors.sql": {
+    "mtime": 1780979790.9307413,
+    "ast_hash": "1c1e2bf2fd81cab6d1fd6e1342ae9545",
+    "semantic_hash": "1c1e2bf2fd81cab6d1fd6e1342ae9545"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\database\\postgres.go": {
+    "mtime": 1781218733.520967,
+    "ast_hash": "9f692b182867cb4b9c8fb1d3508e79cf",
+    "semantic_hash": "9f692b182867cb4b9c8fb1d3508e79cf"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\author.go": {
+    "mtime": 1780979790.9307413,
+    "ast_hash": "50c777b0dec3f37c44ed23fef43102db",
+    "semantic_hash": "50c777b0dec3f37c44ed23fef43102db"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\book.go": {
+    "mtime": 1780979790.9307413,
+    "ast_hash": "9ae0ab62ac5e22dd94ba99330ee0bd90",
+    "semantic_hash": "9ae0ab62ac5e22dd94ba99330ee0bd90"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\client.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "6ca01fbcc3fb7001cb1ff03bd8132ae5",
+    "semantic_hash": "6ca01fbcc3fb7001cb1ff03bd8132ae5"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\company.go": {
+    "mtime": 1781872879.2500873,
+    "ast_hash": "51fed0c870b1bbf5a1ace2c593a67478",
+    "semantic_hash": "51fed0c870b1bbf5a1ace2c593a67478"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\economic_activity.go": {
+    "mtime": 1781234503.320219,
+    "ast_hash": "e9c42dd0374f48dce002a8667884a686",
+    "semantic_hash": "e9c42dd0374f48dce002a8667884a686"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\establishment.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "6a6dd82f51fbf62062a8fba125d4dde8",
+    "semantic_hash": "6a6dd82f51fbf62062a8fba125d4dde8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\inventory_history.go": {
+    "mtime": 1781958305.5506809,
+    "ast_hash": "59a56ad1e375c2a87e54708378d6b904",
+    "semantic_hash": "59a56ad1e375c2a87e54708378d6b904"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\main_address.go": {
+    "mtime": 1781533275.3763287,
+    "ast_hash": "e0ce26022de6c6426902821acca1706e",
+    "semantic_hash": "e0ce26022de6c6426902821acca1706e"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\monthly_summary.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "f42d8cfefe57d1b1a1b0da9a2e77795d",
+    "semantic_hash": "f42d8cfefe57d1b1a1b0da9a2e77795d"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\movement.go": {
+    "mtime": 1781870157.9845593,
+    "ast_hash": "ff57de63bbf5742c9043ad51c6036297",
+    "semantic_hash": "ff57de63bbf5742c9043ad51c6036297"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\movement_type.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "35922b148f39a1753ba4308dd8a0b794",
+    "semantic_hash": "35922b148f39a1753ba4308dd8a0b794"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\note.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "01c4c89bfab6d873d67881d40a241d8f",
+    "semantic_hash": "01c4c89bfab6d873d67881d40a241d8f"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\order.go": {
+    "mtime": 1781569137.6422944,
+    "ast_hash": "315e6a0da1b7d97d3620c1104dc959de",
+    "semantic_hash": "315e6a0da1b7d97d3620c1104dc959de"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\product.go": {
+    "mtime": 1781870145.3023665,
+    "ast_hash": "8786dd0b6c23b8663a1457ceeaa178c5",
+    "semantic_hash": "8786dd0b6c23b8663a1457ceeaa178c5"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\product_entry.go": {
+    "mtime": 1781870150.0676548,
+    "ast_hash": "9e94c1be0412ec8da5784fe5755694ac",
+    "semantic_hash": "9e94c1be0412ec8da5784fe5755694ac"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\provider.go": {
+    "mtime": 1781494927.3221228,
+    "ast_hash": "49d9f7a70977d5db13ef2d3a4ee48cae",
+    "semantic_hash": "49d9f7a70977d5db13ef2d3a4ee48cae"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\sale.go": {
+    "mtime": 1781872175.1127107,
+    "ast_hash": "ca26312484bae3717424a1d2535ad0ed",
+    "semantic_hash": "ca26312484bae3717424a1d2535ad0ed"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\shipment.go": {
+    "mtime": 1781635866.983106,
+    "ast_hash": "be0a132fdf907b23560657e98793ca1e",
+    "semantic_hash": "be0a132fdf907b23560657e98793ca1e"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\tax_information.go": {
+    "mtime": 1781233935.7257874,
+    "ast_hash": "4a65161b2e8107be89bd82d522db5a2f",
+    "semantic_hash": "4a65161b2e8107be89bd82d522db5a2f"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\topic.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "b1ba92d52c505e6f1b572df28f193c84",
+    "semantic_hash": "b1ba92d52c505e6f1b572df28f193c84"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\user.go": {
+    "mtime": 1781381051.133918,
+    "ast_hash": "35be76d52b2f13646c1653612eff889d",
+    "semantic_hash": "35be76d52b2f13646c1653612eff889d"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\winery.go": {
+    "mtime": 1781537757.2662935,
+    "ast_hash": "f415256d551e0121779d5b9ccee5bcdc",
+    "semantic_hash": "f415256d551e0121779d5b9ccee5bcdc"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\gin_auth\\handler.go": {
+    "mtime": 1782189170.7279816,
+    "ast_hash": "3cb03d9c473a233194b839dd236c5f0c",
+    "semantic_hash": "3cb03d9c473a233194b839dd236c5f0c"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\gin_auth\\jwt.go": {
+    "mtime": 1782189164.798431,
+    "ast_hash": "3dca15c07fbeee1c64eddc6e4818e21d",
+    "semantic_hash": "3dca15c07fbeee1c64eddc6e4818e21d"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\gin_auth\\middleware.go": {
+    "mtime": 1782189173.5572877,
+    "ast_hash": "516d3f0e4ee2f569140fca1a1b778d2b",
+    "semantic_hash": "516d3f0e4ee2f569140fca1a1b778d2b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\gin_auth\\models.go": {
+    "mtime": 1782189162.4949079,
+    "ast_hash": "4b4623b8e56635f00548791572b8248f",
+    "semantic_hash": "4b4623b8e56635f00548791572b8248f"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\gin_auth\\validation.go": {
+    "mtime": 1782189180.63115,
+    "ast_hash": "da54bf68a9dcf49918b3c7dad5f27044",
+    "semantic_hash": "da54bf68a9dcf49918b3c7dad5f27044"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\auth_handler.go": {
+    "mtime": 1781497373.3702188,
+    "ast_hash": "792fe2b95a97934e38670327f4bf66f5",
+    "semantic_hash": "792fe2b95a97934e38670327f4bf66f5"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\author_handler.go": {
+    "mtime": 1781751682.1890745,
+    "ast_hash": "b5ae6690c642fd973273b9c8acc16899",
+    "semantic_hash": "b5ae6690c642fd973273b9c8acc16899"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\book_handler.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "1c62fb0601ec81daef37b8c5cf02275f",
+    "semantic_hash": "1c62fb0601ec81daef37b8c5cf02275f"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\client_handler.go": {
+    "mtime": 1780979790.935248,
+    "ast_hash": "82cf83617ecd29783faa671c48cdb8d9",
+    "semantic_hash": "82cf83617ecd29783faa671c48cdb8d9"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\company_handler.go": {
+    "mtime": 1781996141.5777154,
+    "ast_hash": "475472b3a39da9ee9d30a94d672db1bb",
+    "semantic_hash": "475472b3a39da9ee9d30a94d672db1bb"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\economic_activity_handler.go": {
+    "mtime": 1781234511.2411249,
+    "ast_hash": "e14639c9d05f931d88ab2f9fb200d388",
+    "semantic_hash": "e14639c9d05f931d88ab2f9fb200d388"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\establishment_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "ec9ad0dc9f7f7b8849ac6999307ac642",
+    "semantic_hash": "ec9ad0dc9f7f7b8849ac6999307ac642"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\inventory_history_handler.go": {
+    "mtime": 1781752407.9006994,
+    "ast_hash": "f96f76d74b723faa9b4c362147f652b2",
+    "semantic_hash": "f96f76d74b723faa9b4c362147f652b2"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\main_address_handler.go": {
+    "mtime": 1781533288.4497573,
+    "ast_hash": "34495b7ad8b0fe202fddc18586f19e0a",
+    "semantic_hash": "34495b7ad8b0fe202fddc18586f19e0a"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\monthly_summary_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "3f4e45c2aada112c6073ba2be964607b",
+    "semantic_hash": "3f4e45c2aada112c6073ba2be964607b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\movement_handler.go": {
+    "mtime": 1781870311.9164138,
+    "ast_hash": "7e915853115994f6fe48b627b4f3b0af",
+    "semantic_hash": "7e915853115994f6fe48b627b4f3b0af"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\movement_type_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "bbf2c0605c9f4c2de920480cea9117b3",
+    "semantic_hash": "bbf2c0605c9f4c2de920480cea9117b3"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\note_handler.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "30757aab69a90be97aeda60f0e0a3877",
+    "semantic_hash": "30757aab69a90be97aeda60f0e0a3877"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\order_handler.go": {
+    "mtime": 1781872273.6363933,
+    "ast_hash": "81e8f6ed90374483f7b22c624bacb49d",
+    "semantic_hash": "81e8f6ed90374483f7b22c624bacb49d"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\product_entry_handler.go": {
+    "mtime": 1781751719.8088536,
+    "ast_hash": "19ff704fd8cfb4014b4d8dbd2f90c3a8",
+    "semantic_hash": "19ff704fd8cfb4014b4d8dbd2f90c3a8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\product_handler.go": {
+    "mtime": 1781751730.645912,
+    "ast_hash": "1b68c7b6ca9f1d26e3676ea844f23549",
+    "semantic_hash": "1b68c7b6ca9f1d26e3676ea844f23549"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\provider_handler.go": {
+    "mtime": 1781494984.1262426,
+    "ast_hash": "75a656a3707252b7e2f0765777bbc6ee",
+    "semantic_hash": "75a656a3707252b7e2f0765777bbc6ee"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\sale_handler.go": {
+    "mtime": 1781958297.4469163,
+    "ast_hash": "592e1a8038fd045652256c6b619d3e50",
+    "semantic_hash": "592e1a8038fd045652256c6b619d3e50"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\shipment_handler.go": {
+    "mtime": 1781751708.277317,
+    "ast_hash": "cabcbbbb6cb6b3db2e18032347d060c0",
+    "semantic_hash": "cabcbbbb6cb6b3db2e18032347d060c0"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\tax_information_handler.go": {
+    "mtime": 1781233942.6780753,
+    "ast_hash": "69283599cb60fe87d857e650d391baf2",
+    "semantic_hash": "69283599cb60fe87d857e650d391baf2"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\topic_handler.go": {
+    "mtime": 1781901733.0575514,
+    "ast_hash": "4257f53af57b962b25ba8d9625987755",
+    "semantic_hash": "4257f53af57b962b25ba8d9625987755"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\winery_handler.go": {
+    "mtime": 1781537791.715493,
+    "ast_hash": "9c8bf1c4ca45dd5b9a26f6d27e6755ae",
+    "semantic_hash": "9c8bf1c4ca45dd5b9a26f6d27e6755ae"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handlers\\auth_handler.go": {
+    "mtime": 1781381567.389424,
+    "ast_hash": "a62da8240543fc58f7760a4d0055fabe",
+    "semantic_hash": "a62da8240543fc58f7760a4d0055fabe"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\bcrypt_password_hasher.go": {
+    "mtime": 1781010822.3637574,
+    "ast_hash": "709f402c25fcf44b2ab2204d9df9e5ab",
+    "semantic_hash": "709f402c25fcf44b2ab2204d9df9e5ab"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\jwt_token_service.go": {
+    "mtime": 1781973887.6504824,
+    "ast_hash": "bb0cf2ab666a8af5bbd2f08af3880fe1",
+    "semantic_hash": "bb0cf2ab666a8af5bbd2f08af3880fe1"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\memory_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "95a73c816868f1ad1138defa5fd72222",
+    "semantic_hash": "95a73c816868f1ad1138defa5fd72222"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_book_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "69a47391dc5a3bfa338d71d721e71b0c",
+    "semantic_hash": "69a47391dc5a3bfa338d71d721e71b0c"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_client_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "ef7bedb7b09d5bc9b43a4052d8acf788",
+    "semantic_hash": "ef7bedb7b09d5bc9b43a4052d8acf788"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_company_repository.go": {
+    "mtime": 1781996121.059008,
+    "ast_hash": "f1137234c6ef2455d18db9e24832c0ac",
+    "semantic_hash": "f1137234c6ef2455d18db9e24832c0ac"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_economic_activity_repository.go": {
+    "mtime": 1781234506.329137,
+    "ast_hash": "240aa069a6754ca180cf3f1eb6e52a52",
+    "semantic_hash": "240aa069a6754ca180cf3f1eb6e52a52"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_establishment_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "1fed756ec47baa0e9347f974743f2e4b",
+    "semantic_hash": "1fed756ec47baa0e9347f974743f2e4b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_inventory_history_repository.go": {
+    "mtime": 1781752299.284887,
+    "ast_hash": "e5d0dd4cae6fe2b21b5b10c93a19991b",
+    "semantic_hash": "e5d0dd4cae6fe2b21b5b10c93a19991b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_main_address_repository.go": {
+    "mtime": 1781533313.435599,
+    "ast_hash": "b4ef75afe2c83b306b390ff6cb5a1c3b",
+    "semantic_hash": "b4ef75afe2c83b306b390ff6cb5a1c3b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_monthly_summary_repository.go": {
+    "mtime": 1780979790.9388638,
+    "ast_hash": "990c7a21cc8eacf271439a8674161ae2",
+    "semantic_hash": "990c7a21cc8eacf271439a8674161ae2"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_movement_repository.go": {
+    "mtime": 1781870294.6684291,
+    "ast_hash": "31b3846b740572612847d0789bfc10ff",
+    "semantic_hash": "31b3846b740572612847d0789bfc10ff"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_movement_type_repository.go": {
+    "mtime": 1780979790.9440222,
+    "ast_hash": "a182be278db3f812d949a91e90b20af7",
+    "semantic_hash": "a182be278db3f812d949a91e90b20af7"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_note_repository.go": {
+    "mtime": 1780979790.9440222,
+    "ast_hash": "0cac1c7bb8eae5a346cbf2aca3a00bcc",
+    "semantic_hash": "0cac1c7bb8eae5a346cbf2aca3a00bcc"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_order_repository.go": {
+    "mtime": 1781752284.0274067,
+    "ast_hash": "2ad4f81fcd663c9df11325d9e112fc05",
+    "semantic_hash": "2ad4f81fcd663c9df11325d9e112fc05"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_product_entry_repository.go": {
+    "mtime": 1781870211.6953778,
+    "ast_hash": "70c7780a15574de1dfe6bbf3b7aea6a7",
+    "semantic_hash": "70c7780a15574de1dfe6bbf3b7aea6a7"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_product_repository.go": {
+    "mtime": 1781870264.4633107,
+    "ast_hash": "a5ddf9bcb27f39b749235d2de3127b9b",
+    "semantic_hash": "a5ddf9bcb27f39b749235d2de3127b9b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_provider_repository.go": {
+    "mtime": 1781494951.7841518,
+    "ast_hash": "bd699cf167f01892bff4de30a381776b",
+    "semantic_hash": "bd699cf167f01892bff4de30a381776b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_repository.go": {
+    "mtime": 1780979790.9445302,
+    "ast_hash": "5d34d4a5b2f15c81dbce4818fecfc6ba",
+    "semantic_hash": "5d34d4a5b2f15c81dbce4818fecfc6ba"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_sale_repository.go": {
+    "mtime": 1781958144.1760168,
+    "ast_hash": "c21a12541438b448b3d3f6443b6e6ba8",
+    "semantic_hash": "c21a12541438b448b3d3f6443b6e6ba8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_shipment_repository.go": {
+    "mtime": 1781752287.0695825,
+    "ast_hash": "b300b302df285d287eca679b50fafe7d",
+    "semantic_hash": "b300b302df285d287eca679b50fafe7d"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_tax_information_repository.go": {
+    "mtime": 1781233938.5773113,
+    "ast_hash": "b9809403024147490d66e05b1341eff5",
+    "semantic_hash": "b9809403024147490d66e05b1341eff5"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_topic_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "d55e1fb5ce1ffaf5854531144a948ab7",
+    "semantic_hash": "d55e1fb5ce1ffaf5854531144a948ab7"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_user_repository.go": {
+    "mtime": 1781392119.5472164,
+    "ast_hash": "66444e52dffc45108af132595e20585a",
+    "semantic_hash": "66444e52dffc45108af132595e20585a"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_winery_repository.go": {
+    "mtime": 1781537780.2913795,
+    "ast_hash": "bd9258333e54b6b2fcdc2b25a748b548",
+    "semantic_hash": "bd9258333e54b6b2fcdc2b25a748b548"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\middleware\\RecoveryMiddleware.go": {
+    "mtime": 1781377992.5722303,
+    "ast_hash": "567faefc9ad5cf65e686a38d5638ea56",
+    "semantic_hash": "567faefc9ad5cf65e686a38d5638ea56"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\middleware\\auth.go": {
+    "mtime": 1781973893.6403039,
+    "ast_hash": "9e4859b130562539c91f6744ff2200ec",
+    "semantic_hash": "9e4859b130562539c91f6744ff2200ec"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\middleware\\authorization.go": {
+    "mtime": 1781381561.0496395,
+    "ast_hash": "fab3a9a907d3e6a7467f910ddde613a8",
+    "semantic_hash": "fab3a9a907d3e6a7467f910ddde613a8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\middleware\\validation.go": {
+    "mtime": 1781381534.5546749,
+    "ast_hash": "d6c7ec81e9140827a2d499004a9ca16f",
+    "semantic_hash": "d6c7ec81e9140827a2d499004a9ca16f"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\models\\requests.go": {
+    "mtime": 1781379380.014548,
+    "ast_hash": "86d76aed8e6c1d3e371ceab36d8de9f2",
+    "semantic_hash": "86d76aed8e6c1d3e371ceab36d8de9f2"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\author_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "41542768658d2a0afdfcb51102b31f3e",
+    "semantic_hash": "41542768658d2a0afdfcb51102b31f3e"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\book_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "78b491f97e83e24271108fa74657f649",
+    "semantic_hash": "78b491f97e83e24271108fa74657f649"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\client_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "83ac3aeefe98b50cbc1f979293ba7024",
+    "semantic_hash": "83ac3aeefe98b50cbc1f979293ba7024"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\company_repository.go": {
+    "mtime": 1781528085.2051933,
+    "ast_hash": "6ae0c872121d61eed61eb184f876075b",
+    "semantic_hash": "6ae0c872121d61eed61eb184f876075b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\dbtx.go": {
+    "mtime": 1781872190.1237233,
+    "ast_hash": "db5e48ef3208fdbd108e562ccb3cd52a",
+    "semantic_hash": "db5e48ef3208fdbd108e562ccb3cd52a"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\economic_activity_repository.go": {
+    "mtime": 1781234503.357751,
+    "ast_hash": "f0cd45ce5aea1fe4e53b75b3580b0952",
+    "semantic_hash": "f0cd45ce5aea1fe4e53b75b3580b0952"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\establishment_repository.go": {
+    "mtime": 1780979790.9455378,
+    "ast_hash": "266f8af170c9fae5a1a44cf09a1c6e34",
+    "semantic_hash": "266f8af170c9fae5a1a44cf09a1c6e34"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\inventory_history_repository.go": {
+    "mtime": 1781751571.7747712,
+    "ast_hash": "e40e803bcd6e15839d29b0fc6b103cc8",
+    "semantic_hash": "e40e803bcd6e15839d29b0fc6b103cc8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\main_address_repository.go": {
+    "mtime": 1781219899.8562562,
+    "ast_hash": "302525c4351ceefcbb76872b414c9003",
+    "semantic_hash": "302525c4351ceefcbb76872b414c9003"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\monthly_summary_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "0e4ab9c79549a54795b26d402df741e4",
+    "semantic_hash": "0e4ab9c79549a54795b26d402df741e4"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\movement_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "98cbd55342c5bce6d2f3f4d9058dd96a",
+    "semantic_hash": "98cbd55342c5bce6d2f3f4d9058dd96a"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\movement_type_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "9a33e0617848604debe0e65556784b4a",
+    "semantic_hash": "9a33e0617848604debe0e65556784b4a"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\note_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "24cdb48f920c7d522ffebb6280900c7b",
+    "semantic_hash": "24cdb48f920c7d522ffebb6280900c7b"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\order_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "029d7ce5b46abafd3d6ae1aeda5cabf7",
+    "semantic_hash": "029d7ce5b46abafd3d6ae1aeda5cabf7"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\product_entry_repository.go": {
+    "mtime": 1781635870.4701464,
+    "ast_hash": "6fcc59c20026acce12fd472578e87cd9",
+    "semantic_hash": "6fcc59c20026acce12fd472578e87cd9"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\product_repository.go": {
+    "mtime": 1781415390.78877,
+    "ast_hash": "fd1cdd24198d147665803657214e809a",
+    "semantic_hash": "fd1cdd24198d147665803657214e809a"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\provider_repository.go": {
+    "mtime": 1781411507.130105,
+    "ast_hash": "a6d7ab514700cf3ea42c611dc7dbc085",
+    "semantic_hash": "a6d7ab514700cf3ea42c611dc7dbc085"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\sale_repository.go": {
+    "mtime": 1781958137.1328034,
+    "ast_hash": "859d83e359d88bff95ba12d5a508a28f",
+    "semantic_hash": "859d83e359d88bff95ba12d5a508a28f"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\shipment_repository.go": {
+    "mtime": 1781580701.7270715,
+    "ast_hash": "37cce0eff58bbb0c691f30196b6c37a8",
+    "semantic_hash": "37cce0eff58bbb0c691f30196b6c37a8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\tax_information_repository.go": {
+    "mtime": 1781233935.7373102,
+    "ast_hash": "4171b787d0b2e93b3c79b7c6da201e37",
+    "semantic_hash": "4171b787d0b2e93b3c79b7c6da201e37"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\topic_repository.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "1780c0a4036f78bc095d4eb31e26cd31",
+    "semantic_hash": "1780c0a4036f78bc095d4eb31e26cd31"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\user_repository.go": {
+    "mtime": 1781392116.2860608,
+    "ast_hash": "b845c1cf8278b93bfea81c6f14e0827c",
+    "semantic_hash": "b845c1cf8278b93bfea81c6f14e0827c"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\winery_repository.go": {
+    "mtime": 1781537763.9548328,
+    "ast_hash": "170d0fc29a2e7ff8c819bf7ad82b17b1",
+    "semantic_hash": "170d0fc29a2e7ff8c819bf7ad82b17b1"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\auth_usecase.go": {
+    "mtime": 1781497368.1717713,
+    "ast_hash": "4993c9eb5ee261b158aa8254c3d98528",
+    "semantic_hash": "4993c9eb5ee261b158aa8254c3d98528"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\author_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "0e5eeae1333658c975e267fc0b3fdc9f",
+    "semantic_hash": "0e5eeae1333658c975e267fc0b3fdc9f"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\book_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "51974ca509501df3efa4857e943b0fb0",
+    "semantic_hash": "51974ca509501df3efa4857e943b0fb0"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\client_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "352521bca6573df6bba3d136ce118bbc",
+    "semantic_hash": "352521bca6573df6bba3d136ce118bbc"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\company_usecase.go": {
+    "mtime": 1781996158.470498,
+    "ast_hash": "546ed13c76320cdb03b6f71a2a959571",
+    "semantic_hash": "546ed13c76320cdb03b6f71a2a959571"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\economic_activity_usecase.go": {
+    "mtime": 1781234508.8125193,
+    "ast_hash": "1acb194f963e63b645424fcf0640a7fb",
+    "semantic_hash": "1acb194f963e63b645424fcf0640a7fb"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\establishment_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "8d8ffb42b042d9a700b5de798c951639",
+    "semantic_hash": "8d8ffb42b042d9a700b5de798c951639"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\inventory_history_usecase.go": {
+    "mtime": 1781752309.041804,
+    "ast_hash": "3c65725296ce985c379443f4e45cb0a7",
+    "semantic_hash": "3c65725296ce985c379443f4e45cb0a7"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\main_address_usecase.go": {
+    "mtime": 1781533302.6298125,
+    "ast_hash": "0bf4cb89cc0c8329aff8983477834d77",
+    "semantic_hash": "0bf4cb89cc0c8329aff8983477834d77"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\monthly_summary_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "2a466f6e0450f75b97fd9fae3495a7db",
+    "semantic_hash": "2a466f6e0450f75b97fd9fae3495a7db"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\movement_type_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "fa7b7b39e3485875747dadb9473f4c99",
+    "semantic_hash": "fa7b7b39e3485875747dadb9473f4c99"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\movement_usecase.go": {
+    "mtime": 1781870318.152902,
+    "ast_hash": "c477340419ddef70d535a0272c8151c2",
+    "semantic_hash": "c477340419ddef70d535a0272c8151c2"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\note_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "cc95b376c838208f4bda3a9da8ec5f18",
+    "semantic_hash": "cc95b376c838208f4bda3a9da8ec5f18"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\order_usecase.go": {
+    "mtime": 1781872267.748852,
+    "ast_hash": "1e26b807739a22477df26ed062cf02c1",
+    "semantic_hash": "1e26b807739a22477df26ed062cf02c1"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\product_entry_usecase.go": {
+    "mtime": 1781870237.3577297,
+    "ast_hash": "389982784a707266b01e4e3d79b33a87",
+    "semantic_hash": "389982784a707266b01e4e3d79b33a87"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\product_usecase.go": {
+    "mtime": 1781870273.5103912,
+    "ast_hash": "5a7f481106f9583d032f6ebbbd6d58a6",
+    "semantic_hash": "5a7f481106f9583d032f6ebbbd6d58a6"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\provider_usecase.go": {
+    "mtime": 1781494972.0001323,
+    "ast_hash": "492fb0437f73fb860b49f31231aa3f21",
+    "semantic_hash": "492fb0437f73fb860b49f31231aa3f21"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\sale_usecase.go": {
+    "mtime": 1781965659.1130724,
+    "ast_hash": "e83df2f2dd852a916a84c3b14cba05fd",
+    "semantic_hash": "e83df2f2dd852a916a84c3b14cba05fd"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\shipment_usecase.go": {
+    "mtime": 1781752358.3341546,
+    "ast_hash": "9dfa20f85117e9cc42b8e3fc78894ffd",
+    "semantic_hash": "9dfa20f85117e9cc42b8e3fc78894ffd"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\tax_information_usecase.go": {
+    "mtime": 1781233940.324123,
+    "ast_hash": "91368f0e00485b7ad18bfe8cf7c4f0eb",
+    "semantic_hash": "91368f0e00485b7ad18bfe8cf7c4f0eb"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\topic_usecase.go": {
+    "mtime": 1780979790.9472878,
+    "ast_hash": "56d02636dc9a8704a7c80c440ed2d2c2",
+    "semantic_hash": "56d02636dc9a8704a7c80c440ed2d2c2"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\winery_usecase.go": {
+    "mtime": 1781539672.2143042,
+    "ast_hash": "a598432b9c34659cd925765fec7b5532",
+    "semantic_hash": "a598432b9c34659cd925765fec7b5532"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\utils\\TryExecut.go": {
+    "mtime": 1781376563.3827767,
+    "ast_hash": "ae1e657fae8bf42a73c6d220a8645597",
+    "semantic_hash": "ae1e657fae8bf42a73c6d220a8645597"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\utils\\context.go": {
+    "mtime": 1781381071.6946437,
+    "ast_hash": "440d7fa7b205e717483642e5424bdb63",
+    "semantic_hash": "440d7fa7b205e717483642e5424bdb63"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\utils\\errors.go": {
+    "mtime": 1781381290.4213483,
+    "ast_hash": "9b5ad261cf67527759d0308ffd95abb1",
+    "semantic_hash": "9b5ad261cf67527759d0308ffd95abb1"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\utils\\response.go": {
+    "mtime": 1781381234.0346441,
+    "ast_hash": "72b0ef138e1a016bcf53c22808067dce",
+    "semantic_hash": "72b0ef138e1a016bcf53c22808067dce"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\utils\\validation.go": {
+    "mtime": 1781377998.3533175,
+    "ast_hash": "93d0634ff4c7e23b1e9e9aa4a40a6a86",
+    "semantic_hash": "93d0634ff4c7e23b1e9e9aa4a40a6a86"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\cmd\\equipment\\main.go": {
+    "mtime": 1782276701.5217137,
+    "ast_hash": "304c4dcb5259838c4015ab910fc17dfe",
+    "semantic_hash": "304c4dcb5259838c4015ab910fc17dfe"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\go.mod": {
+    "mtime": 1782193614.0760217,
+    "ast_hash": "e26b53e70f4cc6bcc0112afd5a89d345",
+    "semantic_hash": "e26b53e70f4cc6bcc0112afd5a89d345"
   }
 }

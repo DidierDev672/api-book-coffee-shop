@@ -1,135 +1,150 @@
-# Graph Report - D:\Go\api-book-coffee-shop  (2026-06-19)
+# Graph Report - .  (2026-06-24)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- Corpus is ~35,784 words - fits in a single context window. You may not need a graph.
 
 ## Summary
-- 967 nodes · 1850 edges · 101 communities (63 shown, 38 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 245 edges (avg confidence: 0.8)
+- 1074 nodes · 1949 edges · 121 communities (77 shown, 44 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 145 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
-## Graph Freshness
-- Built from commit: `d5557066`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
-
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Core Infrastructure (61)|Core Infrastructure (61)]]
-- [[_COMMUNITY_Core Infrastructure (44)|Core Infrastructure (44)]]
-- [[_COMMUNITY_Core Infrastructure (33)|Core Infrastructure (33)]]
-- [[_COMMUNITY_Core Infrastructure (32)|Core Infrastructure (32)]]
-- [[_COMMUNITY_HTTP Handlers (15)|HTTP Handlers (15)]]
-- [[_COMMUNITY_HTTP Handlers (15)|HTTP Handlers (15)]]
-- [[_COMMUNITY_HTTP Handlers (15)|HTTP Handlers (15)]]
-- [[_COMMUNITY_HTTP Handlers (15)|HTTP Handlers (15)]]
-- [[_COMMUNITY_HTTP Handlers (14)|HTTP Handlers (14)]]
-- [[_COMMUNITY_HTTP Handlers (14)|HTTP Handlers (14)]]
-- [[_COMMUNITY_HTTP Handlers (14)|HTTP Handlers (14)]]
-- [[_COMMUNITY_HTTP Handlers (14)|HTTP Handlers (14)]]
-- [[_COMMUNITY_HTTP Handlers (14)|HTTP Handlers (14)]]
-- [[_COMMUNITY_EconomicActivityUseCase (13)|EconomicActivityUseCase (13)]]
-- [[_COMMUNITY_main_address.go (13)|main_address.go (13)]]
-- [[_COMMUNITY_order.go (13)|order.go (13)]]
-- [[_COMMUNITY_provider.go (13)|provider.go (13)]]
-- [[_COMMUNITY_tax_information.go (13)|tax_information.go (13)]]
-- [[_COMMUNITY_postgres_provider_repository.go (13)|postgres_provider_repository.go (13)]]
-- [[_COMMUNITY_Repository FinancialSummary (13)|Repository: FinancialSummary (13)]]
-- [[_COMMUNITY_BookUseCase (12)|BookUseCase (12)]]
-- [[_COMMUNITY_ClientUseCase (12)|ClientUseCase (12)]]
-- [[_COMMUNITY_EstablishmentUseCase (12)|EstablishmentUseCase (12)]]
-- [[_COMMUNITY_monthly_summary.go (12)|monthly_summary.go (12)]]
-- [[_COMMUNITY_movement.go (12)|movement.go (12)]]
-- [[_COMMUNITY_movement_type.go (12)|movement_type.go (12)]]
-- [[_COMMUNITY_note.go (12)|note.go (12)]]
-- [[_COMMUNITY_product_entry.go (12)|product_entry.go (12)]]
-- [[_COMMUNITY_product.go (12)|product.go (12)]]
-- [[_COMMUNITY_shipment.go (12)|shipment.go (12)]]
-- [[_COMMUNITY_topic.go (12)|topic.go (12)]]
-- [[_COMMUNITY_winery.go (12)|winery.go (12)]]
-- [[_COMMUNITY_postgres_product_entry_repository.go (12)|postgres_product_entry_repository.go (12)]]
-- [[_COMMUNITY_postgres_shipment_repository.go (12)|postgres_shipment_repository.go (12)]]
-- [[_COMMUNITY_Movement (12)|Movement (12)]]
-- [[_COMMUNITY_Product (12)|Product (12)]]
-- [[_COMMUNITY_BookRepository (11)|BookRepository (11)]]
-- [[_COMMUNITY_ClientRepository (11)|ClientRepository (11)]]
-- [[_COMMUNITY_EconomicActivityRepository (11)|EconomicActivityRepository (11)]]
-- [[_COMMUNITY_EstablishmentRepository (11)|EstablishmentRepository (11)]]
-- [[_COMMUNITY_postgres_product_repository.go (11)|postgres_product_repository.go (11)]]
-- [[_COMMUNITY_postgres_winery_repository.go (11)|postgres_winery_repository.go (11)]]
-- [[_COMMUNITY_MainAddress (11)|MainAddress (11)]]
-- [[_COMMUNITY_Note (11)|Note (11)]]
-- [[_COMMUNITY_Provider (11)|Provider (11)]]
-- [[_COMMUNITY_TaxInformation (11)|TaxInformation (11)]]
-- [[_COMMUNITY_Winery (11)|Winery (11)]]
-- [[_COMMUNITY_Repository InMemoryAuthorRepository (10)|Repository: InMemoryAuthorRepository (10)]]
-- [[_COMMUNITY_postgres_economic_activity_repository.go (10)|postgres_economic_activity_repository.go (10)]]
-- [[_COMMUNITY_postgres_establishment_repository.go (10)|postgres_establishment_repository.go (10)]]
-- [[_COMMUNITY_postgres_monthly_summary_repository.go (10)|postgres_monthly_summary_repository.go (10)]]
-- [[_COMMUNITY_postgres_repository.go (10)|postgres_repository.go (10)]]
-- [[_COMMUNITY_postgres_tax_information_repository.go (10)|postgres_tax_information_repository.go (10)]]
-- [[_COMMUNITY_postgres_topic_repository.go (10)|postgres_topic_repository.go (10)]]
-- [[_COMMUNITY_MovementType (10)|MovementType (10)]]
-- [[_COMMUNITY_Module Recipient|Module: Recipient]]
-- [[_COMMUNITY_Module FieldError|Module: FieldError]]
-- [[_COMMUNITY_Module FinancialSummary|Module: FinancialSummary]]
-- [[_COMMUNITY_Module Order|Module: Order]]
-- [[_COMMUNITY_Module economic_activity.go|Module: economic_activity.go]]
-- [[_COMMUNITY_Module main_address.go|Module: main_address.go]]
-- [[_COMMUNITY_Module monthly_summary.go|Module: monthly_summary.go]]
-- [[_COMMUNITY_Module movement_type.go|Module: movement_type.go]]
-- [[_COMMUNITY_Module tax_information.go|Module: tax_information.go]]
-- [[_COMMUNITY_Module User|Module: User]]
-- [[_COMMUNITY_Singleton Author|Singleton: Author]]
-- [[_COMMUNITY_Singleton Book|Singleton: Book]]
-- [[_COMMUNITY_Singleton Client|Singleton: Client]]
-- [[_COMMUNITY_Singleton Company|Singleton: Company]]
-- [[_COMMUNITY_Singleton Establishment|Singleton: Establishment]]
-- [[_COMMUNITY_Singleton Movement|Singleton: Movement]]
-- [[_COMMUNITY_Singleton Note|Singleton: Note]]
-- [[_COMMUNITY_Singleton Product|Singleton: Product]]
-- [[_COMMUNITY_Singleton Provider|Singleton: Provider]]
-- [[_COMMUNITY_Singleton Topic|Singleton: Topic]]
-- [[_COMMUNITY_Singleton Winery|Singleton: Winery]]
-- [[_COMMUNITY_Singleton graphify.js|Singleton: graphify.js]]
-- [[_COMMUNITY_Singleton book_repository.go|Singleton: book_repository.go]]
-- [[_COMMUNITY_Singleton client_repository.go|Singleton: client_repository.go]]
-- [[_COMMUNITY_Singleton company_repository.go|Singleton: company_repository.go]]
-- [[_COMMUNITY_Singleton economic_activity_repository.go|Singleton: economic_activity_repository.go]]
-- [[_COMMUNITY_Singleton establishment_repository.go|Singleton: establishment_repository.go]]
-- [[_COMMUNITY_Singleton main_address_repository.go|Singleton: main_address_repository.go]]
-- [[_COMMUNITY_Singleton monthly_summary_repository.go|Singleton: monthly_summary_repository.go]]
-- [[_COMMUNITY_Singleton movement_repository.go|Singleton: movement_repository.go]]
-- [[_COMMUNITY_Singleton movement_type_repository.go|Singleton: movement_type_repository.go]]
-- [[_COMMUNITY_Singleton note_repository.go|Singleton: note_repository.go]]
-- [[_COMMUNITY_Singleton order_repository.go|Singleton: order_repository.go]]
-- [[_COMMUNITY_Singleton product_entry_repository.go|Singleton: product_entry_repository.go]]
-- [[_COMMUNITY_Singleton product_repository.go|Singleton: product_repository.go]]
-- [[_COMMUNITY_Singleton provider_repository.go|Singleton: provider_repository.go]]
-- [[_COMMUNITY_Singleton shipment_repository.go|Singleton: shipment_repository.go]]
-- [[_COMMUNITY_Singleton tax_information_repository.go|Singleton: tax_information_repository.go]]
-- [[_COMMUNITY_Singleton topic_repository.go|Singleton: topic_repository.go]]
-- [[_COMMUNITY_Singleton user_repository.go|Singleton: user_repository.go]]
-- [[_COMMUNITY_Singleton winery_repository.go|Singleton: winery_repository.go]]
-- [[_COMMUNITY_Singleton validation.go|Singleton: validation.go]]
-- [[_COMMUNITY_Singleton errors.go|Singleton: errors.go]]
+- [[_COMMUNITY_Postgres Repos (BookClient)|Postgres Repos (Book/Client)]]
+- [[_COMMUNITY_Author & Inventory Use Cases|Author & Inventory Use Cases]]
+- [[_COMMUNITY_OrderSaleShipment Handlers|Order/Sale/Shipment Handlers]]
+- [[_COMMUNITY_Auth Handler (Legacy)|Auth Handler (Legacy)]]
+- [[_COMMUNITY_Equipment Server|Equipment Server]]
+- [[_COMMUNITY_Order Use Cases|Order Use Cases]]
+- [[_COMMUNITY_Product Entry Use Cases|Product Entry Use Cases]]
+- [[_COMMUNITY_Shipment Use Cases|Shipment Use Cases]]
+- [[_COMMUNITY_Company Use Cases|Company Use Cases]]
+- [[_COMMUNITY_Product Entry Handler|Product Entry Handler]]
+- [[_COMMUNITY_User Repository|User Repository]]
+- [[_COMMUNITY_Auth Use Cases|Auth Use Cases]]
+- [[_COMMUNITY_Movement Use Cases|Movement Use Cases]]
+- [[_COMMUNITY_Product Use Cases|Product Use Cases]]
+- [[_COMMUNITY_Author Handler|Author Handler]]
+- [[_COMMUNITY_Company Handler|Company Handler]]
+- [[_COMMUNITY_Auth Handler (HTTP)|Auth Handler (HTTP)]]
+- [[_COMMUNITY_Company Repository|Company Repository]]
+- [[_COMMUNITY_Economic Activity Handler|Economic Activity Handler]]
+- [[_COMMUNITY_Gin Auth Handler|Gin Auth Handler]]
+- [[_COMMUNITY_Main Address Handler|Main Address Handler]]
+- [[_COMMUNITY_Provider Handler|Provider Handler]]
+- [[_COMMUNITY_Tax Info Handler|Tax Info Handler]]
+- [[_COMMUNITY_Product Entry Repository|Product Entry Repository]]
+- [[_COMMUNITY_Provider Repository|Provider Repository]]
+- [[_COMMUNITY_Book Handler|Book Handler]]
+- [[_COMMUNITY_Client Handler|Client Handler]]
+- [[_COMMUNITY_Establishment Handler|Establishment Handler]]
+- [[_COMMUNITY_Monthly Summary Handler|Monthly Summary Handler]]
+- [[_COMMUNITY_Movement Handler|Movement Handler]]
+- [[_COMMUNITY_Movement Type Handler|Movement Type Handler]]
+- [[_COMMUNITY_Note Handler|Note Handler]]
+- [[_COMMUNITY_Product Handler|Product Handler]]
+- [[_COMMUNITY_Topic Handler|Topic Handler]]
+- [[_COMMUNITY_Winery Handler|Winery Handler]]
+- [[_COMMUNITY_Shipment Repository|Shipment Repository]]
+- [[_COMMUNITY_Book Use Cases|Book Use Cases]]
+- [[_COMMUNITY_Client Use Cases|Client Use Cases]]
+- [[_COMMUNITY_Economic Activity Use Cases|Economic Activity Use Cases]]
+- [[_COMMUNITY_Establishment Use Cases|Establishment Use Cases]]
+- [[_COMMUNITY_Product Repository|Product Repository]]
+- [[_COMMUNITY_Sale Repository|Sale Repository]]
+- [[_COMMUNITY_Winery Repository|Winery Repository]]
+- [[_COMMUNITY_Auth Middleware|Auth Middleware]]
+- [[_COMMUNITY_Main Address Use Cases|Main Address Use Cases]]
+- [[_COMMUNITY_Note Use Cases|Note Use Cases]]
+- [[_COMMUNITY_Provider Use Cases|Provider Use Cases]]
+- [[_COMMUNITY_Tax Info Use Cases|Tax Info Use Cases]]
+- [[_COMMUNITY_Topic Use Cases|Topic Use Cases]]
+- [[_COMMUNITY_Winery Use Cases|Winery Use Cases]]
+- [[_COMMUNITY_In-Memory Author Repo|In-Memory Author Repo]]
+- [[_COMMUNITY_Economic Activity Repository|Economic Activity Repository]]
+- [[_COMMUNITY_Establishment Repository|Establishment Repository]]
+- [[_COMMUNITY_Main Address Repository|Main Address Repository]]
+- [[_COMMUNITY_Monthly Summary Repository|Monthly Summary Repository]]
+- [[_COMMUNITY_Author Repository|Author Repository]]
+- [[_COMMUNITY_Tax Info Repository|Tax Info Repository]]
+- [[_COMMUNITY_Topic Repository|Topic Repository]]
+- [[_COMMUNITY_Monthly Summary Use Cases|Monthly Summary Use Cases]]
+- [[_COMMUNITY_Movement Type Use Cases|Movement Type Use Cases]]
+- [[_COMMUNITY_API Entry Point|API Entry Point]]
+- [[_COMMUNITY_Inventory History Handler|Inventory History Handler]]
+- [[_COMMUNITY_Inventory History Repository|Inventory History Repository]]
+- [[_COMMUNITY_Repository Factories|Repository Factories]]
+- [[_COMMUNITY_Gin Server Entry|Gin Server Entry]]
+- [[_COMMUNITY_Gin JWT Service|Gin JWT Service]]
+- [[_COMMUNITY_Gin Auth Models|Gin Auth Models]]
+- [[_COMMUNITY_Product Entry Domain|Product Entry Domain]]
+- [[_COMMUNITY_Shipment Domain|Shipment Domain]]
+- [[_COMMUNITY_Gin Auth Middleware|Gin Auth Middleware]]
+- [[_COMMUNITY_Request Models|Request Models]]
+- [[_COMMUNITY_Bcrypt Password Hasher|Bcrypt Password Hasher]]
+- [[_COMMUNITY_JWT Token Service|JWT Token Service]]
+- [[_COMMUNITY_Inventory History Domain|Inventory History Domain]]
+- [[_COMMUNITY_Order Domain|Order Domain]]
+- [[_COMMUNITY_Database Config|Database Config]]
+- [[_COMMUNITY_Economic Activity Domain|Economic Activity Domain]]
+- [[_COMMUNITY_Main Address Domain|Main Address Domain]]
+- [[_COMMUNITY_Monthly Summary Domain|Monthly Summary Domain]]
+- [[_COMMUNITY_Movement Type Domain|Movement Type Domain]]
+- [[_COMMUNITY_Sale Domain|Sale Domain]]
+- [[_COMMUNITY_Tax Info Domain|Tax Info Domain]]
+- [[_COMMUNITY_User Domain|User Domain]]
+- [[_COMMUNITY_Recovery Middleware|Recovery Middleware]]
+- [[_COMMUNITY_Author Domain|Author Domain]]
+- [[_COMMUNITY_Book Domain|Book Domain]]
+- [[_COMMUNITY_Client Domain|Client Domain]]
+- [[_COMMUNITY_Company Domain|Company Domain]]
+- [[_COMMUNITY_Establishment Domain|Establishment Domain]]
+- [[_COMMUNITY_Movement Domain|Movement Domain]]
+- [[_COMMUNITY_Note Domain|Note Domain]]
+- [[_COMMUNITY_Product Domain|Product Domain]]
+- [[_COMMUNITY_Provider Domain|Provider Domain]]
+- [[_COMMUNITY_Topic Domain|Topic Domain]]
+- [[_COMMUNITY_Winery Domain|Winery Domain]]
+- [[_COMMUNITY_Author Repo Interface|Author Repo Interface]]
+- [[_COMMUNITY_Book Repo Interface|Book Repo Interface]]
+- [[_COMMUNITY_Client Repo Interface|Client Repo Interface]]
+- [[_COMMUNITY_Company Repo Interface|Company Repo Interface]]
+- [[_COMMUNITY_Economic Activity Repo Interface|Economic Activity Repo Interface]]
+- [[_COMMUNITY_Establishment Repo Interface|Establishment Repo Interface]]
+- [[_COMMUNITY_Inventory History Repo Interface|Inventory History Repo Interface]]
+- [[_COMMUNITY_Main Address Repo Interface|Main Address Repo Interface]]
+- [[_COMMUNITY_Monthly Summary Repo Interface|Monthly Summary Repo Interface]]
+- [[_COMMUNITY_Movement Repo Interface|Movement Repo Interface]]
+- [[_COMMUNITY_Movement Type Repo Interface|Movement Type Repo Interface]]
+- [[_COMMUNITY_Note Repo Interface|Note Repo Interface]]
+- [[_COMMUNITY_Order Repo Interface|Order Repo Interface]]
+- [[_COMMUNITY_Product Entry Repo Interface|Product Entry Repo Interface]]
+- [[_COMMUNITY_Product Repo Interface|Product Repo Interface]]
+- [[_COMMUNITY_Provider Repo Interface|Provider Repo Interface]]
+- [[_COMMUNITY_Sale Repo Interface|Sale Repo Interface]]
+- [[_COMMUNITY_Shipment Repo Interface|Shipment Repo Interface]]
+- [[_COMMUNITY_Tax Info Repo Interface|Tax Info Repo Interface]]
+- [[_COMMUNITY_Topic Repo Interface|Topic Repo Interface]]
+- [[_COMMUNITY_User Repo Interface|User Repo Interface]]
+- [[_COMMUNITY_Winery Repo Interface|Winery Repo Interface]]
+- [[_COMMUNITY_Go Module Root|Go Module Root]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `writeError()` - 73 edges
-2. `main()` - 72 edges
-3. `writeJSON()` - 52 edges
-4. `generateID()` - 21 edges
-5. `nullIfEmpty()` - 18 edges
-6. `extractIP()` - 17 edges
-7. `MovementUseCase` - 13 edges
+1. `main()` - 75 edges
+2. `generateID()` - 25 edges
+3. `extractIP()` - 23 edges
+4. `nullIfEmpty()` - 18 edges
+5. `SaleUseCase` - 14 edges
+6. `store` - 13 edges
+7. `OrderUseCase` - 13 edges
 8. `ProductEntryUseCase` - 13 edges
 9. `PostgresUserRepository` - 12 edges
-10. `OrderUseCase` - 12 edges
+10. `MovementUseCase` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `main()` --calls--> `JWTSecret()`  [INFERRED]
-  cmd/api/main.go → internal/config/config.go
-- `main()` --calls--> `NewAuthHandler()`  [INFERRED]
-  cmd/api/main.go → internal/handler/auth_handler.go
+- `main()` --calls--> `EnsureDatabaseExists()`  [INFERRED]
+  cmd/api/main.go → internal/database/postgres.go
+- `main()` --calls--> `AuthMiddleware()`  [INFERRED]
+  cmd/api/main.go → internal/gin_auth/middleware.go
 - `main()` --calls--> `NewAuthorHandler()`  [INFERRED]
   cmd/api/main.go → internal/handler/author_handler.go
 - `main()` --calls--> `NewBookHandler()`  [INFERRED]
@@ -140,267 +155,323 @@
 ## Import Cycles
 - None detected.
 
-## Communities (101 total, 38 thin omitted)
+## Communities (121 total, 44 thin omitted)
 
-### Community 0 - "Core Infrastructure (61)"
-Cohesion: 0.06
-Nodes (47): AuthorUseCase, CompanyUseCase, extractIP(), NewAuthorHandler(), writeError(), writeJSON(), AuthorHandler, NewCompanyHandler() (+39 more)
+### Community 0 - "Postgres Repos (Book/Client)"
+Cohesion: 0.05
+Nodes (25): NewPostgresBookRepository(), nullIfEmpty(), NewPostgresClientRepository(), NewPostgresMovementRepository(), NewPostgresMovementTypeRepository(), NewPostgresNoteRepository(), NewPostgresOrderRepository(), PostgresBookRepository (+17 more)
 
-### Community 1 - "Core Infrastructure (44)"
+### Community 1 - "Author & Inventory Use Cases"
 Cohesion: 0.08
-Nodes (19): AuthorRepository, BookRepository, Author, Book, MonthlySummary, Winery, MonthlySummaryRepository, generateID() (+11 more)
+Nodes (25): AuthorRepository, HistoryRepoFactory, Author, DB, DBTX, InventoryHistory, DB, HistoryService (+17 more)
 
-### Community 2 - "Core Infrastructure (33)"
-Cohesion: 0.07
-Nodes (21): main(), runMigrations(), DB, DefaultPostgresConfig(), JWTSecret(), PostgresConfig, EnsureDatabaseExists(), NewInventoryHistoryHandler() (+13 more)
+### Community 2 - "Order/Sale/Shipment Handlers"
+Cohesion: 0.14
+Nodes (16): extractIP(), NewOrderHandler(), OrderHandler, NewSaleHandler(), SaleHandler, NewShipmentHandler(), ShipmentHandler, Request (+8 more)
 
-### Community 3 - "Core Infrastructure (32)"
+### Community 3 - "Auth Handler (Legacy)"
 Cohesion: 0.10
-Nodes (24): HandlerFunc, NewAuthHandler(), AuthHandler, AuthUseCase, Request, ResponseWriter, Context, Request (+16 more)
+Nodes (22): NewAuthHandler(), AuthHandler, AuthUseCase, Request, ResponseWriter, Context, HandlerFunc, Request (+14 more)
 
-### Community 4 - "HTTP Handlers (15)"
-Cohesion: 0.11
-Nodes (19): AuthUseCase, Handler, extractBearerToken(), NewAuthHandler(), AuthHandler, AuthUseCase, Request, ResponseWriter (+11 more)
+### Community 4 - "Equipment Server"
+Cohesion: 0.33
+Nodes (16): HandlerFunc, Request, ResponseWriter, RWMutex, Equipment, createEquipment(), deleteEquipment(), equipmentHandler() (+8 more)
 
-### Community 5 - "HTTP Handlers (15)"
+### Community 5 - "Order Use Cases"
+Cohesion: 0.22
+Nodes (13): DB, FinancialSummary, HistoryService, Order, Sale, OrderDetail, OrderRepoFactory, OrderRepository (+5 more)
+
+### Community 6 - "Product Entry Use Cases"
 Cohesion: 0.22
 Nodes (11): DB, Deduction, FinancialSummary, HistoryService, ProductEntry, ProductEntryDetail, ProductEntryRepoFactory, ProductEntryRepository (+3 more)
 
-### Community 6 - "HTTP Handlers (15)"
+### Community 7 - "Shipment Use Cases"
 Cohesion: 0.24
 Nodes (12): DB, HistoryService, Shipment, Recipient, ShipmentDetail, ShipmentFinancialSummary, ShipmentRepoFactory, ShipmentRepository (+4 more)
 
-### Community 7 - "HTTP Handlers (15)"
-Cohesion: 0.26
-Nodes (10): DB, FinancialSummary, HistoryService, Order, OrderDetail, OrderRepoFactory, OrderRepository, NewOrderUseCase() (+2 more)
+### Community 8 - "Company Use Cases"
+Cohesion: 0.23
+Nodes (9): CompanyRepository, id, Company, nit, socialReason, NewCompanyUseCase(), validateCompanyFields(), CompanyUseCase (+1 more)
 
-### Community 8 - "HTTP Handlers (14)"
-Cohesion: 0.24
-Nodes (9): TokenService, User, UserRepository, PasswordHasher, isNumeric(), NewAuthUseCase(), validateRegisterFields(), AuthUseCase (+1 more)
+### Community 9 - "Product Entry Handler"
+Cohesion: 0.32
+Nodes (7): DeductRequest, NewProductEntryHandler(), ProductEntryHandler, Deduction, Request, ResponseWriter, ProductEntryUseCase
 
-### Community 9 - "HTTP Handlers (14)"
-Cohesion: 0.24
-Nodes (10): DB, HistoryService, Movement, MovementTypeRepository, MovementRepoFactory, MovementRepository, MovementTypeRepository, NewMovementUseCase() (+2 more)
-
-### Community 10 - "HTTP Handlers (14)"
-Cohesion: 0.24
-Nodes (8): CompanyRepository, id, Company, nit, NewCompanyUseCase(), validateCompanyFields(), CompanyUseCase, userID
-
-### Community 11 - "HTTP Handlers (14)"
+### Community 10 - "User Repository"
 Cohesion: 0.24
 Nodes (5): NewPostgresUserRepository(), PostgresUserRepository, DB, Row, User
 
-### Community 12 - "HTTP Handlers (14)"
-Cohesion: 0.26
+### Community 11 - "Auth Use Cases"
+Cohesion: 0.23
+Nodes (8): TokenService, User, UserRepository, PasswordHasher, isNumeric(), NewAuthUseCase(), validateRegisterFields(), AuthUseCase
+
+### Community 12 - "Movement Use Cases"
+Cohesion: 0.28
+Nodes (9): DB, HistoryService, Movement, MovementTypeRepository, MovementRepoFactory, MovementRepository, NewMovementUseCase(), validateMovementFields() (+1 more)
+
+### Community 13 - "Product Use Cases"
+Cohesion: 0.27
 Nodes (8): DB, HistoryService, Product, ProductRepoFactory, ProductRepository, NewProductUseCase(), validateProductFields(), ProductUseCase
 
-### Community 13 - "EconomicActivityUseCase (13)"
+### Community 14 - "Author Handler"
+Cohesion: 0.45
+Nodes (7): AuthorUseCase, NewAuthorHandler(), writeError(), writeJSON(), AuthorHandler, Request, ResponseWriter
+
+### Community 15 - "Company Handler"
+Cohesion: 0.36
+Nodes (6): CompanyUseCase, NewCompanyHandler(), CompanyHandler, companyRequest, Request, ResponseWriter
+
+### Community 16 - "Auth Handler (HTTP)"
+Cohesion: 0.26
+Nodes (8): extractBearerToken(), NewAuthHandler(), AuthHandler, AuthUseCase, Request, ResponseWriter, Context, TryExecute()
+
+### Community 17 - "Company Repository"
 Cohesion: 0.25
 Nodes (6): NewPostgresCompanyRepository(), scanCompany(), PostgresCompanyRepository, Company, DB, Row
 
-### Community 14 - "main_address.go (13)"
-Cohesion: 0.24
-Nodes (7): NewPostgresProductEntryRepository(), scanProductEntry(), PostgresProductEntryRepository, DB, DBTX, ProductEntry, Row
-
-### Community 15 - "order.go (13)"
+### Community 18 - "Economic Activity Handler"
 Cohesion: 0.37
 Nodes (6): EconomicActivityUseCase, NewEconomicActivityHandler(), EconomicActivityHandler, economicActivityRequest, Request, ResponseWriter
 
-### Community 16 - "provider.go (13)"
+### Community 19 - "Gin Auth Handler"
+Cohesion: 0.23
+Nodes (9): AuthHandler, NewAuthHandler(), LoginInput, RegisterInput, extractField(), parseValidationError(), Context, DB (+1 more)
+
+### Community 20 - "Main Address Handler"
 Cohesion: 0.37
 Nodes (6): NewMainAddressHandler(), MainAddressHandler, mainAddressRequest, Request, ResponseWriter, MainAddressUseCase
 
-### Community 17 - "tax_information.go (13)"
+### Community 21 - "Provider Handler"
+Cohesion: 0.37
+Nodes (6): NewProviderHandler(), ProviderHandler, providerRequest, Request, ResponseWriter, ProviderUseCase
+
+### Community 22 - "Tax Info Handler"
 Cohesion: 0.37
 Nodes (6): NewTaxInformationHandler(), TaxInformationHandler, taxInformationRequest, Request, ResponseWriter, TaxInformationUseCase
 
-### Community 18 - "postgres_provider_repository.go (13)"
-Cohesion: 0.24
-Nodes (7): HistoryRepoFactory, DB, DBTX, InventoryHistory, InventoryEventType, HistoryService, NewHistoryService()
+### Community 23 - "Product Entry Repository"
+Cohesion: 0.26
+Nodes (6): NewPostgresProductEntryRepository(), scanProductEntry(), PostgresProductEntryRepository, DBTX, ProductEntry, Row
 
-### Community 19 - "Repository: FinancialSummary (13)"
+### Community 24 - "Provider Repository"
 Cohesion: 0.27
 Nodes (6): NewPostgresProviderRepository(), scanProvider(), PostgresProviderRepository, DB, Provider, Row
 
-### Community 20 - "BookUseCase (12)"
-Cohesion: 0.26
-Nodes (7): NewPostgresShipmentRepository(), scanShipment(), PostgresShipmentRepository, DB, DBTX, Row, Shipment
-
-### Community 21 - "ClientUseCase (12)"
+### Community 25 - "Book Handler"
 Cohesion: 0.42
 Nodes (5): BookUseCase, NewBookHandler(), BookHandler, Request, ResponseWriter
 
-### Community 22 - "EstablishmentUseCase (12)"
+### Community 26 - "Client Handler"
 Cohesion: 0.42
 Nodes (5): ClientUseCase, NewClientHandler(), ClientHandler, Request, ResponseWriter
 
-### Community 23 - "monthly_summary.go (12)"
+### Community 27 - "Establishment Handler"
 Cohesion: 0.42
 Nodes (5): EstablishmentUseCase, NewEstablishmentHandler(), EstablishmentHandler, Request, ResponseWriter
 
-### Community 24 - "movement.go (12)"
+### Community 28 - "Monthly Summary Handler"
 Cohesion: 0.42
 Nodes (5): NewMonthlySummaryHandler(), MonthlySummaryHandler, Request, ResponseWriter, MonthlySummaryUseCase
 
-### Community 25 - "movement_type.go (12)"
+### Community 29 - "Movement Handler"
 Cohesion: 0.42
 Nodes (5): NewMovementHandler(), MovementHandler, Request, ResponseWriter, MovementUseCase
 
-### Community 26 - "note.go (12)"
+### Community 30 - "Movement Type Handler"
 Cohesion: 0.42
 Nodes (5): NewMovementTypeHandler(), MovementTypeHandler, Request, ResponseWriter, MovementTypeUseCase
 
-### Community 27 - "product_entry.go (12)"
+### Community 31 - "Note Handler"
 Cohesion: 0.42
 Nodes (5): NewNoteHandler(), NoteHandler, Request, ResponseWriter, NoteUseCase
 
-### Community 28 - "product.go (12)"
+### Community 32 - "Product Handler"
+Cohesion: 0.42
+Nodes (5): NewProductHandler(), ProductHandler, Request, ResponseWriter, ProductUseCase
+
+### Community 33 - "Topic Handler"
 Cohesion: 0.42
 Nodes (5): NewTopicHandler(), TopicHandler, Request, ResponseWriter, TopicUseCase
 
-### Community 29 - "shipment.go (12)"
-Cohesion: 0.27
-Nodes (6): nullIfEmpty(), NewPostgresMovementRepository(), PostgresMovementRepository, DB, DBTX, Movement
+### Community 34 - "Winery Handler"
+Cohesion: 0.42
+Nodes (5): NewWineryHandler(), WineryHandler, Request, ResponseWriter, WineryUseCase
 
-### Community 30 - "topic.go (12)"
+### Community 35 - "Shipment Repository"
 Cohesion: 0.27
-Nodes (5): NewPostgresProductRepository(), PostgresProductRepository, DB, DBTX, Product
+Nodes (6): NewPostgresShipmentRepository(), scanShipment(), PostgresShipmentRepository, DBTX, Row, Shipment
 
-### Community 31 - "winery.go (12)"
+### Community 36 - "Book Use Cases"
+Cohesion: 0.33
+Nodes (5): BookRepository, Book, NewBookUseCase(), validateBookFields(), BookUseCase
+
+### Community 37 - "Client Use Cases"
 Cohesion: 0.33
 Nodes (5): ClientRepository, Client, NewClientUseCase(), validateClientFields(), ClientUseCase
 
-### Community 32 - "postgres_product_entry_repository.go (12)"
+### Community 38 - "Economic Activity Use Cases"
 Cohesion: 0.33
 Nodes (5): EconomicActivityRepository, EconomicActivity, NewEconomicActivityUseCase(), validateEconomicActivityFields(), EconomicActivityUseCase
 
-### Community 33 - "postgres_shipment_repository.go (12)"
+### Community 39 - "Establishment Use Cases"
 Cohesion: 0.33
 Nodes (5): EstablishmentRepository, Establishment, NewEstablishmentUseCase(), validateEstablishmentFields(), EstablishmentUseCase
 
-### Community 34 - "Movement (12)"
+### Community 40 - "Product Repository"
 Cohesion: 0.29
-Nodes (5): NewPostgresOrderRepository(), PostgresOrderRepository, DB, DBTX, Order
+Nodes (4): NewPostgresProductRepository(), PostgresProductRepository, DBTX, Product
 
-### Community 35 - "Product (12)"
+### Community 41 - "Sale Repository"
+Cohesion: 0.27
+Nodes (4): NewPostgresSaleRepository(), PostgresSaleRepository, DBTX, Sale
+
+### Community 42 - "Winery Repository"
 Cohesion: 0.29
 Nodes (4): NewPostgresWineryRepository(), PostgresWineryRepository, DB, Winery
 
-### Community 36 - "BookRepository (11)"
+### Community 43 - "Auth Middleware"
+Cohesion: 0.22
+Nodes (9): Handler, TokenService, UserRepository, Context, User, NewAuthMiddleware(), GetUserFromContext(), SetUserContext() (+1 more)
+
+### Community 44 - "Main Address Use Cases"
 Cohesion: 0.33
 Nodes (5): MainAddress, MainAddressRepository, NewMainAddressUseCase(), validateMainAddressFields(), MainAddressUseCase
 
-### Community 37 - "ClientRepository (11)"
+### Community 45 - "Note Use Cases"
 Cohesion: 0.33
 Nodes (5): Note, NoteRepository, NewNoteUseCase(), validateNoteFields(), NoteUseCase
 
-### Community 38 - "EconomicActivityRepository (11)"
+### Community 46 - "Provider Use Cases"
 Cohesion: 0.33
 Nodes (5): Provider, ProviderRepository, NewProviderUseCase(), validateProviderFields(), ProviderUseCase
 
-### Community 39 - "EstablishmentRepository (11)"
+### Community 47 - "Tax Info Use Cases"
 Cohesion: 0.33
 Nodes (5): TaxInformation, TaxInformationRepository, NewTaxInformationUseCase(), validateTaxInformationFields(), TaxInformationUseCase
 
-### Community 40 - "postgres_product_repository.go (11)"
+### Community 48 - "Topic Use Cases"
 Cohesion: 0.33
 Nodes (5): Topic, TopicRepository, NewTopicUseCase(), validateTopicFields(), TopicUseCase
 
-### Community 41 - "postgres_winery_repository.go (11)"
+### Community 49 - "Winery Use Cases"
+Cohesion: 0.31
+Nodes (4): Winery, NewWineryUseCase(), WineryUseCase, WineryRepository
+
+### Community 50 - "In-Memory Author Repo"
 Cohesion: 0.31
 Nodes (4): InMemoryAuthorRepository, NewInMemoryAuthorRepository(), Author, RWMutex
 
-### Community 42 - "MainAddress (11)"
-Cohesion: 0.31
-Nodes (4): NewPostgresBookRepository(), PostgresBookRepository, Book, DB
-
-### Community 43 - "Note (11)"
-Cohesion: 0.31
-Nodes (4): NewPostgresClientRepository(), PostgresClientRepository, Client, DB
-
-### Community 44 - "Provider (11)"
+### Community 51 - "Economic Activity Repository"
 Cohesion: 0.31
 Nodes (4): NewPostgresEconomicActivityRepository(), PostgresEconomicActivityRepository, DB, EconomicActivity
 
-### Community 45 - "TaxInformation (11)"
+### Community 52 - "Establishment Repository"
 Cohesion: 0.31
 Nodes (4): NewPostgresEstablishmentRepository(), PostgresEstablishmentRepository, DB, Establishment
 
-### Community 46 - "Winery (11)"
+### Community 53 - "Main Address Repository"
 Cohesion: 0.31
 Nodes (4): NewPostgresMainAddressRepository(), PostgresMainAddressRepository, DB, MainAddress
 
-### Community 47 - "Repository: InMemoryAuthorRepository (10)"
+### Community 54 - "Monthly Summary Repository"
 Cohesion: 0.31
 Nodes (4): NewPostgresMonthlySummaryRepository(), PostgresMonthlySummaryRepository, DB, MonthlySummary
 
-### Community 48 - "postgres_economic_activity_repository.go (10)"
-Cohesion: 0.31
-Nodes (4): NewPostgresMovementTypeRepository(), PostgresMovementTypeRepository, DB, MovementType
-
-### Community 49 - "postgres_establishment_repository.go (10)"
-Cohesion: 0.31
-Nodes (4): NewPostgresNoteRepository(), PostgresNoteRepository, DB, Note
-
-### Community 50 - "postgres_monthly_summary_repository.go (10)"
+### Community 55 - "Author Repository"
 Cohesion: 0.31
 Nodes (4): NewPostgresAuthorRepository(), PostgresAuthorRepository, Author, DB
 
-### Community 51 - "postgres_repository.go (10)"
+### Community 56 - "Tax Info Repository"
 Cohesion: 0.31
 Nodes (4): NewPostgresTaxInformationRepository(), PostgresTaxInformationRepository, DB, TaxInformation
 
-### Community 52 - "postgres_tax_information_repository.go (10)"
+### Community 57 - "Topic Repository"
 Cohesion: 0.31
 Nodes (4): NewPostgresTopicRepository(), PostgresTopicRepository, DB, Topic
 
-### Community 53 - "postgres_topic_repository.go (10)"
+### Community 58 - "Monthly Summary Use Cases"
+Cohesion: 0.33
+Nodes (4): MonthlySummary, MonthlySummaryRepository, NewMonthlySummaryUseCase(), MonthlySummaryUseCase
+
+### Community 59 - "Movement Type Use Cases"
 Cohesion: 0.33
 Nodes (4): MovementType, MovementTypeRepository, NewMovementTypeUseCase(), MovementTypeUseCase
 
-### Community 54 - "MovementType (10)"
-Cohesion: 0.33
-Nodes (6): HistoryRepoFactory, MovementRepoFactory, OrderRepoFactory, ProductEntryRepoFactory, ProductRepoFactory, ShipmentRepoFactory
+### Community 60 - "API Entry Point"
+Cohesion: 0.31
+Nodes (6): main(), runMigrations(), DB, DefaultPostgresConfig(), JWTSecret(), PostgresConfig
 
-### Community 55 - "Module: Recipient"
+### Community 61 - "Inventory History Handler"
+Cohesion: 0.44
+Nodes (5): NewInventoryHistoryHandler(), InventoryHistoryHandler, HistoryService, Request, ResponseWriter
+
+### Community 62 - "Inventory History Repository"
+Cohesion: 0.39
+Nodes (4): NewPostgresInventoryHistoryRepository(), PostgresInventoryHistoryRepository, DBTX, InventoryHistory
+
+### Community 63 - "Repository Factories"
+Cohesion: 0.29
+Nodes (8): DBTX, HistoryRepoFactory, MovementRepoFactory, OrderRepoFactory, ProductEntryRepoFactory, ProductRepoFactory, SaleRepoFactory, ShipmentRepoFactory
+
+### Community 64 - "Gin Server Entry"
+Cohesion: 0.38
+Nodes (6): Context, DB, adminPanel(), editorPanel(), getProfile(), seedRoles()
+
+### Community 65 - "Gin JWT Service"
+Cohesion: 0.38
+Nodes (4): Claims, NewJWTService(), JWTService, RegisteredClaims
+
+### Community 66 - "Gin Auth Models"
+Cohesion: 0.53
+Nodes (5): DeletedAt, Role, User, Time, User
+
+### Community 67 - "Product Entry Domain"
 Cohesion: 0.47
 Nodes (5): Deduction, FinancialSummary, ProductEntry, ProductEntryDetail, Time
 
-### Community 56 - "Module: FieldError"
+### Community 68 - "Shipment Domain"
 Cohesion: 0.40
 Nodes (6): Recipient, Shipment, ShipmentDetail, ShipmentFinancialSummary, SourceDocument, Time
 
-### Community 57 - "Module: FinancialSummary"
+### Community 69 - "Gin Auth Middleware"
+Cohesion: 0.47
+Nodes (5): AuthMiddleware(), RequireRole(), main(), HandlerFunc, JWTService
+
+### Community 70 - "Request Models"
 Cohesion: 0.40
 Nodes (4): FieldError, LoginRequest, RegisterRequest, getValidationMessage()
 
-### Community 58 - "Module: Order"
+### Community 73 - "Inventory History Domain"
 Cohesion: 0.67
 Nodes (3): InventoryEventType, InventoryHistory, Time
 
-### Community 59 - "Module: economic_activity.go"
+### Community 74 - "Order Domain"
 Cohesion: 0.67
 Nodes (4): Order, OrderDetail, FinancialSummary, Time
 
+### Community 80 - "Sale Domain"
+Cohesion: 1.00
+Nodes (3): Sale, SaleDetail, Time
+
 ## Knowledge Gaps
-- **86 isolated node(s):** `DB`, `PostgresConfig`, `Time`, `Time`, `Time` (+81 more)
+- **101 isolated node(s):** `DB`, `RWMutex`, `HandlerFunc`, `DB`, `book-coffee-shop` (+96 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **38 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **44 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `Core Infrastructure (33)` to `Core Infrastructure (61)`, `Core Infrastructure (44)`, `Core Infrastructure (32)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (15)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `HTTP Handlers (14)`, `EconomicActivityUseCase (13)`, `main_address.go (13)`, `order.go (13)`, `provider.go (13)`, `tax_information.go (13)`, `postgres_provider_repository.go (13)`, `Repository: FinancialSummary (13)`, `BookUseCase (12)`, `ClientUseCase (12)`, `EstablishmentUseCase (12)`, `monthly_summary.go (12)`, `movement.go (12)`, `movement_type.go (12)`, `note.go (12)`, `product_entry.go (12)`, `product.go (12)`, `shipment.go (12)`, `topic.go (12)`, `winery.go (12)`, `postgres_product_entry_repository.go (12)`, `postgres_shipment_repository.go (12)`, `Movement (12)`, `Product (12)`, `BookRepository (11)`, `ClientRepository (11)`, `EconomicActivityRepository (11)`, `EstablishmentRepository (11)`, `postgres_product_repository.go (11)`, `MainAddress (11)`, `Note (11)`, `Provider (11)`, `TaxInformation (11)`, `Winery (11)`, `Repository: InMemoryAuthorRepository (10)`, `postgres_economic_activity_repository.go (10)`, `postgres_establishment_repository.go (10)`, `postgres_monthly_summary_repository.go (10)`, `postgres_repository.go (10)`, `postgres_tax_information_repository.go (10)`, `postgres_topic_repository.go (10)`?**
-  _High betweenness centrality (0.654) - this node is a cross-community bridge._
-- **Why does `NewAuthMiddleware()` connect `HTTP Handlers (15)` to `Core Infrastructure (61)`, `Core Infrastructure (33)`, `Core Infrastructure (32)`?**
-  _High betweenness centrality (0.117) - this node is a cross-community bridge._
-- **Why does `writeError()` connect `Core Infrastructure (61)` to `provider.go (13)`, `movement_type.go (12)`, `Core Infrastructure (33)`, `HTTP Handlers (15)`?**
-  _High betweenness centrality (0.089) - this node is a cross-community bridge._
-- **Are the 66 inferred relationships involving `writeError()` (e.g. with `.HandleUser()` and `.ListUsers()`) actually correct?**
-  _`writeError()` has 66 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 70 inferred relationships involving `main()` (e.g. with `DefaultPostgresConfig()` and `JWTSecret()`) actually correct?**
-  _`main()` has 70 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 46 inferred relationships involving `writeJSON()` (e.g. with `.HandleUser()` and `.ListUsers()`) actually correct?**
-  _`writeJSON()` has 46 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 19 inferred relationships involving `generateID()` (e.g. with `.Register()` and `.Create()`) actually correct?**
-  _`generateID()` has 19 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `main()` connect `API Entry Point` to `Postgres Repos (Book/Client)`, `Author & Inventory Use Cases`, `Order/Sale/Shipment Handlers`, `Order Use Cases`, `Product Entry Use Cases`, `Shipment Use Cases`, `Company Use Cases`, `Product Entry Handler`, `User Repository`, `Auth Use Cases`, `Movement Use Cases`, `Product Use Cases`, `Author Handler`, `Company Handler`, `Company Repository`, `Economic Activity Handler`, `Main Address Handler`, `Provider Handler`, `Tax Info Handler`, `Product Entry Repository`, `Provider Repository`, `Book Handler`, `Client Handler`, `Establishment Handler`, `Monthly Summary Handler`, `Movement Handler`, `Movement Type Handler`, `Note Handler`, `Product Handler`, `Topic Handler`, `Winery Handler`, `Shipment Repository`, `Book Use Cases`, `Client Use Cases`, `Economic Activity Use Cases`, `Establishment Use Cases`, `Product Repository`, `Sale Repository`, `Winery Repository`, `Auth Middleware`, `Main Address Use Cases`, `Note Use Cases`, `Provider Use Cases`, `Tax Info Use Cases`, `Topic Use Cases`, `Winery Use Cases`, `Economic Activity Repository`, `Establishment Repository`, `Main Address Repository`, `Monthly Summary Repository`, `Author Repository`, `Tax Info Repository`, `Topic Repository`, `Monthly Summary Use Cases`, `Movement Type Use Cases`, `Inventory History Handler`, `Inventory History Repository`, `Gin Auth Middleware`, `Bcrypt Password Hasher`, `JWT Token Service`, `Database Config`, `Recovery Middleware`?**
+  _High betweenness centrality (0.549) - this node is a cross-community bridge._
+- **Why does `NewProductHandler()` connect `Product Handler` to `API Entry Point`?**
+  _High betweenness centrality (0.036) - this node is a cross-community bridge._
+- **Why does `generateID()` connect `Author & Inventory Use Cases` to `Order Use Cases`, `Product Entry Use Cases`, `Shipment Use Cases`, `Company Use Cases`, `Auth Use Cases`, `Movement Use Cases`, `Product Use Cases`, `Book Use Cases`, `Client Use Cases`, `Economic Activity Use Cases`, `Establishment Use Cases`, `Main Address Use Cases`, `Note Use Cases`, `Provider Use Cases`, `Tax Info Use Cases`, `Topic Use Cases`, `Winery Use Cases`, `Monthly Summary Use Cases`, `Movement Type Use Cases`?**
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
+- **Are the 73 inferred relationships involving `main()` (e.g. with `DefaultPostgresConfig()` and `JWTSecret()`) actually correct?**
+  _`main()` has 73 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 23 inferred relationships involving `generateID()` (e.g. with `.Register()` and `.Create()`) actually correct?**
+  _`generateID()` has 23 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 21 inferred relationships involving `extractIP()` (e.g. with `.create()` and `.delete()`) actually correct?**
+  _`extractIP()` has 21 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 15 inferred relationships involving `nullIfEmpty()` (e.g. with `.Create()` and `.Update()`) actually correct?**
+  _`nullIfEmpty()` has 15 INFERRED edges - model-reasoned connections that need verification._
