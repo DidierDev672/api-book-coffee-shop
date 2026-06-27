@@ -128,7 +128,11 @@ func writeJSON(w http.ResponseWriter, data any, status int) {
 	json.NewEncoder(w).Encode(data)
 }
 
-func writeError(w http.ResponseWriter, msg string, status int) {
+func writeError(w http.ResponseWriter, msg string, status int, field ...string) {
 	w.WriteHeader(status)
-	json.NewEncoder(w).Encode(map[string]string{"error": msg})
+	resp := map[string]string{"error": msg}
+	if len(field) > 0 && field[0] != "" {
+		resp["field"] = field[0]
+	}
+	json.NewEncoder(w).Encode(resp)
 }

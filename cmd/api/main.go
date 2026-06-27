@@ -8,10 +8,12 @@ import (
 	"book-coffee-shop/internal/middleware"
 	"book-coffee-shop/internal/repository"
 	"book-coffee-shop/internal/usecase"
+	"book-coffee-shop/internal/utils"
 	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	_ "github.com/lib/pq"
 	"github.com/rs/cors"
@@ -153,6 +155,14 @@ func main() {
 		historySvc)
 	shipmentH := handler.NewShipmentHandler(shipmentUC)
 
+	equipmentRepo := infrastructure.NewPostgresEquipmentRepository(db)
+	equipmentUC := usecase.NewEquipmentUseCase(equipmentRepo)
+	equipmentH := handler.NewEquipmentHandler(equipmentUC)
+
+	exerciseRepo := infrastructure.NewPostgresExerciseRepository(db)
+	exerciseUC := usecase.NewExerciseUseCase(exerciseRepo, equipmentRepo)
+	exerciseH := handler.NewExerciseHandler(exerciseUC)
+
 	historyH := handler.NewInventoryHistoryHandler(historySvc)
 
 	mux := http.NewServeMux()
@@ -199,6 +209,18 @@ func main() {
 	mux.HandleFunc("/history/", historyH.Handle)
 	mux.HandleFunc("/sales", saleH.Handle)
 	mux.HandleFunc("/sales/", saleH.Handle)
+	mux.HandleFunc("/exercises", exerciseH.Handle)
+	mux.HandleFunc("/exercises/", exerciseH.Handle)
+	mux.HandleFunc("/equipment/exercises/", func(w http.ResponseWriter, r *http.Request) {
+		equipmentID := strings.TrimPrefix(r.URL.Path, "/equipment/exercises/")
+		if equipmentID == "" {
+			utils.WriteError(w, "equipment_id is required", http.StatusBadRequest)
+			return
+		}
+		exerciseH.HandleByEquipmentID(w, r, equipmentID)
+	})
+	mux.HandleFunc("/equipment", equipmentH.Handle)
+	mux.HandleFunc("/equipment/", equipmentH.Handle)
 	mux.HandleFunc("/auth/register", authH.Register)
 	mux.HandleFunc("/auth/login", authH.Login)
 	mux.HandleFunc("/users", authH.ListUsers)
@@ -486,6 +508,25 @@ func runMigrations(db *sql.DB) error {
 			created_at        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 			updated_at        TIMESTAMPTZ NOT NULL DEFAULT NOW()
 		)`,
+		`CREATE TABLE IF NOT EXISTS exercises (
+			id           VARCHAR(50) PRIMARY KEY,
+			equipment_id VARCHAR(50) NOT NULL REFERENCES equipment(id),
+			name         VARCHAR(255) NOT NULL,
+			muscle_group VARCHAR(100) NOT NULL,
+			difficulty   VARCHAR(50) NOT NULL,
+			video_url    TEXT NOT NULL DEFAULT '',
+			created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
+		`CREATE TABLE IF NOT EXISTS equipment (
+			id               VARCHAR(50) PRIMARY KEY,
+			name             VARCHAR(255) NOT NULL,
+			type             VARCHAR(100) NOT NULL,
+			status           VARCHAR(50) NOT NULL DEFAULT 'active',
+			last_maintenance TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			created_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+			updated_at       TIMESTAMPTZ NOT NULL DEFAULT NOW()
+		)`,
 	}
 	for _, m := range migrations {
 		if _, err := db.Exec(m); err != nil {
@@ -524,6 +565,10 @@ func runMigrations(db *sql.DB) error {
 		`ALTER TABLE product_entries ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE'`,
 		`ALTER TABLE products ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE'`,
 		`ALTER TABLE movements ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE'`,
+		`ALTER TABLE exercises ADD COLUMN IF NOT EXISTS equipment_id VARCHAR(50) NOT NULL DEFAULT ''`,
+		`ALTER TABLE exercises DROP COLUMN IF EXISTS equipment_ids`,
+		`ALTER TABLE exercises DROP COLUMN IF EXISTS video`,
+		`ALTER TABLE exercises ADD COLUMN IF NOT EXISTS video_url TEXT NOT NULL DEFAULT ''`,
 	}
 	for _, a := range alterations {
 		db.Exec(a)

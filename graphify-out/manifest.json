@@ -650,9 +650,9 @@
     "semantic_hash": "32b67963417a30cb80544e0b2a56a98d"
   },
   "D:\\Casa-Atreides\\api-book-coffee-shop\\cmd\\api\\main.go": {
-    "mtime": 1781996106.4696817,
-    "ast_hash": "c87e67c26a7b9fd615eb6b65d5b2e3f8",
-    "semantic_hash": "c87e67c26a7b9fd615eb6b65d5b2e3f8"
+    "mtime": 1782391955.900098,
+    "ast_hash": "a3edb44ee4156891e9431c69605ba478",
+    "semantic_hash": "a3edb44ee4156891e9431c69605ba478"
   },
   "D:\\Casa-Atreides\\api-book-coffee-shop\\cmd\\gin-server\\main.go": {
     "mtime": 1782189185.2259502,
@@ -1333,5 +1333,55 @@
     "mtime": 1782193614.0760217,
     "ast_hash": "e26b53e70f4cc6bcc0112afd5a89d345",
     "semantic_hash": "e26b53e70f4cc6bcc0112afd5a89d345"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\exercise.go": {
+    "mtime": 1782391870.2167478,
+    "ast_hash": "76c295c890196339dbc9851eb578b18a",
+    "semantic_hash": "76c295c890196339dbc9851eb578b18a"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\exercise_handler.go": {
+    "mtime": 1782392056.5475461,
+    "ast_hash": "992be0b4a7acf121f61b724d29a53674",
+    "semantic_hash": "992be0b4a7acf121f61b724d29a53674"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_exercise_repository.go": {
+    "mtime": 1782391998.8309202,
+    "ast_hash": "6a6f124d81aafa23cc11ed782286d79d",
+    "semantic_hash": "6a6f124d81aafa23cc11ed782286d79d"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\exercise_repository.go": {
+    "mtime": 1782391928.1791494,
+    "ast_hash": "6bb0c317da35c39575d16a49f49e4a70",
+    "semantic_hash": "6bb0c317da35c39575d16a49f49e4a70"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\exercise_usecase.go": {
+    "mtime": 1782391913.5473583,
+    "ast_hash": "494e30ffa7623326763bf42b7bceb6b8",
+    "semantic_hash": "494e30ffa7623326763bf42b7bceb6b8"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\domain\\equipment.go": {
+    "mtime": 1782361787.3214588,
+    "ast_hash": "ffca5b8823502b1b0b57b364ca7d28b3",
+    "semantic_hash": "ffca5b8823502b1b0b57b364ca7d28b3"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\handler\\equipment_handler.go": {
+    "mtime": 1782361808.287313,
+    "ast_hash": "ffc96238256dfa7dbe3e52583e0a9f95",
+    "semantic_hash": "ffc96238256dfa7dbe3e52583e0a9f95"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\infrastructure\\postgres_equipment_repository.go": {
+    "mtime": 1782361794.5593414,
+    "ast_hash": "648bbf1f0428e358e3f728693f20f381",
+    "semantic_hash": "648bbf1f0428e358e3f728693f20f381"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\repository\\equipment_repository.go": {
+    "mtime": 1782361788.1969151,
+    "ast_hash": "b7930f509557b3906b6df1b68b0512ce",
+    "semantic_hash": "b7930f509557b3906b6df1b68b0512ce"
+  },
+  "D:\\Casa-Atreides\\api-book-coffee-shop\\internal\\usecase\\equipment_usecase.go": {
+    "mtime": 1782361799.9305463,
+    "ast_hash": "e8c931bab8f1f3a78025140e18d42db1",
+    "semantic_hash": "e8c931bab8f1f3a78025140e18d42db1"
   }
 }
